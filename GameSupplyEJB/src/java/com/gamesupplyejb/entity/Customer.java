@@ -5,16 +5,21 @@
 package com.gamesupplyejb.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +38,11 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "customerId")
     private Integer customerId;
+    @JoinTable(name = "billing_address", joinColumns = {
+        @JoinColumn(name = "id_customer", referencedColumnName = "customerId")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_billing_address", referencedColumnName = "id_address")})
+    @ManyToMany
+    private Collection<Address> addressCollection;
 
     public Customer() {
     }
@@ -47,6 +57,15 @@ public class Customer implements Serializable {
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+
+    @XmlTransient
+    public Collection<Address> getAddressCollection() {
+        return addressCollection;
+    }
+
+    public void setAddressCollection(Collection<Address> addressCollection) {
+        this.addressCollection = addressCollection;
     }
 
     @Override
