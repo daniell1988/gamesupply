@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "product")
+@Table(name = "category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByIdProduct", query = "SELECT p FROM Product p WHERE p.idProduct = :idProduct")})
-public class Product implements Serializable {
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
+    @NamedQuery(name = "Category.findByIdCategory", query = "SELECT c FROM Category c WHERE c.idCategory = :idCategory")})
+public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_product")
-    private Integer idProduct;
+    @Column(name = "id_category")
+    private Integer idCategory;
 
-    public Product() {
+    public Category() {
     }
 
-    public Product(Integer idProduct) {
-        this.idProduct = idProduct;
+    public Category(Integer idCategory) {
+        this.idCategory = idCategory;
     }
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Integer getIdCategory() {
+        return idCategory;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setIdCategory(Integer idCategory) {
+        this.idCategory = idCategory;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idProduct != null ? idProduct.hashCode() : 0);
+        hash += (idCategory != null ? idCategory.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
+        if (!(object instanceof Category)) {
             return false;
         }
-        Product other = (Product) object;
-        if ((this.idProduct == null && other.idProduct != null) || (this.idProduct != null && !this.idProduct.equals(other.idProduct))) {
+        Category other = (Category) object;
+        if ((this.idCategory == null && other.idCategory != null) || (this.idCategory != null && !this.idCategory.equals(other.idCategory))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Product[ idProduct=" + idProduct + " ]";
+        return "com.gamesupply.entity.Category[ idCategory=" + idCategory + " ]";
     }
     
 }

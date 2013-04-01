@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -70,7 +70,7 @@ public class Branch implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Branch[ idBranch=" + idBranch + " ]";
+        return "com.gamesupply.entity.Branch[ idBranch=" + idBranch + " ]";
     }
     
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -90,7 +90,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Customer[ customerId=" + customerId + " ]";
+        return "com.gamesupply.entity.Customer[ customerId=" + customerId + " ]";
     }
     
 }

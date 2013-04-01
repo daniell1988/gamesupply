@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -71,7 +71,7 @@ public class Order1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Order1[ idOrder=" + idOrder + " ]";
+        return "com.gamesupply.entity.Order1[ idOrder=" + idOrder + " ]";
     }
     
 }

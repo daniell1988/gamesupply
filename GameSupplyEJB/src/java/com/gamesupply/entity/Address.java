@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -106,7 +106,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Address[ idAddress=" + idAddress + " ]";
+        return "com.gamesupply.entity.Address[ idAddress=" + idAddress + " ]";
     }
     
 }

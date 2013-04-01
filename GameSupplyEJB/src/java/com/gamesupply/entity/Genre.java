@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "payment_term")
+@Table(name = "genre")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PaymentTerm.findAll", query = "SELECT p FROM PaymentTerm p"),
-    @NamedQuery(name = "PaymentTerm.findByIdPaymentTerm", query = "SELECT p FROM PaymentTerm p WHERE p.idPaymentTerm = :idPaymentTerm")})
-public class PaymentTerm implements Serializable {
+    @NamedQuery(name = "Genre.findAll", query = "SELECT g FROM Genre g"),
+    @NamedQuery(name = "Genre.findByIdGenre", query = "SELECT g FROM Genre g WHERE g.idGenre = :idGenre")})
+public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_payment_term")
-    private Integer idPaymentTerm;
+    @Column(name = "id_genre")
+    private Integer idGenre;
 
-    public PaymentTerm() {
+    public Genre() {
     }
 
-    public PaymentTerm(Integer idPaymentTerm) {
-        this.idPaymentTerm = idPaymentTerm;
+    public Genre(Integer idGenre) {
+        this.idGenre = idGenre;
     }
 
-    public Integer getIdPaymentTerm() {
-        return idPaymentTerm;
+    public Integer getIdGenre() {
+        return idGenre;
     }
 
-    public void setIdPaymentTerm(Integer idPaymentTerm) {
-        this.idPaymentTerm = idPaymentTerm;
+    public void setIdGenre(Integer idGenre) {
+        this.idGenre = idGenre;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPaymentTerm != null ? idPaymentTerm.hashCode() : 0);
+        hash += (idGenre != null ? idGenre.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PaymentTerm)) {
+        if (!(object instanceof Genre)) {
             return false;
         }
-        PaymentTerm other = (PaymentTerm) object;
-        if ((this.idPaymentTerm == null && other.idPaymentTerm != null) || (this.idPaymentTerm != null && !this.idPaymentTerm.equals(other.idPaymentTerm))) {
+        Genre other = (Genre) object;
+        if ((this.idGenre == null && other.idGenre != null) || (this.idGenre != null && !this.idGenre.equals(other.idGenre))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class PaymentTerm implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.PaymentTerm[ idPaymentTerm=" + idPaymentTerm + " ]";
+        return "com.gamesupply.entity.Genre[ idGenre=" + idGenre + " ]";
     }
     
 }

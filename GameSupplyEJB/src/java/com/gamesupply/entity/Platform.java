@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "category")
+@Table(name = "platform")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findByIdCategory", query = "SELECT c FROM Category c WHERE c.idCategory = :idCategory")})
-public class Category implements Serializable {
+    @NamedQuery(name = "Platform.findAll", query = "SELECT p FROM Platform p"),
+    @NamedQuery(name = "Platform.findByIdPlatform", query = "SELECT p FROM Platform p WHERE p.idPlatform = :idPlatform")})
+public class Platform implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_category")
-    private Integer idCategory;
+    @Column(name = "id_platform")
+    private Integer idPlatform;
 
-    public Category() {
+    public Platform() {
     }
 
-    public Category(Integer idCategory) {
-        this.idCategory = idCategory;
+    public Platform(Integer idPlatform) {
+        this.idPlatform = idPlatform;
     }
 
-    public Integer getIdCategory() {
-        return idCategory;
+    public Integer getIdPlatform() {
+        return idPlatform;
     }
 
-    public void setIdCategory(Integer idCategory) {
-        this.idCategory = idCategory;
+    public void setIdPlatform(Integer idPlatform) {
+        this.idPlatform = idPlatform;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCategory != null ? idCategory.hashCode() : 0);
+        hash += (idPlatform != null ? idPlatform.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
+        if (!(object instanceof Platform)) {
             return false;
         }
-        Category other = (Category) object;
-        if ((this.idCategory == null && other.idCategory != null) || (this.idCategory != null && !this.idCategory.equals(other.idCategory))) {
+        Platform other = (Platform) object;
+        if ((this.idPlatform == null && other.idPlatform != null) || (this.idPlatform != null && !this.idPlatform.equals(other.idPlatform))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Category[ idCategory=" + idCategory + " ]";
+        return "com.gamesupply.entity.Platform[ idPlatform=" + idPlatform + " ]";
     }
     
 }

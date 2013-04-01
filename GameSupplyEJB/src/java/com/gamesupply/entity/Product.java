@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupplyejb.entity;
+package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "genre")
+@Table(name = "product")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Genre.findAll", query = "SELECT g FROM Genre g"),
-    @NamedQuery(name = "Genre.findByIdGenre", query = "SELECT g FROM Genre g WHERE g.idGenre = :idGenre")})
-public class Genre implements Serializable {
+    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+    @NamedQuery(name = "Product.findByIdProduct", query = "SELECT p FROM Product p WHERE p.idProduct = :idProduct")})
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_genre")
-    private Integer idGenre;
+    @Column(name = "id_product")
+    private Integer idProduct;
 
-    public Genre() {
+    public Product() {
     }
 
-    public Genre(Integer idGenre) {
-        this.idGenre = idGenre;
+    public Product(Integer idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public Integer getIdGenre() {
-        return idGenre;
+    public Integer getIdProduct() {
+        return idProduct;
     }
 
-    public void setIdGenre(Integer idGenre) {
-        this.idGenre = idGenre;
+    public void setIdProduct(Integer idProduct) {
+        this.idProduct = idProduct;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idGenre != null ? idGenre.hashCode() : 0);
+        hash += (idProduct != null ? idProduct.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Genre)) {
+        if (!(object instanceof Product)) {
             return false;
         }
-        Genre other = (Genre) object;
-        if ((this.idGenre == null && other.idGenre != null) || (this.idGenre != null && !this.idGenre.equals(other.idGenre))) {
+        Product other = (Product) object;
+        if ((this.idProduct == null && other.idProduct != null) || (this.idProduct != null && !this.idProduct.equals(other.idProduct))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Genre implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupplyejb.entity.Genre[ idGenre=" + idGenre + " ]";
+        return "com.gamesupply.entity.Product[ idProduct=" + idProduct + " ]";
     }
     
 }
