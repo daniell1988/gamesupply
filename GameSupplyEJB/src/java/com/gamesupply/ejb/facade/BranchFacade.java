@@ -31,7 +31,10 @@ public class BranchFacade extends AbstractFacade<Branch> implements BranchFacade
 
     @Override
     public void create(BranchDTO branch) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       Branch b = new Branch(); 
+       b.setIdBranch(branch.getIdBranch()); 
+       super.create(b);
+
     }
     
 }
