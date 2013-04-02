@@ -35,16 +35,16 @@ public class BranchFacade extends AbstractFacade<Branch> implements BranchFacade
 
     @Override
     public void create(BranchDTO branch) {
+       Branch b = new Branch(); 
         try {
-            Branch b = new Branch(); 
             BeanUtils.copyProperties(b, branch);
-            //b.setIdBranch(branch.getIdBranch()); 
-            super.create(b);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(BranchFacade.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
             Logger.getLogger(BranchFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
+       //b.setIdBranch(branch.getIdBranch()); 
+       super.create(b);
 
     }
     
