@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.remote;
 
 import com.gamesupply.entity.Customer;
 import java.util.List;

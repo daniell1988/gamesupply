@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.facade;
 
 import java.util.List;
 import javax.persistence.EntityManager;

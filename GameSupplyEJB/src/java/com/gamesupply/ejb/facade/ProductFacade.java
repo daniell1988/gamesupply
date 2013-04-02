@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.facade;
 
+import com.gamesupply.ejb.remote.ProductFacadeLocal;
 import com.gamesupply.entity.Product;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

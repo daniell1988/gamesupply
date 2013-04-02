@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.remote;
 
+import com.gamesupply.dto.BranchDTO;
 import com.gamesupply.entity.Branch;
 import java.util.List;
 import javax.ejb.Remote;
@@ -15,7 +16,7 @@ import javax.ejb.Remote;
 @Remote
 public interface BranchFacadeLocal {
 
-    void create(Branch branch);
+    void create(BranchDTO branch);
 
     void edit(Branch branch);
 

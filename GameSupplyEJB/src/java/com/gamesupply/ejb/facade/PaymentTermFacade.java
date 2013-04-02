@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.facade;
 
-import com.gamesupply.entity.Genre;
+import com.gamesupply.ejb.remote.PaymentTermFacadeLocal;
+import com.gamesupply.entity.PaymentTerm;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class GenreFacade extends AbstractFacade<Genre> implements GenreFacadeLocal {
+public class PaymentTermFacade extends AbstractFacade<PaymentTerm> implements PaymentTermFacadeLocal {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -23,8 +24,8 @@ public class GenreFacade extends AbstractFacade<Genre> implements GenreFacadeLoc
         return em;
     }
 
-    public GenreFacade() {
-        super(Genre.class);
+    public PaymentTermFacade() {
+        super(PaymentTerm.class);
     }
     
 }

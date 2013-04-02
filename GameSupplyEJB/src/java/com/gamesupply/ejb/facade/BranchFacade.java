@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.facade;
 
-import com.gamesupply.entity.Customer;
+import com.gamesupply.dto.BranchDTO;
+import com.gamesupply.ejb.remote.BranchFacadeLocal;
+import com.gamesupply.entity.Branch;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class CustomerFacade extends AbstractFacade<Customer> implements CustomerFacadeLocal {
+public class BranchFacade extends AbstractFacade<Branch> implements BranchFacadeLocal {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -23,8 +25,13 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         return em;
     }
 
-    public CustomerFacade() {
-        super(Customer.class);
+    public BranchFacade() {
+        super(Branch.class);
+    }
+
+    @Override
+    public void create(BranchDTO branch) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

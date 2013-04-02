@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.ejb.bean;
+package com.gamesupply.ejb.facade;
 
-import com.gamesupply.entity.ProductItem;
+import com.gamesupply.ejb.remote.AddressFacadeLocal;
+import com.gamesupply.entity.Address;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class ProductItemFacade extends AbstractFacade<ProductItem> implements ProductItemFacadeLocal {
+public class AddressFacade extends AbstractFacade<Address> implements AddressFacadeLocal {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -23,8 +24,8 @@ public class ProductItemFacade extends AbstractFacade<ProductItem> implements Pr
         return em;
     }
 
-    public ProductItemFacade() {
-        super(ProductItem.class);
+    public AddressFacade() {
+        super(Address.class);
     }
     
 }
