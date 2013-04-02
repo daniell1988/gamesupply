@@ -7,6 +7,7 @@ package com.gamesupply.ejb.bean;
 import java.util.List;
 import javax.persistence.EntityManager;
 
+
 /**
  *
  * @author CUESTAS

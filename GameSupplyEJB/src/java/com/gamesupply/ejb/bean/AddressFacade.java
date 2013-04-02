@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class AddressFacade extends AbstractFacade<Address> {
+public class AddressFacade extends AbstractFacade<Address> implements AddressFacadeLocal {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 

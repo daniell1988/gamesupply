@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class CategoryFacade extends AbstractFacade<Category> {
+public class CategoryFacade extends AbstractFacade<Category> implements CategoryFacadeLocal {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
