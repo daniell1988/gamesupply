@@ -6,13 +6,13 @@ package com.gamesupply.ejb.bean;
 
 import com.gamesupply.entity.Address;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author CUESTAS
  */
-@Local
+@Remote
 public interface AddressFacadeLocal {
 
     void create(Address address);

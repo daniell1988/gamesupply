@@ -6,13 +6,13 @@ package com.gamesupply.ejb.bean;
 
 import com.gamesupply.entity.Branch;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author CUESTAS
  */
-@Local
+@Remote
 public interface BranchFacadeLocal {
 
     void create(Branch branch);
@@ -30,3 +30,4 @@ public interface BranchFacadeLocal {
     int count();
     
 }
+    
