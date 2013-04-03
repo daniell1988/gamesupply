@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,7 +46,10 @@ public class Address implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "address_description")
     private String addressDescription;
-    @ManyToMany(mappedBy = "addressCollection")
+    @JoinTable(name = "billing_address", joinColumns = {
+        @JoinColumn(name = "id_billing_address", referencedColumnName = "id_address")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_customer", referencedColumnName = "customerId")})
+    @ManyToMany
     private Collection<Customer> customerCollection;
 
     public Address() {

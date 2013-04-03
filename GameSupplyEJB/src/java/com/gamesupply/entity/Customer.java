@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,10 +36,7 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "customerId")
     private Integer customerId;
-    @JoinTable(name = "billing_address", joinColumns = {
-        @JoinColumn(name = "id_customer", referencedColumnName = "customerId")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_billing_address", referencedColumnName = "id_address")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "customerCollection")
     private Collection<Address> addressCollection;
 
     public Customer() {
