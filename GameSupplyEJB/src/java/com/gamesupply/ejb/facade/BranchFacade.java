@@ -4,23 +4,18 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.dto.BranchDTO;
-import com.gamesupply.ejb.remote.BranchFacadeLocal;
-import com.gamesupply.entity.Branch;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.gamesupply.ejb.remote.BranchFacadeRemote;
+import com.gamesupply.entity.BranchEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.apache.commons.beanutils.BeanUtils;
 
 /**
  *
  * @author CUESTAS
  */
 @Stateless
-public class BranchFacade extends AbstractFacade<Branch> implements BranchFacadeLocal {
+public class BranchFacade extends AbstractFacade<BranchEntity> implements BranchFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -30,22 +25,7 @@ public class BranchFacade extends AbstractFacade<Branch> implements BranchFacade
     }
 
     public BranchFacade() {
-        super(Branch.class);
-    }
-
-    @Override
-    public void create(BranchDTO branch) {
-       Branch b = new Branch(); 
-        try {
-            BeanUtils.copyProperties(b, branch);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(BranchFacade.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(BranchFacade.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       //b.setIdBranch(branch.getIdBranch()); 
-       super.create(b);
-
+        super(BranchEntity.class);
     }
     
 }

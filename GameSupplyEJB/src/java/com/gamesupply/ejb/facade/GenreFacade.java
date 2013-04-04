@@ -4,8 +4,8 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.ejb.remote.GenreFacadeLocal;
-import com.gamesupply.entity.Genre;
+import com.gamesupply.ejb.remote.GenreFacadeRemote;
+import com.gamesupply.entity.GenreEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class GenreFacade extends AbstractFacade<Genre> implements GenreFacadeLocal {
+public class GenreFacade extends AbstractFacade<GenreEntity> implements GenreFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class GenreFacade extends AbstractFacade<Genre> implements GenreFacadeLoc
     }
 
     public GenreFacade() {
-        super(Genre.class);
+        super(GenreEntity.class);
     }
     
 }

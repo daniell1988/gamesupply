@@ -7,7 +7,6 @@ package com.gamesupply.ejb.facade;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-
 /**
  *
  * @author CUESTAS

@@ -4,8 +4,8 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.ejb.remote.PaymentTermFacadeLocal;
-import com.gamesupply.entity.PaymentTerm;
+import com.gamesupply.ejb.remote.PaymentTermFacadeRemote;
+import com.gamesupply.entity.PaymentTermEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class PaymentTermFacade extends AbstractFacade<PaymentTerm> implements PaymentTermFacadeLocal {
+public class PaymentFacade extends AbstractFacade<PaymentTermEntity> implements PaymentTermFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class PaymentTermFacade extends AbstractFacade<PaymentTerm> implements Pa
         return em;
     }
 
-    public PaymentTermFacade() {
-        super(PaymentTerm.class);
+    public PaymentFacade() {
+        super(PaymentTermEntity.class);
     }
     
 }

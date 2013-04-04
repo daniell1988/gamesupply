@@ -4,8 +4,8 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.ejb.remote.ProductItemFacadeLocal;
-import com.gamesupply.entity.ProductItem;
+import com.gamesupply.ejb.remote.ProductItemFacadeRemote;
+import com.gamesupply.entity.ProductItemEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class ProductItemFacade extends AbstractFacade<ProductItem> implements ProductItemFacadeLocal {
+public class ProductItemFacade extends AbstractFacade<ProductItemEntity> implements ProductItemFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class ProductItemFacade extends AbstractFacade<ProductItem> implements Pr
     }
 
     public ProductItemFacade() {
-        super(ProductItem.class);
+        super(ProductItemEntity.class);
     }
     
 }

@@ -4,8 +4,8 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.ejb.remote.PlatformFacadeRemote;
-import com.gamesupply.entity.PlatformEntity;
+import com.gamesupply.ejb.remote.InventortyFacadeRemote;
+import com.gamesupply.entity.InventortyEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class PlatformFacade extends AbstractFacade<PlatformEntity> implements PlatformFacadeRemote {
+public class InventortyFacade extends AbstractFacade<InventortyEntity> implements InventortyFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class PlatformFacade extends AbstractFacade<PlatformEntity> implements Pl
         return em;
     }
 
-    public PlatformFacade() {
-        super(PlatformEntity.class);
+    public InventortyFacade() {
+        super(InventortyEntity.class);
     }
     
 }

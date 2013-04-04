@@ -4,8 +4,8 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.ejb.remote.CategoryFacadeLocal;
-import com.gamesupply.entity.Category;
+import com.gamesupply.ejb.remote.CategoryFacadeRemote;
+import com.gamesupply.entity.CategoryEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author CUESTAS
  */
 @Stateless
-public class CategoryFacade extends AbstractFacade<Category> implements CategoryFacadeLocal {
+public class CategoryFacade extends AbstractFacade<CategoryEntity> implements CategoryFacadeRemote {
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class CategoryFacade extends AbstractFacade<Category> implements Category
     }
 
     public CategoryFacade() {
-        super(Category.class);
+        super(CategoryEntity.class);
     }
     
 }
