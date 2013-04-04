@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "product")
+@Table(name = "payment_term")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByIdProduct", query = "SELECT p FROM Product p WHERE p.idProduct = :idProduct")})
-public class Product implements Serializable {
+    @NamedQuery(name = "PaymentTermEntity.findAll", query = "SELECT p FROM PaymentTermEntity p"),
+    @NamedQuery(name = "PaymentTermEntity.findByIdPaymentTerm", query = "SELECT p FROM PaymentTermEntity p WHERE p.idPaymentTerm = :idPaymentTerm")})
+public class PaymentTermEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_product")
-    private Integer idProduct;
+    @Column(name = "id_payment_term")
+    private Integer idPaymentTerm;
 
-    public Product() {
+    public PaymentTermEntity() {
     }
 
-    public Product(Integer idProduct) {
-        this.idProduct = idProduct;
+    public PaymentTermEntity(Integer idPaymentTerm) {
+        this.idPaymentTerm = idPaymentTerm;
     }
 
-    public Integer getIdProduct() {
-        return idProduct;
+    public Integer getIdPaymentTerm() {
+        return idPaymentTerm;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setIdPaymentTerm(Integer idPaymentTerm) {
+        this.idPaymentTerm = idPaymentTerm;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idProduct != null ? idProduct.hashCode() : 0);
+        hash += (idPaymentTerm != null ? idPaymentTerm.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
+        if (!(object instanceof PaymentTermEntity)) {
             return false;
         }
-        Product other = (Product) object;
-        if ((this.idProduct == null && other.idProduct != null) || (this.idProduct != null && !this.idProduct.equals(other.idProduct))) {
+        PaymentTermEntity other = (PaymentTermEntity) object;
+        if ((this.idPaymentTerm == null && other.idPaymentTerm != null) || (this.idPaymentTerm != null && !this.idPaymentTerm.equals(other.idPaymentTerm))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.Product[ idProduct=" + idProduct + " ]";
+        return "com.gamesupply.entity.PaymentTermEntity[ idPaymentTerm=" + idPaymentTerm + " ]";
     }
     
 }

@@ -5,14 +5,13 @@
 package com.gamesupply.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,7 +19,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,21 +28,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "address")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findByIdAddress", query = "SELECT a FROM Address a WHERE a.addressPK.idAddress = :idAddress"),
-    @NamedQuery(name = "Address.findByAddress", query = "SELECT a FROM Address a WHERE a.address = :address"),
-    @NamedQuery(name = "Address.findByAddressComplement", query = "SELECT a FROM Address a WHERE a.addressComplement = :addressComplement"),
-    @NamedQuery(name = "Address.findByCountry", query = "SELECT a FROM Address a WHERE a.country = :country"),
-    @NamedQuery(name = "Address.findByState", query = "SELECT a FROM Address a WHERE a.state = :state"),
-    @NamedQuery(name = "Address.findByCity", query = "SELECT a FROM Address a WHERE a.city = :city"),
-    @NamedQuery(name = "Address.findByZip", query = "SELECT a FROM Address a WHERE a.zip = :zip"),
-    @NamedQuery(name = "Address.findByIdCustomer", query = "SELECT a FROM Address a WHERE a.addressPK.idCustomer = :idCustomer"),
-    @NamedQuery(name = "Address.findByPhoneNumber", query = "SELECT a FROM Address a WHERE a.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "Address.findByAddressDescription", query = "SELECT a FROM Address a WHERE a.addressDescription = :addressDescription")})
-public class Address implements Serializable {
+    @NamedQuery(name = "AddressEntity.findAll", query = "SELECT a FROM AddressEntity a"),
+    @NamedQuery(name = "AddressEntity.findByIdAddress", query = "SELECT a FROM AddressEntity a WHERE a.idAddress = :idAddress"),
+    @NamedQuery(name = "AddressEntity.findByAddress", query = "SELECT a FROM AddressEntity a WHERE a.address = :address"),
+    @NamedQuery(name = "AddressEntity.findByAddressComplement", query = "SELECT a FROM AddressEntity a WHERE a.addressComplement = :addressComplement"),
+    @NamedQuery(name = "AddressEntity.findByCountry", query = "SELECT a FROM AddressEntity a WHERE a.country = :country"),
+    @NamedQuery(name = "AddressEntity.findByState", query = "SELECT a FROM AddressEntity a WHERE a.state = :state"),
+    @NamedQuery(name = "AddressEntity.findByCity", query = "SELECT a FROM AddressEntity a WHERE a.city = :city"),
+    @NamedQuery(name = "AddressEntity.findByZip", query = "SELECT a FROM AddressEntity a WHERE a.zip = :zip"),
+    @NamedQuery(name = "AddressEntity.findByPhoneNumber", query = "SELECT a FROM AddressEntity a WHERE a.phoneNumber = :phoneNumber"),
+    @NamedQuery(name = "AddressEntity.findByAddressDescription", query = "SELECT a FROM AddressEntity a WHERE a.addressDescription = :addressDescription")})
+public class AddressEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected AddressPK addressPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_address")
+    private Integer idAddress;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
@@ -85,24 +85,19 @@ public class Address implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "address_description")
     private String addressDescription;
-    @JoinTable(name = "billing_address", joinColumns = {
-        @JoinColumn(name = "id_billing_address", referencedColumnName = "id_address")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_customer", referencedColumnName = "customerId")})
-    @ManyToMany
-    private Collection<Customer> customerCollection;
-    @JoinColumn(name = "id_customer", referencedColumnName = "customerId", insertable = false, updatable = false)
+    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
     @ManyToOne(optional = false)
-    private Customer customer;
+    private CustomerEntity idCustomer;
 
-    public Address() {
+    public AddressEntity() {
     }
 
-    public Address(AddressPK addressPK) {
-        this.addressPK = addressPK;
+    public AddressEntity(Integer idAddress) {
+        this.idAddress = idAddress;
     }
 
-    public Address(AddressPK addressPK, String address, String addressComplement, String country, String state, String city, String zip, String phoneNumber, String addressDescription) {
-        this.addressPK = addressPK;
+    public AddressEntity(Integer idAddress, String address, String addressComplement, String country, String state, String city, String zip, String phoneNumber, String addressDescription) {
+        this.idAddress = idAddress;
         this.address = address;
         this.addressComplement = addressComplement;
         this.country = country;
@@ -113,16 +108,12 @@ public class Address implements Serializable {
         this.addressDescription = addressDescription;
     }
 
-    public Address(int idAddress, int idCustomer) {
-        this.addressPK = new AddressPK(idAddress, idCustomer);
+    public Integer getIdAddress() {
+        return idAddress;
     }
 
-    public AddressPK getAddressPK() {
-        return addressPK;
-    }
-
-    public void setAddressPK(AddressPK addressPK) {
-        this.addressPK = addressPK;
+    public void setIdAddress(Integer idAddress) {
+        this.idAddress = idAddress;
     }
 
     public String getAddress() {
@@ -189,38 +180,29 @@ public class Address implements Serializable {
         this.addressDescription = addressDescription;
     }
 
-    @XmlTransient
-    public Collection<Customer> getCustomerCollection() {
-        return customerCollection;
+    public CustomerEntity getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setCustomerCollection(Collection<Customer> customerCollection) {
-        this.customerCollection = customerCollection;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setIdCustomer(CustomerEntity idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (addressPK != null ? addressPK.hashCode() : 0);
+        hash += (idAddress != null ? idAddress.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+        if (!(object instanceof AddressEntity)) {
             return false;
         }
-        Address other = (Address) object;
-        if ((this.addressPK == null && other.addressPK != null) || (this.addressPK != null && !this.addressPK.equals(other.addressPK))) {
+        AddressEntity other = (AddressEntity) object;
+        if ((this.idAddress == null && other.idAddress != null) || (this.idAddress != null && !this.idAddress.equals(other.idAddress))) {
             return false;
         }
         return true;
@@ -228,7 +210,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.Address[ addressPK=" + addressPK + " ]";
+        return "com.gamesupply.entity.AddressEntity[ idAddress=" + idAddress + " ]";
     }
     
 }

@@ -21,49 +21,49 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author CUESTAS
  */
 @Entity
-@Table(name = "order")
+@Table(name = "genre")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o"),
-    @NamedQuery(name = "Order1.findByIdOrder", query = "SELECT o FROM Order1 o WHERE o.idOrder = :idOrder")})
-public class Order1 implements Serializable {
+    @NamedQuery(name = "GenreEntity.findAll", query = "SELECT g FROM GenreEntity g"),
+    @NamedQuery(name = "GenreEntity.findByIdGenre", query = "SELECT g FROM GenreEntity g WHERE g.idGenre = :idGenre")})
+public class GenreEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_order")
-    private Integer idOrder;
+    @Column(name = "id_genre")
+    private Integer idGenre;
 
-    public Order1() {
+    public GenreEntity() {
     }
 
-    public Order1(Integer idOrder) {
-        this.idOrder = idOrder;
+    public GenreEntity(Integer idGenre) {
+        this.idGenre = idGenre;
     }
 
-    public Integer getIdOrder() {
-        return idOrder;
+    public Integer getIdGenre() {
+        return idGenre;
     }
 
-    public void setIdOrder(Integer idOrder) {
-        this.idOrder = idOrder;
+    public void setIdGenre(Integer idGenre) {
+        this.idGenre = idGenre;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idOrder != null ? idOrder.hashCode() : 0);
+        hash += (idGenre != null ? idGenre.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order1)) {
+        if (!(object instanceof GenreEntity)) {
             return false;
         }
-        Order1 other = (Order1) object;
-        if ((this.idOrder == null && other.idOrder != null) || (this.idOrder != null && !this.idOrder.equals(other.idOrder))) {
+        GenreEntity other = (GenreEntity) object;
+        if ((this.idGenre == null && other.idGenre != null) || (this.idGenre != null && !this.idGenre.equals(other.idGenre))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Order1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.Order1[ idOrder=" + idOrder + " ]";
+        return "com.gamesupply.entity.GenreEntity[ idGenre=" + idGenre + " ]";
     }
     
 }

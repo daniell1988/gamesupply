@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "product_item")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductItem.findAll", query = "SELECT p FROM ProductItem p"),
-    @NamedQuery(name = "ProductItem.findByIdProductItem", query = "SELECT p FROM ProductItem p WHERE p.idProductItem = :idProductItem")})
-public class ProductItem implements Serializable {
+    @NamedQuery(name = "ProductItemEntity.findAll", query = "SELECT p FROM ProductItemEntity p"),
+    @NamedQuery(name = "ProductItemEntity.findByIdProductItem", query = "SELECT p FROM ProductItemEntity p WHERE p.idProductItem = :idProductItem")})
+public class ProductItemEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -33,10 +33,10 @@ public class ProductItem implements Serializable {
     @Column(name = "id_product_item")
     private Integer idProductItem;
 
-    public ProductItem() {
+    public ProductItemEntity() {
     }
 
-    public ProductItem(Integer idProductItem) {
+    public ProductItemEntity(Integer idProductItem) {
         this.idProductItem = idProductItem;
     }
 
@@ -58,10 +58,10 @@ public class ProductItem implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductItem)) {
+        if (!(object instanceof ProductItemEntity)) {
             return false;
         }
-        ProductItem other = (ProductItem) object;
+        ProductItemEntity other = (ProductItemEntity) object;
         if ((this.idProductItem == null && other.idProductItem != null) || (this.idProductItem != null && !this.idProductItem.equals(other.idProductItem))) {
             return false;
         }
@@ -70,7 +70,7 @@ public class ProductItem implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.ProductItem[ idProductItem=" + idProductItem + " ]";
+        return "com.gamesupply.entity.ProductItemEntity[ idProductItem=" + idProductItem + " ]";
     }
     
 }

@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,22 +30,22 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "customer")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
-    @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId"),
-    @NamedQuery(name = "Customer.findByFirstName", query = "SELECT c FROM Customer c WHERE c.firstName = :firstName"),
-    @NamedQuery(name = "Customer.findByLastName", query = "SELECT c FROM Customer c WHERE c.lastName = :lastName"),
-    @NamedQuery(name = "Customer.findByMobileNumber", query = "SELECT c FROM Customer c WHERE c.mobileNumber = :mobileNumber"),
-    @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "Customer.findByUserLogin", query = "SELECT c FROM Customer c WHERE c.userLogin = :userLogin"),
-    @NamedQuery(name = "Customer.findByUserPassword", query = "SELECT c FROM Customer c WHERE c.userPassword = :userPassword"),
-    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")})
-public class Customer implements Serializable {
+    @NamedQuery(name = "CustomerEntity.findAll", query = "SELECT c FROM CustomerEntity c"),
+    @NamedQuery(name = "CustomerEntity.findByIdCustomer", query = "SELECT c FROM CustomerEntity c WHERE c.idCustomer = :idCustomer"),
+    @NamedQuery(name = "CustomerEntity.findByFirstName", query = "SELECT c FROM CustomerEntity c WHERE c.firstName = :firstName"),
+    @NamedQuery(name = "CustomerEntity.findByLastName", query = "SELECT c FROM CustomerEntity c WHERE c.lastName = :lastName"),
+    @NamedQuery(name = "CustomerEntity.findByMobileNumber", query = "SELECT c FROM CustomerEntity c WHERE c.mobileNumber = :mobileNumber"),
+    @NamedQuery(name = "CustomerEntity.findByPhoneNumber", query = "SELECT c FROM CustomerEntity c WHERE c.phoneNumber = :phoneNumber"),
+    @NamedQuery(name = "CustomerEntity.findByUserLogin", query = "SELECT c FROM CustomerEntity c WHERE c.userLogin = :userLogin"),
+    @NamedQuery(name = "CustomerEntity.findByUserPassword", query = "SELECT c FROM CustomerEntity c WHERE c.userPassword = :userPassword"),
+    @NamedQuery(name = "CustomerEntity.findByEmail", query = "SELECT c FROM CustomerEntity c WHERE c.email = :email")})
+public class CustomerEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "customerId")
-    private Integer customerId;
+    @Column(name = "id_customer")
+    private Integer idCustomer;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -83,20 +82,18 @@ public class Customer implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "email")
     private String email;
-    @ManyToMany(mappedBy = "customerCollection")
-    private Collection<Address> addressCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Collection<Address> addressCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCustomer")
+    private Collection<AddressEntity> addressEntityCollection;
 
-    public Customer() {
+    public CustomerEntity() {
     }
 
-    public Customer(Integer customerId) {
-        this.customerId = customerId;
+    public CustomerEntity(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public Customer(Integer customerId, String firstName, String lastName, String mobileNumber, String phoneNumber, String userLogin, String userPassword, String email) {
-        this.customerId = customerId;
+    public CustomerEntity(Integer idCustomer, String firstName, String lastName, String mobileNumber, String phoneNumber, String userLogin, String userPassword, String email) {
+        this.idCustomer = idCustomer;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobileNumber = mobileNumber;
@@ -106,12 +103,12 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Integer getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getFirstName() {
@@ -171,38 +168,29 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
+    public Collection<AddressEntity> getAddressEntityCollection() {
+        return addressEntityCollection;
     }
 
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
-    }
-
-    @XmlTransient
-    public Collection<Address> getAddressCollection1() {
-        return addressCollection1;
-    }
-
-    public void setAddressCollection1(Collection<Address> addressCollection1) {
-        this.addressCollection1 = addressCollection1;
+    public void setAddressEntityCollection(Collection<AddressEntity> addressEntityCollection) {
+        this.addressEntityCollection = addressEntityCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerId != null ? customerId.hashCode() : 0);
+        hash += (idCustomer != null ? idCustomer.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Customer)) {
+        if (!(object instanceof CustomerEntity)) {
             return false;
         }
-        Customer other = (Customer) object;
-        if ((this.customerId == null && other.customerId != null) || (this.customerId != null && !this.customerId.equals(other.customerId))) {
+        CustomerEntity other = (CustomerEntity) object;
+        if ((this.idCustomer == null && other.idCustomer != null) || (this.idCustomer != null && !this.idCustomer.equals(other.idCustomer))) {
             return false;
         }
         return true;
@@ -210,7 +198,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.Customer[ customerId=" + customerId + " ]";
+        return "com.gamesupply.entity.CustomerEntity[ idCustomer=" + idCustomer + " ]";
     }
     
 }

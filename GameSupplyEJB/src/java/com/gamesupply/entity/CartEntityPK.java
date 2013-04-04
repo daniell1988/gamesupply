@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author CUESTAS
  */
 @Embeddable
-public class CartPK implements Serializable {
+public class CartEntityPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_costumer")
@@ -25,10 +25,10 @@ public class CartPK implements Serializable {
     @Column(name = "id_product_item")
     private int idProductItem;
 
-    public CartPK() {
+    public CartEntityPK() {
     }
 
-    public CartPK(int idCostumer, int idProductItem) {
+    public CartEntityPK(int idCostumer, int idProductItem) {
         this.idCostumer = idCostumer;
         this.idProductItem = idProductItem;
     }
@@ -60,10 +60,10 @@ public class CartPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CartPK)) {
+        if (!(object instanceof CartEntityPK)) {
             return false;
         }
-        CartPK other = (CartPK) object;
+        CartEntityPK other = (CartEntityPK) object;
         if (this.idCostumer != other.idCostumer) {
             return false;
         }
@@ -75,7 +75,7 @@ public class CartPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.CartPK[ idCostumer=" + idCostumer + ", idProductItem=" + idProductItem + " ]";
+        return "com.gamesupply.entity.CartEntityPK[ idCostumer=" + idCostumer + ", idProductItem=" + idProductItem + " ]";
     }
     
 }

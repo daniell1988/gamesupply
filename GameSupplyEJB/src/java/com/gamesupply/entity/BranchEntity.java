@@ -23,9 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "branch")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Branch.findAll", query = "SELECT b FROM Branch b"),
-    @NamedQuery(name = "Branch.findByIdBranch", query = "SELECT b FROM Branch b WHERE b.idBranch = :idBranch")})
-public class Branch implements Serializable {
+    @NamedQuery(name = "BranchEntity.findAll", query = "SELECT b FROM BranchEntity b"),
+    @NamedQuery(name = "BranchEntity.findByIdBranch", query = "SELECT b FROM BranchEntity b WHERE b.idBranch = :idBranch")})
+public class BranchEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -33,10 +33,10 @@ public class Branch implements Serializable {
     @Column(name = "id_branch")
     private Integer idBranch;
 
-    public Branch() {
+    public BranchEntity() {
     }
 
-    public Branch(Integer idBranch) {
+    public BranchEntity(Integer idBranch) {
         this.idBranch = idBranch;
     }
 
@@ -58,10 +58,10 @@ public class Branch implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Branch)) {
+        if (!(object instanceof BranchEntity)) {
             return false;
         }
-        Branch other = (Branch) object;
+        BranchEntity other = (BranchEntity) object;
         if ((this.idBranch == null && other.idBranch != null) || (this.idBranch != null && !this.idBranch.equals(other.idBranch))) {
             return false;
         }
@@ -70,7 +70,7 @@ public class Branch implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.Branch[ idBranch=" + idBranch + " ]";
+        return "com.gamesupply.entity.BranchEntity[ idBranch=" + idBranch + " ]";
     }
     
 }

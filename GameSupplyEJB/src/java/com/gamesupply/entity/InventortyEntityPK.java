@@ -15,30 +15,30 @@ import javax.validation.constraints.NotNull;
  * @author CUESTAS
  */
 @Embeddable
-public class WishlistPK implements Serializable {
+public class InventortyEntityPK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_customer")
-    private int idCustomer;
+    @Column(name = "id_branch")
+    private int idBranch;
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_product_item")
     private int idProductItem;
 
-    public WishlistPK() {
+    public InventortyEntityPK() {
     }
 
-    public WishlistPK(int idCustomer, int idProductItem) {
-        this.idCustomer = idCustomer;
+    public InventortyEntityPK(int idBranch, int idProductItem) {
+        this.idBranch = idBranch;
         this.idProductItem = idProductItem;
     }
 
-    public int getIdCustomer() {
-        return idCustomer;
+    public int getIdBranch() {
+        return idBranch;
     }
 
-    public void setIdCustomer(int idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setIdBranch(int idBranch) {
+        this.idBranch = idBranch;
     }
 
     public int getIdProductItem() {
@@ -52,7 +52,7 @@ public class WishlistPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idCustomer;
+        hash += (int) idBranch;
         hash += (int) idProductItem;
         return hash;
     }
@@ -60,11 +60,11 @@ public class WishlistPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WishlistPK)) {
+        if (!(object instanceof InventortyEntityPK)) {
             return false;
         }
-        WishlistPK other = (WishlistPK) object;
-        if (this.idCustomer != other.idCustomer) {
+        InventortyEntityPK other = (InventortyEntityPK) object;
+        if (this.idBranch != other.idBranch) {
             return false;
         }
         if (this.idProductItem != other.idProductItem) {
@@ -75,7 +75,7 @@ public class WishlistPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.WishlistPK[ idCustomer=" + idCustomer + ", idProductItem=" + idProductItem + " ]";
+        return "com.gamesupply.entity.InventortyEntityPK[ idBranch=" + idBranch + ", idProductItem=" + idProductItem + " ]";
     }
     
 }
