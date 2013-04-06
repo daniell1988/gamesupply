@@ -21,11 +21,11 @@ public interface CustomerFacadeRemote {
 
     void remove(CustomerDTO customerDTO);
 
-    CustomerDTO find(int id);
+    CustomerDTO find(Integer id);
 
     List<CustomerDTO> findAll();
 
-    List<CustomerDTO> findRange(int[] range);
+    List<CustomerDTO> findRange(Integer[] range);
 
     int count();
     

@@ -7,7 +7,12 @@ package com.gamesupply.ejb.facade;
 import com.gamesupply.dto.AddressDTO;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.entity.AddressEntity;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -52,15 +57,32 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     }
 
     
-    public List<AddressDTO> findAll() {
+    @Override
+    public List findAll() {
        List<AddressEntity> lista = super.findAll();
+       Iterator itr = lista.iterator();
+       List<AddressDTO> listaDTO = new ArrayList<AddressDTO>();
+       while(itr.hasNext()){
+            try {
+                AddressDTO addressDTO = new AddressDTO();
+                AddressEntity addressEntity = (AddressEntity)itr.next();
+                BeanUtils.copyProperties(addressDTO, addressEntity);
+                listaDTO.add(addressDTO);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+       }
        //verrer lista de entity
        //criar lista addressdto
        //retornar dto
+       return listaDTO;
     }
 
     @Override
-    public List<AddressDTO> findRange(int[] range) {
+    public List<AddressDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

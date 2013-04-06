@@ -21,11 +21,11 @@ public interface AddressFacadeRemote {
 
     void remove(AddressDTO addressEntity);
 
-    AddressDTO find(int id);
+    AddressDTO find(Integer id);
 
     List<AddressDTO> findAll();
 
-    List<AddressDTO> findRange(int[] range);
+    List<AddressDTO> findRange(Integer[] range);
 
     int count();
     

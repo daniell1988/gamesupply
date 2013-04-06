@@ -10,6 +10,5 @@
         <property name="URL" value="jdbc:mysql://localhost:3306/gamesupplydb?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="mysqlGameSupplyDB" object-type="user" pool-name="mysql_gamesupplydb_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="gamesupplydb" object-type="user" pool-name="mysql_gamesupplydb_rootPool"/>
 </resources>

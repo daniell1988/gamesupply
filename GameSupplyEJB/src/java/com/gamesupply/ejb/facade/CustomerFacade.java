@@ -46,17 +46,17 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     }
 
     @Override
-    public CustomerDTO find(int id) {
+    public CustomerDTO find(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+
+    public List findAll() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<CustomerDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<CustomerDTO> findRange(int[] range) {
+    public List<CustomerDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
