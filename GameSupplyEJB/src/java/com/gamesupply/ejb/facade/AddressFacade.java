@@ -37,8 +37,16 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     }
 
     @Override
-    public void create(AddressDTO addressEntity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void create(AddressDTO addressDTO) {
+       AddressEntity addressE = new AddressEntity();
+        try {
+            BeanUtils.copyProperties(addressE, addressDTO);
+            em.persist(addressE);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

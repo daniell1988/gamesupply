@@ -9,6 +9,11 @@ import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.facade.AddressFacade;
 import com.gamesupply.entity.AddressEntity;
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -16,6 +21,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Daniel
  */
 public class TesteAddressPersist {
+    AddressFacade addressFacade = lookupAddressFacadeBean();
     
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException{
         
@@ -28,20 +34,25 @@ public class TesteAddressPersist {
         address.setAddressDescription("ccc");
         address.setCity("aaa");
         address.setCountry("aaa");
-//      address.setIdAddress(Integer.MIN_VALUE);
+   //   address.setIdAddress(Integer.MIN_VALUE);
         address.setIdCustomer(customer);
         address.setPhoneNumber("aaa");
         address.setState("aaa");
         address.setZip("aaa");
         
-        AddressEntity addressE = new AddressEntity();
-        AddressFacade addressF = new AddressFacade();
+       //TA CAGANDO NESSA PORRA
+        addressFacade.create(address);
         
-        BeanUtils.copyProperties(addressE, address);
-        
-       
-        addressF.create(address);
-        
+    }
+
+    private AddressFacade lookupAddressFacadeBean() {
+        try {
+            Context c = new InitialContext();
+            return (AddressFacade) c.lookup("java:global/GameSupplyCore/AddressFacade!com.gamesupply.ejb.facade.AddressFacade");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
     
 }
