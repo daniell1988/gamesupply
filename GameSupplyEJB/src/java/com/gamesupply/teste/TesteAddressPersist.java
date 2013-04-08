@@ -11,6 +11,7 @@ import com.gamesupply.entity.AddressEntity;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -21,9 +22,10 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Daniel
  */
 public class TesteAddressPersist {
+    @EJB
     AddressFacade addressFacade = lookupAddressFacadeBean();
     
-    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException{
+    public void teste(){
         
         AddressDTO address = new AddressDTO();
         CustomerDTO customer = new CustomerDTO();
@@ -40,8 +42,15 @@ public class TesteAddressPersist {
         address.setState("aaa");
         address.setZip("aaa");
         
-       //TA CAGANDO NESSA PORRA
+       
         addressFacade.create(address);
+        
+        
+    }
+    
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException{
+        
+        new TesteAddressPersist().teste();
         
     }
 
