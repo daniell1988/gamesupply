@@ -5,6 +5,7 @@
 package com.gamesupply.ejb.facade;
 
 import com.gamesupply.dto.AddressDTO;
+import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.entity.AddressEntity;
 import java.lang.reflect.InvocationTargetException;
@@ -35,12 +36,17 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     public AddressFacade() {
         super(AddressEntity.class);
     }
+    
+  
 
     @Override
     public void create(AddressDTO addressDTO) {
        AddressEntity addressE = new AddressEntity();
         try {
             BeanUtils.copyProperties(addressE, addressDTO);
+            BeanUtils.copyProperties(addressE.getIdCustomer(), addressDTO.getIdCustomer());
+            
+            
             em.persist(addressE);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);

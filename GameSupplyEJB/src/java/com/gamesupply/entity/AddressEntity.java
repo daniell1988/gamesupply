@@ -90,6 +90,7 @@ public class AddressEntity implements Serializable {
     private CustomerEntity idCustomer;
 
     public AddressEntity() {
+        this.idCustomer = new CustomerEntity();
     }
 
     public AddressEntity(Integer idAddress) {

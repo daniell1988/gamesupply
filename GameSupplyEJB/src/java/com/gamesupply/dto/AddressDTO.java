@@ -24,6 +24,7 @@ public class AddressDTO implements Serializable {
     private CustomerDTO idCustomer;
 
     public AddressDTO() {
+        this.idCustomer = new CustomerDTO();
     }
 
     public AddressDTO(Integer idAddress) {
