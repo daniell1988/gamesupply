@@ -5,9 +5,9 @@
 package com.gamesupply.ejb.facade;
 
 import com.gamesupply.dto.AddressDTO;
-import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.entity.AddressEntity;
+import com.gamesupply.entity.CustomerEntity;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,17 +42,30 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     @Override
     public void create(AddressDTO addressDTO) {
        AddressEntity addressE = new AddressEntity();
-        try {
-            BeanUtils.copyProperties(addressE, addressDTO);
-            BeanUtils.copyProperties(addressE.getIdCustomer(), addressDTO.getIdCustomer());
+       CustomerEntity customerE = new CustomerEntity();
+//        try {
+                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
+                addressE.setAddress(addressDTO.getAddress());
+                addressE.setAddressComplement(addressDTO.getAddressComplement());
+                addressE.setAddressDescription(addressDTO.getAddressDescription());
+                addressE.setCity(addressDTO.getCity());
+                addressE.setCountry(addressDTO.getCountry());
+                addressE.setIdCustomer(customerE);
+                addressE.setPhoneNumber(addressDTO.getPhoneNumber());
+                addressE.setState(addressDTO.getState());
+                addressE.setZip(addressDTO.getZip());
+            //System.out.println("BATEU NESSA PORRA");
+               
+           // BeanUtils.copyProperties(addressE, addressDTO);
+           // BeanUtils.copyProperties(addressE.getIdCustomer(), addressDTO.getIdCustomer());
             
             
             em.persist(addressE);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (IllegalAccessException ex) {
+//            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvocationTargetException ex) {
+//            Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     @Override

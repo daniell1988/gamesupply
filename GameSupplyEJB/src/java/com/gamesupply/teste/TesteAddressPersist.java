@@ -40,17 +40,17 @@ public class TesteAddressPersist {
         AddressDTO address = new AddressDTO();
         CustomerDTO customer = new CustomerDTO();
         
-        customer.setIdCustomer(1);
-        address.setAddress("aaa");
-        address.setAddressComplement("bbb");
-        address.setAddressDescription("ccc");
-        address.setCity("aaa");
-        address.setCountry("aaa");
+        customer.setIdCustomer(Integer.valueOf(1));
+        address.setAddress("Rua x");
+        address.setAddressComplement("numro 90");
+        address.setAddressDescription("ao lado da padaria");
+        address.setCity("sao paulo");
+        address.setCountry("brasil");
    //   address.setIdAddress(Integer.MIN_VALUE);
         address.setIdCustomer(customer);
-        address.setPhoneNumber("aaa");
-        address.setState("aaa");
-        address.setZip("aaa");
+        address.setPhoneNumber("999+6999");
+        address.setState("SP");
+        address.setZip("22501-581");
         
        
         addressFacade.create(address);
