@@ -55,9 +55,9 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
                 addressE.setState(addressDTO.getState());
                 addressE.setZip(addressDTO.getZip());
             //System.out.println("BATEU NESSA PORRA");
-               
-           // BeanUtils.copyProperties(addressE, addressDTO);
-           // BeanUtils.copyProperties(addressE.getIdCustomer(), addressDTO.getIdCustomer());
+            
+//            BeanUtils.copyProperties(addressE, addressDTO);
+//            BeanUtils.copyProperties(addressE.getIdCustomer(), addressDTO.getIdCustomer());
             
             
             em.persist(addressE);

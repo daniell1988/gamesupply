@@ -8,7 +8,6 @@ import com.gamesupply.dto.AddressDTO;
 import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.ejb.test.TestSessionBeanLocal;
-import com.gamesupply.ejb.test.TestSessionBeanRemote;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 import java.util.logging.Level;
