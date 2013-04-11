@@ -20,9 +20,9 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class AddressController {
 
-    private AddressDTO address = new AddressDTO();
-    private CustomerDTO customer = new CustomerDTO();
-    AddressFacadeRemote addressFacade = null;
+    private AddressDTO address = null;
+    private CustomerDTO customer = null;
+    private AddressFacadeRemote addressFacade = null;
     
     public void create(){
         
