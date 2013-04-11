@@ -23,7 +23,6 @@ public class AddressController {
     public void create(){
         
         addressFacade = (AddressFacadeRemote) GSUtils.dynamicLookup("AddressFacade");
-        
         customer.setIdCustomer(Integer.valueOf(1));
         address.setAddress("Rua x");
         address.setAddressComplement("numro 90");
