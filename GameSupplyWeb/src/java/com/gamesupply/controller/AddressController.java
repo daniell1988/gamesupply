@@ -9,16 +9,14 @@ import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.facade.AddressFacade;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.util.GSUtils;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author CUESTAS
  */
-@ManagedBean
-@RequestScoped
 public class AddressController {
+    
 
     private AddressDTO address = null;
     private CustomerDTO customer = null;
@@ -31,6 +29,8 @@ public class AddressController {
     }    
     
     public AddressController() {
+        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         
     }
 }

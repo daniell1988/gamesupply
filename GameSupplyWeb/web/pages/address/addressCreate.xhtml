@@ -6,7 +6,25 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+         <h:form>
+                <h:inputHidden id="validateCreateField" validator="#{customer.validateCreate}" value="value"/>
+                <h:panelGrid columns="2">
+                    <h:outputText value="CustomerId:"/>
+                    <h:inputText id="customerId" value="#{adres}" title="AddressId" required="true" requiredMessage="The customerId field is required." />
+                    <h:outputText value="Zip:"/>
+                    <h:inputText id="zip" value="#{customer.customer.zip}" title="Zip" required="true" requiredMessage="The zip field is required." />
+                    <h:outputText value="Name:"/>
+                    <h:inputText id="name" value="#{customer.customer.name}" title="Name" />
+                    <h:outputText value="Addressline1:"/>
+                    <h:inputText id="addressline1" value="#{customer.customer.addressline1}" title="Addressline1" />
+                    <h:outputText value="Addressline2:"/>
+                    <h:inputText id="addressline2" value="#{customer.customer.addressline2}" title="Addressline2" />
+                    <h:outputText value="City:"/>
+                    <h:inputText id="city" value="#{customer.customer.city}" title="City" />
+                    <h:outputText value="State:"/>
+                    <h:inputText id="state" value="#{customer.customer.state}" title="State" />
+                </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
 

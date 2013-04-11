@@ -24,14 +24,19 @@ public class GSUtils {
     public static Object dynamicLookup(Class<?> classe) {
         try {
             Properties props = new Properties();
+            
             props.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.enterprise.naming.SerialInitContextFactory");
             props.setProperty("org.omg.CORBA.ORBInitialHost", host);
-//            props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
             props.setProperty("org.omg.CORBA.ORBInitialPort", port);
-            InitialContext ctx = new InitialContext(props);            
+            
+            InitialContext ctx = new InitialContext(props);     
+            
             return ctx.lookup(getDynamicLookupContext(classe.getSimpleName()));
+            
         } catch (NamingException ne) {
+            
             Logger.getLogger(classe.getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            
             throw new RuntimeException(ne);
         }
     }
