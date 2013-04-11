@@ -31,7 +31,7 @@ public class GSUtils {
             InitialContext ctx = new InitialContext(props);            
             return ctx.lookup(getDynamicLookupContext(classe.getSimpleName()));
         } catch (NamingException ne) {
-           // Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            Logger.getLogger(classe.getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
