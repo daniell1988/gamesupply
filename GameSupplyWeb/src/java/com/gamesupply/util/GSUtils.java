@@ -17,11 +17,11 @@ import javax.naming.NamingException;
  */
 public class GSUtils {
     
-    private static final String host = "10.49.31.1";
-//    static final String host = "localhost";
+//    private static final String host = "10.49.31.1";
+    private static final String host = "localhost";
     private static final String port = "3700";
 
-    public static Object dynamicLookup(Class<?> classe) {
+    public static Object dynamicLookup(String classe) {
         try {
             Properties props = new Properties();
             
@@ -31,7 +31,7 @@ public class GSUtils {
             
             InitialContext ctx = new InitialContext(props);     
             
-            return ctx.lookup(getDynamicLookupContext(classe.getSimpleName()));
+            return ctx.lookup(getDynamicLookupContext(classe));
             
         } catch (NamingException ne) {
             
