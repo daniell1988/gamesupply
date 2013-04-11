@@ -6,6 +6,7 @@ package com.gamesupply.teste;
 
 import com.gamesupply.dto.AddressDTO;
 import com.gamesupply.dto.CustomerDTO;
+import com.gamesupply.ejb.facade.AddressFacade;
 import com.gamesupply.ejb.remote.AddressFacadeRemote;
 import com.gamesupply.ejb.test.TestSessionBeanLocal;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +23,7 @@ import javax.naming.NamingException;
  */
 public class TesteAddressPersist {
     
-    AddressFacadeRemote addressFacade = null;
+    AddressFacadeRemote addressFacade = new AddressFacade();
 
     public void teste(){
         addressFacade = lookupAddressFacadeBean();
@@ -44,9 +45,15 @@ public class TesteAddressPersist {
         
     }
     
+        public void teste2(){
+        
+        System.out.println(addressFacade.getClass().getSimpleName());
+    }
+    
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException{
         
-        new TesteAddressPersist().teste();
+        //new TesteAddressPersist().teste();
+        new TesteAddressPersist().teste2();
         
     }
 
