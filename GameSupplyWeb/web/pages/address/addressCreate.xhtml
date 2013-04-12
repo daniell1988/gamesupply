@@ -3,26 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Cadastro de Endereço</title>
     </h:head>
     <h:body>
          <h:form>
-                <h:inputHidden id="validateCreateField" validator="#{customer.validateCreate}" value="value"/>
                 <h:panelGrid columns="2">
-                    <h:outputText value="CustomerId:"/>
-                    <h:inputText id="customerId" value="#{adres}" title="AddressId" required="true" requiredMessage="The customerId field is required." />
-                    <h:outputText value="Zip:"/>
-                    <h:inputText id="zip" value="#{customer.customer.zip}" title="Zip" required="true" requiredMessage="The zip field is required." />
-                    <h:outputText value="Name:"/>
-                    <h:inputText id="name" value="#{customer.customer.name}" title="Name" />
-                    <h:outputText value="Addressline1:"/>
-                    <h:inputText id="addressline1" value="#{customer.customer.addressline1}" title="Addressline1" />
-                    <h:outputText value="Addressline2:"/>
-                    <h:inputText id="addressline2" value="#{customer.customer.addressline2}" title="Addressline2" />
-                    <h:outputText value="City:"/>
-                    <h:inputText id="city" value="#{customer.customer.city}" title="City" />
-                    <h:outputText value="State:"/>
-                    <h:inputText id="state" value="#{customer.customer.state}" title="State" />
+                    <h:outputText value="address"/>
+                    <h:inputText id="address" value="#{addressController.address.address}" title="Zip" required="true" requiredMessage="The zip field is required." />
+                    <h:outputText value="addressComplement"/>
+                    <h:inputText id="addressComplement" value="#{addressController.address.addressComplement}" title="Name" />
+                    <h:outputText value="addressDescription"/>
+                    <h:inputText id="addressDescription" value="#{addressController.address.addressDescription}" title="Addressline1" />
+                    <h:outputText value="city"/>
+                    <h:inputText id="city" value="#{addressController.address.city}" title="Addressline2" />
+                    <h:outputText value="country"/>
+                    <h:inputText id="country" value="#{addressController.address.country}" title="City" />
+                    <h:outputText value="idCustomer"/>
+                    <h:inputText id="idCustomer" value="#{addressController.customer.idCustomer}" title="State" />
+                    <h:outputText value="phoneNumber"/>
+                    <h:inputText id="phoneNumber" value="#{addressController.address.phoneNumber}" title="State" />
+                    <h:outputText value="state"/>
+                    <h:inputText id="state" value="#{addressController.address.state}" title="State" />
+                    <h:outputText value="zip"/>
+                    <h:inputText id="zip" value="#{addressController.address.zip}" title="State" />
+                    <h:commandLink action="#{addressController.create()}" value="Create"/>
                 </h:panelGrid>
         </h:form>
     </h:body>
