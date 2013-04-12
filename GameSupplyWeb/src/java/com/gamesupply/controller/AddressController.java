@@ -22,7 +22,13 @@ public class AddressController {
     
     public void create(){
         
-        addressFacade = (AddressFacadeRemote) GSUtils.dynamicLookup("AddressFacade");
+        try {
+             addressFacade = (AddressFacadeRemote) GSUtils.dynamicLookup("AddressFacade");
+        } catch (Exception e) {
+            System.out.println("erro lookup web");
+        }
+        customer = new CustomerDTO();
+        address = new AddressDTO();
         customer.setIdCustomer(Integer.valueOf(1));
         address.setAddress("Rua x");
         address.setAddressComplement("numro 90");
