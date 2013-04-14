@@ -43,7 +43,7 @@ public class CustomerEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "id_customer")
     private Integer idCustomer;
     @Basic(optional = false)
