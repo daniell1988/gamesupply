@@ -56,29 +56,24 @@ public class CustomerController {
     }
     
     public void findAll(){
-        
-//        List<CustomerEntity> listE = (List<CustomerEntity>) q.getResultList();
-//        List<CustomerDTO> customer = new ArrayList<CustomerDTO>();
-//        Iterator itr = listE.iterator();
-//        
-//        while (itr.hasNext()){
-//            
-//            customer.add((CustomerDTO)itr.next());
-//            
-//        }
-        
+
         customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         this.customerList = customerFacade.findAll();
-        System.out.print("oi");
+
+    }
+    
+    public String create(){
+        
+        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        customerFacade.create(customer);
+        return retornaCustomerList();
         
         
     }
     
-    public void create(){
+    public String retornaCustomerList(){
         
-        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        
-        customerFacade.create(customer);
+        return ("/pages/customer/customerList.xhtml");
         
     }
     

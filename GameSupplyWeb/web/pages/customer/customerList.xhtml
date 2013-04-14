@@ -7,22 +7,29 @@
         <title>Cadastro de Endereço</title>
     </h:head>
     <h:body>
+        <h:form>
         <h:dataTable value="#{customerController.customerList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+             <h:column>
+                <f:facet name="header">
+                    <h:outputText value="id"/>
+                </f:facet>
+                 <h:outputText value=" #{item.idCustomer}"/>
+            </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Nome"/>
                 </f:facet>
                 <h:outputText value=" #{item.firstName}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Sobrenome"/>
                 </f:facet>
                 <h:outputText value=" #{item.lastName}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Login"/>
                 </f:facet>
                 <h:outputText value=" #{item.userLogin}"/>
             </h:column>
@@ -34,23 +41,40 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Telefone"/>
                 </f:facet>
                 <h:outputText value=" #{item.phoneNumber}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Celular"/>
                 </f:facet>
                 <h:outputText value=" #{item.mobileNumber}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="email"/>
+                    <h:outputText value="Senha"/>
                 </f:facet>
                 <h:outputText value=" #{item.userPassword}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Editar"/>
+                </f:facet>
+                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="X"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Excluir"/>
+                </f:facet>
+                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="X"/>
+            </h:column>
         </h:dataTable>
+            </h:form>
+        <h:form>
+            <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Novo Usuário"/>
+        </h:form>
+        
     </h:body>
 </html>
 
