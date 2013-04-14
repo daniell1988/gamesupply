@@ -7,7 +7,6 @@ package com.gamesupply.controller;
 import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.CustomerFacadeRemote;
 import com.gamesupply.util.GSUtils;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -51,15 +50,27 @@ public class CustomerController {
     public void init(){
         
         customer = new CustomerDTO();
-        customerList = new ArrayList();
-        customerList = findAll();
+//        customerList = new ArrayList<CustomerDTO>();
+        findAll();
         
     }
     
-    public List<CustomerDTO> findAll(){
+    public void findAll(){
+        
+//        List<CustomerEntity> listE = (List<CustomerEntity>) q.getResultList();
+//        List<CustomerDTO> customer = new ArrayList<CustomerDTO>();
+//        Iterator itr = listE.iterator();
+//        
+//        while (itr.hasNext()){
+//            
+//            customer.add((CustomerDTO)itr.next());
+//            
+//        }
         
         customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        return (List<CustomerDTO>) customerFacade.findAll();
+        this.customerList = customerFacade.findAll();
+        System.out.print("oi");
+        
         
     }
     
