@@ -84,6 +84,8 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
             CustomerEntity customerEntity = (CustomerEntity) itr.next();
             
 //                    customerDTO.setAddressEntityCollection(addressList);
+            
+            customerDTO.setIdCustomer(customerEntity.getIdCustomer());
             customerDTO.setEmail(customerEntity.getEmail());
             customerDTO.setFirstName(customerEntity.getFirstName());
             customerDTO.setLastName(customerEntity.getLastName());
