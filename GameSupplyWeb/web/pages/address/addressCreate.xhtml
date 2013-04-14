@@ -9,23 +9,23 @@
          <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="address"/>
-                    <h:inputText id="address" value="#{addressController.address.address}" title="Zip" required="true" requiredMessage="The zip field is required." />
+                    <h:inputText id="address" value="#{addressController.address.address}" title="address" required="true" requiredMessage="The zip field is required." />
                     <h:outputText value="addressComplement"/>
-                    <h:inputText id="addressComplement" value="#{addressController.address.addressComplement}" title="Name" />
+                    <h:inputText id="addressComplement" value="#{addressController.address.addressComplement}" title="addressComplement" />
                     <h:outputText value="addressDescription"/>
-                    <h:inputText id="addressDescription" value="#{addressController.address.addressDescription}" title="Addressline1" />
+                    <h:inputText id="addressDescription" value="#{addressController.address.addressDescription}" title="addressDescription" />
                     <h:outputText value="city"/>
-                    <h:inputText id="city" value="#{addressController.address.city}" title="Addressline2" />
+                    <h:inputText id="city" value="#{addressController.address.city}" title="city" />
                     <h:outputText value="country"/>
-                    <h:inputText id="country" value="#{addressController.address.country}" title="City" />
+                    <h:inputText id="country" value="#{addressController.address.country}" title="country" />
                     <h:outputText value="idCustomer"/>
-                    <h:inputText id="idCustomer" value="#{addressController.address.idCustomer.idCustomer}" title="State" />
+                    <h:inputText id="idCustomer" value="#{addressController.address.idCustomer.idCustomer}" title="idCustomer" />
                     <h:outputText value="phoneNumber"/>
-                    <h:inputText id="phoneNumber" value="#{addressController.address.phoneNumber}" title="State" />
+                    <h:inputText id="phoneNumber" value="#{addressController.address.phoneNumber}" title="phoneNumber" />
                     <h:outputText value="state"/>
-                    <h:inputText id="state" value="#{addressController.address.state}" title="State" />
+                    <h:inputText id="state" value="#{addressController.address.state}" title="state" />
                     <h:outputText value="zip"/>
-                    <h:inputText id="zip" value="#{addressController.address.zip}" title="State" />
+                    <h:inputText id="zip" value="#{addressController.address.zip}" title="zip" />
                     <h:commandLink action="#{addressController.create()}" value="Create"/>
                 </h:panelGrid>
         </h:form>

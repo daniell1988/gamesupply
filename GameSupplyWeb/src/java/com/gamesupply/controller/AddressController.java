@@ -73,16 +73,13 @@ public class AddressController {
         
     }    
     
-    public AddressController() {
-        
-        
-        
+    public AddressController() {    
     }
     
-        public static void main(String[] args){
-        
-        //new TesteAddressPersist().teste();
-        new AddressController().create();
-        
-    }
+//        public static void main(String[] args){
+//        
+//        //new TesteAddressPersist().teste();
+//        new AddressController().create();
+//        
+//    }
 }
