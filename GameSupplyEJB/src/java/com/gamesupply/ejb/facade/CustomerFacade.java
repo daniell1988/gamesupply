@@ -9,10 +9,12 @@ import com.gamesupply.ejb.remote.CustomerFacadeRemote;
 import com.gamesupply.entity.CustomerEntity;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -70,7 +72,32 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     @Override
     public List findAll() {
         
-        return em.createQuery("select object(o) from Customer as o").getResultList();
+        Query q = em.createQuery("select object(o) from CustomerEntity as o");
+        List listE = q.getResultList();
+        List customer = new ArrayList();
+        
+        Iterator itr = listE.iterator();
+        
+        while (itr.hasNext()){
+            
+            CustomerDTO customerDTO = new CustomerDTO();
+            CustomerEntity customerEntity = (CustomerEntity) itr.next();
+            
+//                    customerDTO.setAddressEntityCollection(addressList);
+            customerDTO.setEmail(customerEntity.getEmail());
+            customerDTO.setFirstName(customerEntity.getFirstName());
+            customerDTO.setLastName(customerEntity.getLastName());
+            customerDTO.setMobileNumber(customerEntity.getMobileNumber());
+            customerDTO.setPhoneNumber(customerEntity.getPhoneNumber());
+            customerDTO.setUserLogin(customerEntity.getUserLogin());
+            customerDTO.setUserPassword(customerEntity.getUserPassword());
+            
+            customer.add(customerDTO);
+            
+        }
+        
+        
+        return customer;
         
     }
 
