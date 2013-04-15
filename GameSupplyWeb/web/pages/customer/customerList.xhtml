@@ -53,12 +53,6 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Senha"/>
-                </f:facet>
-                <h:outputText value=" #{item.userPassword}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
                     <h:outputText value="Editar"/>
                 </f:facet>
                 <h:commandLink action="#{customerController.edit(item)}" value="X">

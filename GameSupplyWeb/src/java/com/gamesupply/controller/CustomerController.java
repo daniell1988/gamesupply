@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -33,8 +34,9 @@ public class CustomerController {
     @PostConstruct
     public void init(){
         
-        customer = new CustomerDTO();
+        this.customer = new CustomerDTO();
 //        customerList = new ArrayList<CustomerDTO>();
+        this.customerList = null;
         findAll();
         
     }
@@ -48,23 +50,27 @@ public class CustomerController {
     
     public String destroy(CustomerDTO customer){
         
-        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        customerFacade.remove(customer);
+        this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customerFacade.remove(customer);
+        this.customerList = customerFacade.findAll();
         
+//        FacesContext.getCurrentInstance().getRenderKit();
         return "/pages/customer/customerList.xhtml";
     }
     
     public void findAll(){
 
-        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         this.customerList = customerFacade.findAll();
 
     }
     
     public String create(){
         
-        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        customerFacade.create(customer);
+        this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customerFacade.create(customer);
+//        this.customer = new CustomerDTO();
+        this.customerList = customerFacade.findAll();
         return retornaCustomerList();
         
         
@@ -72,8 +78,9 @@ public class CustomerController {
     
     public String editPersist(){
         
-        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        customerFacade.edit(customer);
+        this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customerFacade.edit(customer);
+        this.customerList = customerFacade.findAll();
         
         return ("/pages/customer/customerList.xhtml");
         
