@@ -78,16 +78,17 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
         CustomerEntity customerE = new CustomerEntity();
         Collection addressList = customerDTO.getAddressDTOCollection();
         
-        customerE.setIdCustomer(customerDTO.getIdCustomer());
-        customerE.setAddressEntityCollection(addressList);
-        customerE.setEmail(customerDTO.getEmail());
-        customerE.setFirstName(customerDTO.getFirstName());
-        customerE.setLastName(customerDTO.getLastName());
-        customerE.setMobileNumber(customerDTO.getMobileNumber());
-        customerE.setPhoneNumber(customerDTO.getPhoneNumber());
-        customerE.setUserLogin(customerDTO.getUserLogin());
-        customerE.setUserPassword(customerDTO.getUserPassword());
-        em.remove(customerE);
+          //Busco o registro conforme o id informado:
+
+        customerE = em.find(CustomerEntity.class, customerDTO.getIdCustomer());
+
+
+
+        //Se achou o registro, deleta a febre do rato
+
+        if(customerE != null) {
+            em.remove(customerE);
+        }
     }
 
     @Override
