@@ -76,17 +76,17 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public void remove(CustomerDTO customerDTO) {
         
         CustomerEntity customerE = new CustomerEntity();
-//        Collection addressList = customerDTO.getAddressDTOCollection();
+        Collection addressList = customerDTO.getAddressDTOCollection();
         
         customerE.setIdCustomer(customerDTO.getIdCustomer());
-//        customerE.setAddressEntityCollection(addressList);
-//        customerE.setEmail(customerDTO.getEmail());
-//        customerE.setFirstName(customerDTO.getFirstName());
-//        customerE.setLastName(customerDTO.getLastName());
-//        customerE.setMobileNumber(customerDTO.getMobileNumber());
-//        customerE.setPhoneNumber(customerDTO.getPhoneNumber());
-//        customerE.setUserLogin(customerDTO.getUserLogin());
-//        customerE.setUserPassword(customerDTO.getUserPassword());
+        customerE.setAddressEntityCollection(addressList);
+        customerE.setEmail(customerDTO.getEmail());
+        customerE.setFirstName(customerDTO.getFirstName());
+        customerE.setLastName(customerDTO.getLastName());
+        customerE.setMobileNumber(customerDTO.getMobileNumber());
+        customerE.setPhoneNumber(customerDTO.getPhoneNumber());
+        customerE.setUserLogin(customerDTO.getUserLogin());
+        customerE.setUserPassword(customerDTO.getUserPassword());
         em.remove(customerE);
     }
 
