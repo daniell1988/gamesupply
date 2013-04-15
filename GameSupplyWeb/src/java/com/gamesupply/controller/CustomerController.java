@@ -51,7 +51,7 @@ public class CustomerController {
         customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         customerFacade.remove(customer);
         
-        return ("/pages/customer/customerList.xhtml");
+        return "/pages/customer/customerList.xhtml";
     }
     
     public void findAll(){
