@@ -61,13 +61,15 @@
                 <f:facet name="header">
                     <h:outputText value="Editar"/>
                 </f:facet>
-                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="X"/>
+                <h:commandLink action="#{customerController.edit(item)}" value="X">
+                   
+                </h:commandLink>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Excluir"/>
                 </f:facet>
-                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="X"/>
+                <h:commandLink action="#{customerController.destroy(item)}" value="X"/>
             </h:column>
         </h:dataTable>
             </h:form>

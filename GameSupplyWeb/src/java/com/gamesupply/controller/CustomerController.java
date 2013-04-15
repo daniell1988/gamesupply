@@ -26,22 +26,6 @@ public class CustomerController {
     private CustomerFacadeRemote customerFacade;
     private List<CustomerDTO> customerList;
 
-    public CustomerFacadeRemote getCustomerFacade() {
-        return customerFacade;
-    }
-
-    public void setCustomerFacade(CustomerFacadeRemote customerFacade) {
-        this.customerFacade = customerFacade;
-    }
-
-    public List<CustomerDTO> getCustomerList() {
-        return customerList;
-    }
-
-    public void setCustomerList(List<CustomerDTO> customerList) {
-        this.customerList = customerList;
-    }
-
     /**
      * Creates a new instance of CustomerController
      */
@@ -53,6 +37,21 @@ public class CustomerController {
 //        customerList = new ArrayList<CustomerDTO>();
         findAll();
         
+    }
+    
+    public String edit(CustomerDTO customer){
+        
+        this.customer = customer;
+       
+        return "/pages/customer/customerEdit.xhtml";
+    }
+    
+    public String destroy(CustomerDTO customer){
+        
+        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        customerFacade.remove(customer);
+        
+        return ("/pages/customer/customerList.xhtml");
     }
     
     public void findAll(){
@@ -67,6 +66,16 @@ public class CustomerController {
         customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         customerFacade.create(customer);
         return retornaCustomerList();
+        
+        
+    }
+    
+    public String editPersist(){
+        
+        customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        customerFacade.edit(customer);
+        
+        return ("/pages/customer/customerList.xhtml");
         
         
     }
@@ -86,6 +95,22 @@ public class CustomerController {
 
     public void setCustomer(CustomerDTO customer) {
         this.customer = customer;
+    }
+    
+      public CustomerFacadeRemote getCustomerFacade() {
+        return customerFacade;
+    }
+
+    public void setCustomerFacade(CustomerFacadeRemote customerFacade) {
+        this.customerFacade = customerFacade;
+    }
+
+    public List<CustomerDTO> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<CustomerDTO> customerList) {
+        this.customerList = customerList;
     }
     
 }
