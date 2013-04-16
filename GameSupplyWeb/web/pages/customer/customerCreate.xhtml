@@ -8,20 +8,40 @@
     <h:body>
          <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="firstName"/>
+                    <h:outputText value="Nome: "/>
                     <h:inputText id="firstName" value="#{customerController.customer.firstName}" title="firstName" required="true" requiredMessage="The zip field is required." />
-                    <h:outputText value="lastName"/>
+                    <h:outputText value="Sobrenome: "/>
                     <h:inputText id="lastName" value="#{customerController.customer.lastName}" title="lastName" />
-                    <h:outputText value="userLogin"/>
+                    <h:outputText value="Login"/>
                     <h:inputText id="userLogin" value="#{customerController.customer.userLogin}" title="userLogin" />
-                    <h:outputText value="userPassword"/>
-                    <h:inputText id="userPassword" value="#{customerController.customer.userPassword}" title="userPassword" />
-                    <h:outputText value="email"/>
+                    <h:outputText value="Senha"/>
+                    <h:inputText  id="userPassword" value="#{customerController.customer.userPassword}" title="userPassword" />
+                    <h:outputText value="e-mail"/>
                     <h:inputText id="email" value="#{customerController.customer.email}" title="email" />
-                    <h:outputText value="phoneNumber"/>
+                    <h:outputText value="Telefone"/>
                     <h:inputText id="phoneNumber" value="#{customerController.customer.phoneNumber}" title="phoneNumber" />
-                    <h:outputText value="mobileNumber"/>
+                    <h:outputText value="Celular"/>
                     <h:inputText id="mobileNumber" value="#{customerController.customer.mobileNumber}" title="mobileNumber" />
+                    
+                    
+                    
+                    <h:outputText value="address"/>
+                    <h:inputText id="address" value="#{customerController.shippingAddress.address}" title="address" required="true" requiredMessage="The zip field is required." />
+                    <h:outputText value="addressComplement"/>
+                    <h:inputText id="addressComplement" value="#{customerController.shippingAddress.addressComplement}" title="addressComplement" />
+                    <h:outputText value="addressDescription"/>
+                    <h:inputText id="addressDescription" value="#{customerController.shippingAddress.addressDescription}" title="addressDescription" />
+                    <h:outputText value="city"/>
+                    <h:inputText id="city" value="#{customerController.shippingAddress.city}" title="city" />
+                    <h:outputText value="country"/>
+                    <h:inputText id="country" value="#{customerController.shippingAddress.country}" title="country" />
+
+                    <h:outputText value="phoneNumberAddress"/>
+                    <h:inputText id="phoneNumberAddress" value="#{customerController.shippingAddress.phoneNumber}" title="phoneNumberAddress" />
+                    <h:outputText value="state"/>
+                    <h:inputText id="state" value="#{customerController.shippingAddress.state}" title="state" />
+                    <h:outputText value="zip"/>
+                    <h:inputText id="zip" value="#{customerController.shippingAddress.zip}" title="zip" />
                     <h:commandLink action="#{customerController.create()}" value="Create"/>
                 </h:panelGrid>
         </h:form>
