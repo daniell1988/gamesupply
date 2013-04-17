@@ -5,6 +5,7 @@
 package com.gamesupply.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -25,6 +26,7 @@ public class CustomerDTO implements Serializable {
     private Collection<AddressDTO> addressDTOCollection;
 
     public CustomerDTO() {
+        this.addressDTOCollection = new ArrayList<AddressDTO>();
     }
 
     public CustomerDTO(Integer idCustomer) {

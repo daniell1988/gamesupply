@@ -4,6 +4,7 @@
  */
 package com.gamesupply.controller;
 
+import com.gamesupply.dto.AddressDTO;
 import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.CustomerFacadeRemote;
 import com.gamesupply.util.GSUtils;
@@ -26,6 +27,7 @@ public class CustomerController {
     private CustomerDTO customer;
     private CustomerFacadeRemote customerFacade;
     private List<CustomerDTO> customerList;
+    private AddressDTO shippingAddress;
 
     /**
      * Creates a new instance of CustomerController
@@ -35,6 +37,7 @@ public class CustomerController {
     public void init(){
         
         this.customer = new CustomerDTO();
+        this.shippingAddress = new AddressDTO();
 //        customerList = new ArrayList<CustomerDTO>();
         this.customerList = null;
         findAll();
@@ -68,9 +71,12 @@ public class CustomerController {
     public String create(){
         
         this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customer.getAddressDTOCollection().add(shippingAddress);
         this.customerFacade.create(customer);
 //        this.customer = new CustomerDTO();
         this.customerList = customerFacade.findAll();
+        this.customer = new CustomerDTO();
+        this.shippingAddress = new AddressDTO();
         return retornaCustomerList();
         
         
@@ -81,6 +87,7 @@ public class CustomerController {
         this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         this.customerFacade.edit(customer);
         this.customerList = customerFacade.findAll();
+        this.customer = new CustomerDTO();
         
         return ("/pages/customer/customerList.xhtml");
         
@@ -119,5 +126,15 @@ public class CustomerController {
     public void setCustomerList(List<CustomerDTO> customerList) {
         this.customerList = customerList;
     }
+
+    public AddressDTO getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(AddressDTO shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+    
+    
     
 }
