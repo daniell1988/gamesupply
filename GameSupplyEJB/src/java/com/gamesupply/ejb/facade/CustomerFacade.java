@@ -17,6 +17,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -92,6 +93,39 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
         
         em.merge(customerE);
     }
+    
+    @Override
+    public CustomerDTO login(String user, String pass) {
+        
+
+        CustomerEntity customerE = new CustomerEntity();
+        customerE.setUserLogin(user);
+        Query q = em.createNamedQuery("CustomerEntity.findByUserLogin");
+        q.setParameter("userLogin", user);
+
+        List listE = q.getResultList();
+
+        Iterator itr = listE.iterator();
+        CustomerDTO customerDTO = new CustomerDTO();
+        
+         while (itr.hasNext()){
+            
+
+            CustomerEntity customerEntity = (CustomerEntity) itr.next();
+
+            customerDTO.setIdCustomer(customerEntity.getIdCustomer());
+            customerDTO.setEmail(customerEntity.getEmail());
+            customerDTO.setFirstName(customerEntity.getFirstName());
+            customerDTO.setLastName(customerEntity.getLastName());
+            customerDTO.setMobileNumber(customerEntity.getMobileNumber());
+            customerDTO.setPhoneNumber(customerEntity.getPhoneNumber());
+            customerDTO.setUserLogin(customerEntity.getUserLogin());
+            customerDTO.setUserPassword(customerEntity.getUserPassword());
+
+        }
+        
+        return customerDTO;
+    }
 
     @Override
     public void remove(CustomerDTO customerDTO) {
@@ -156,7 +190,5 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public List<CustomerDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
     
 }

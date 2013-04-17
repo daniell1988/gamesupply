@@ -29,4 +29,6 @@ public interface CustomerFacadeRemote {
 
     int count();
     
+    CustomerDTO login(String user, String pass);
+    
 }
