@@ -44,6 +44,18 @@ public class CustomerController {
         
     }
     
+    public String login(){
+        String pass = this.customer.getUserPassword();
+        this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customer = customerFacade.login(customer.getUserLogin(), customer.getUserPassword());
+        
+        if(pass.equals(this.customer.getUserPassword())){
+            return "/pages/menu/mainMenu.xhtml";
+        }
+        
+        return "/pages/login.xhtml";
+    }
+    
     public String edit(CustomerDTO customer){
         
         this.customer = customer;

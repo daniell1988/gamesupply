@@ -25,22 +25,21 @@
                     
                     
                     
-                    <h:outputText value="address"/>
+                    <h:outputText value="Endereço"/>
                     <h:inputText id="address" value="#{customerController.shippingAddress.address}" title="address" required="true" requiredMessage="The zip field is required." />
-                    <h:outputText value="addressComplement"/>
+                    <h:outputText value="Complemento"/>
                     <h:inputText id="addressComplement" value="#{customerController.shippingAddress.addressComplement}" title="addressComplement" />
-                    <h:outputText value="addressDescription"/>
+                    <h:outputText value="Referência"/>
                     <h:inputText id="addressDescription" value="#{customerController.shippingAddress.addressDescription}" title="addressDescription" />
-                    <h:outputText value="city"/>
+                    <h:outputText value="Cidade"/>
                     <h:inputText id="city" value="#{customerController.shippingAddress.city}" title="city" />
-                    <h:outputText value="country"/>
+                    <h:outputText value="País"/>
                     <h:inputText id="country" value="#{customerController.shippingAddress.country}" title="country" />
-
-                    <h:outputText value="phoneNumberAddress"/>
+                    <h:outputText value="Telefone para contato"/>
                     <h:inputText id="phoneNumberAddress" value="#{customerController.shippingAddress.phoneNumber}" title="phoneNumberAddress" />
-                    <h:outputText value="state"/>
+                    <h:outputText value="Estado"/>
                     <h:inputText id="state" value="#{customerController.shippingAddress.state}" title="state" />
-                    <h:outputText value="zip"/>
+                    <h:outputText value="CEP"/>
                     <h:inputText id="zip" value="#{customerController.shippingAddress.zip}" title="zip" />
                     <h:commandLink action="#{customerController.create()}" value="Create"/>
                 </h:panelGrid>

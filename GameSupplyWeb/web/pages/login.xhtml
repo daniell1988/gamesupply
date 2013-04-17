@@ -7,10 +7,12 @@
     </h:head>
     <h:body>
         <h:form>
-            User: <h:inputText id="login" value="#{login.user}"/>
+            Usuário: <h:inputText id="login" value="#{customerController.customer.userLogin}"/>
             <br/>
-            Password: <h:inputSecret id="pass" value="#{login.pass}"/>
-            <h:commandButton id="logon" value="Logon" action="#{login.logon()}"/>
+            Senha: <h:inputSecret id="pass" value="#{customerController.customer.userPassword}" />
+            <br/>
+            <h:commandButton id="logon" value="Entrar" action="#{customerController.login()}"/>
+            <h:commandButton id="register" value="Cadastrar" action="/pages/customer/customerCreate.xhtml"/>
         </h:form>
     </h:body>
 </html>
