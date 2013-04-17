@@ -4,8 +4,10 @@
  */
 package com.gamesupply.ejb.facade;
 
+import com.gamesupply.dto.AddressDTO;
 import com.gamesupply.dto.CustomerDTO;
 import com.gamesupply.ejb.remote.CustomerFacadeRemote;
+import com.gamesupply.entity.AddressEntity;
 import com.gamesupply.entity.CustomerEntity;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,7 +40,26 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public void create(CustomerDTO customerDTO) {
         
         CustomerEntity customerE = new CustomerEntity();
-        Collection addressList = customerDTO.getAddressDTOCollection();
+        
+        Collection<AddressEntity> addressList = new ArrayList<AddressEntity>();
+        Iterator itr = customerDTO.getAddressDTOCollection().iterator();
+        while(itr.hasNext()){
+            
+            AddressDTO addressDTO = (AddressDTO) itr.next();
+            AddressEntity addressE = new AddressEntity();
+            
+            addressE.setAddress(addressDTO.getAddress());
+            addressE.setAddressComplement(addressDTO.getAddressComplement());
+            addressE.setAddressDescription(addressDTO.getAddressDescription());
+            addressE.setCity(addressDTO.getCity());
+            addressE.setCountry(addressDTO.getCountry());
+            addressE.setIdCustomer(customerE);
+            addressE.setPhoneNumber(addressDTO.getPhoneNumber());
+            addressE.setState(addressDTO.getState());
+            addressE.setZip(addressDTO.getZip());
+            
+            addressList.add(addressE);
+        }
         
         customerE.setAddressEntityCollection(addressList);
         customerE.setEmail(customerDTO.getEmail());

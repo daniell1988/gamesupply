@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.apache.commons.beanutils.BeanUtils;
 
 /**
  *
@@ -44,7 +43,7 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
        AddressEntity addressE = new AddressEntity();
        CustomerEntity customerE = new CustomerEntity();
 //        try {
-                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
+//                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
                 addressE.setAddress(addressDTO.getAddress());
                 addressE.setAddressComplement(addressDTO.getAddressComplement());
                 addressE.setAddressDescription(addressDTO.getAddressDescription());
@@ -89,19 +88,19 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
        List<AddressEntity> lista = super.findAll();
        Iterator itr = lista.iterator();
        List<AddressDTO> listaDTO = new ArrayList<AddressDTO>();
-       while(itr.hasNext()){
-            try {
-                AddressDTO addressDTO = new AddressDTO();
-                AddressEntity addressEntity = (AddressEntity)itr.next();
-                BeanUtils.copyProperties(addressDTO, addressEntity);
-                listaDTO.add(addressDTO);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
-       }
+//       while(itr.hasNext()){
+//            try {
+//                AddressDTO addressDTO = new AddressDTO();
+//                AddressEntity addressEntity = (AddressEntity)itr.next();
+//                BeanUtils.copyProperties(addressDTO, addressEntity);
+//                listaDTO.add(addressDTO);
+//            } catch (IllegalAccessException ex) {
+//                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (InvocationTargetException ex) {
+//                Logger.getLogger(AddressFacade.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//           
+//       }
        //verrer lista de entity
        //criar lista addressdto
        //retornar dto
