@@ -68,7 +68,7 @@ public class AddressController {
 //        address.setPhoneNumber("999+6999");
 //        address.setState("SP");
 //        address.setZip("22501-581");
-        
+//        address.setIdCustomer(customer);
         addressFacade.create(address);
         
     }    
