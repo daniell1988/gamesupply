@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CustomerEntity.findByUserPassword", query = "SELECT c FROM CustomerEntity c WHERE c.userPassword = :userPassword"),
     @NamedQuery(name = "CustomerEntity.findByEmail", query = "SELECT c FROM CustomerEntity c WHERE c.email = :email")})
 public class CustomerEntity implements Serializable {
+    @Size(max = 255)
+    @Column(name = "access_level")
+    private String accessLevel;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -199,6 +202,14 @@ public class CustomerEntity implements Serializable {
     @Override
     public String toString() {
         return "com.gamesupply.entity.CustomerEntity[ idCustomer=" + idCustomer + " ]";
+    }
+
+    public String getAccessLevel() {
+        return accessLevel;
+    }
+
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
     }
     
 }
