@@ -26,7 +26,7 @@ public interface ProductFacadeRemote {
 
     List<ProductDTO> findAll();
 
-    List<ProductDTO> findRange(int[] range);
+    List<ProductDTO> findRange(Integer[] range);
 
     int count();
     
