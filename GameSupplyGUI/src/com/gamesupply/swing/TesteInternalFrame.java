@@ -28,6 +28,11 @@ public class TesteInternalFrame extends javax.swing.JInternalFrame {
 
         jTextField1 = new javax.swing.JTextField();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Teste");
+
         jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -44,7 +49,7 @@ public class TesteInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
