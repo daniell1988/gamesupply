@@ -27,21 +27,21 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mainMenuBar = new javax.swing.JMenuBar();
+        menuSale = new javax.swing.JMenu();
+        itemNewSale = new javax.swing.JMenuItem();
+        menuStock = new javax.swing.JMenu();
+        itemNewStockEntry = new javax.swing.JMenuItem();
+        itemStockManagement = new javax.swing.JMenuItem();
+        menuOrder = new javax.swing.JMenu();
+        itemOrderSearch = new javax.swing.JMenuItem();
+        itemOrderBranchForward = new javax.swing.JMenuItem();
+        menuProduct = new javax.swing.JMenu();
+        itemNewProduct = new javax.swing.JMenuItem();
+        menuItemProductManagement = new javax.swing.JMenuItem();
+        menuReport = new javax.swing.JMenu();
+        itemMenuReportBranchStock = new javax.swing.JMenuItem();
+        itemMenuDailyReport = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,65 +49,70 @@ public class MainMenu extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jMenu2.setText("Vendas");
+        menuSale.setText("Vendas");
 
-        jMenuItem2.setText("Nova");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        itemNewSale.setText("Nova");
+        itemNewSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                itemNewSaleActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        menuSale.add(itemNewSale);
 
-        jMenuBar1.add(jMenu2);
+        mainMenuBar.add(menuSale);
 
-        jMenu5.setText("Estoque");
+        menuStock.setText("Estoque");
 
-        jMenuItem9.setText("Nova Entrada");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        itemNewStockEntry.setText("Nova Entrada");
+        itemNewStockEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                itemNewStockEntryActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem9);
+        menuStock.add(itemNewStockEntry);
 
-        jMenuItem10.setText("Controle");
-        jMenu5.add(jMenuItem10);
+        itemStockManagement.setText("Controle");
+        menuStock.add(itemStockManagement);
 
-        jMenuBar1.add(jMenu5);
+        mainMenuBar.add(menuStock);
 
-        jMenu4.setText("Pedidos");
+        menuOrder.setText("Pedidos");
 
-        jMenuItem8.setText("Consulta");
-        jMenu4.add(jMenuItem8);
+        itemOrderSearch.setText("Consulta");
+        menuOrder.add(itemOrderSearch);
 
-        jMenuItem7.setText("Encaminhar p/ Filial");
-        jMenu4.add(jMenuItem7);
+        itemOrderBranchForward.setText("Encaminhar p/ Filial");
+        menuOrder.add(itemOrderBranchForward);
 
-        jMenuBar1.add(jMenu4);
+        mainMenuBar.add(menuOrder);
 
-        jMenu3.setText("Produtos");
+        menuProduct.setText("Produtos");
 
-        jMenuItem3.setText("Cadastro");
-        jMenu3.add(jMenuItem3);
-
-        jMenuItem5.setText("Manutenção");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        itemNewProduct.setText("Cadastro");
+        itemNewProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                itemNewProductActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        menuProduct.add(itemNewProduct);
 
-        jMenuBar1.add(jMenu3);
+        menuItemProductManagement.setText("Manutenção");
+        menuItemProductManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemProductManagementActionPerformed(evt);
+            }
+        });
+        menuProduct.add(menuItemProductManagement);
 
-        jMenu1.setText("Relatório");
+        mainMenuBar.add(menuProduct);
 
-        jMenuItem6.setText("Estoque Filiais");
-        jMenu1.add(jMenuItem6);
+        menuReport.setText("Relatório");
 
-        jMenuItem4.setText("Fechamento");
-        jMenu1.add(jMenuItem4);
+        itemMenuReportBranchStock.setText("Estoque Filiais");
+        menuReport.add(itemMenuReportBranchStock);
+
+        itemMenuDailyReport.setText("Fechamento");
+        menuReport.add(itemMenuDailyReport);
 
         jMenuItem1.setText("Teste");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,11 +120,11 @@ public class MainMenu extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuReport.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        mainMenuBar.add(menuReport);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,17 +146,23 @@ public class MainMenu extends javax.swing.JFrame {
         testeInternalFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void itemNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewSaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_itemNewSaleActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void menuItemProductManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductManagementActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_menuItemProductManagementActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_itemNewStockEntryActionPerformed
+
+    private void itemNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewProductActionPerformed
+        cadastroProduto = new CadastroProduto();
+        jDesktopPane1.add(cadastroProduto);
+        cadastroProduto.setVisible(true);
+    }//GEN-LAST:event_itemNewProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,23 +200,24 @@ public class MainMenu extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemMenuDailyReport;
+    private javax.swing.JMenuItem itemMenuReportBranchStock;
+    private javax.swing.JMenuItem itemNewProduct;
+    private javax.swing.JMenuItem itemNewSale;
+    private javax.swing.JMenuItem itemNewStockEntry;
+    private javax.swing.JMenuItem itemOrderBranchForward;
+    private javax.swing.JMenuItem itemOrderSearch;
+    private javax.swing.JMenuItem itemStockManagement;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JMenuItem menuItemProductManagement;
+    private javax.swing.JMenu menuOrder;
+    private javax.swing.JMenu menuProduct;
+    private javax.swing.JMenu menuReport;
+    private javax.swing.JMenu menuSale;
+    private javax.swing.JMenu menuStock;
     // End of variables declaration//GEN-END:variables
     TesteInternalFrame testeInternalFrame;
+    CadastroProduto cadastroProduto;
 }
