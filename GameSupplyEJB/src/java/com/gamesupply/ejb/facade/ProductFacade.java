@@ -57,5 +57,12 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
     public List<ProductDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public ProductDTO find(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+
     
 }

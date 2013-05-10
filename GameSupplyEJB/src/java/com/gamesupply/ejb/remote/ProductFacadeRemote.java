@@ -5,7 +5,6 @@
 package com.gamesupply.ejb.remote;
 
 import com.gamesupply.dto.ProductDTO;
-import com.gamesupply.entity.ProductEntity;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -22,7 +21,7 @@ public interface ProductFacadeRemote {
 
     void remove(ProductDTO productDTO);
 
-    ProductEntity find(Object id);
+    ProductDTO find(Integer id);
 
     List<ProductDTO> findAll();
 
