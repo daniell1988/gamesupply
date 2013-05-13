@@ -34,7 +34,17 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
 
     @Override
     public void create(ProductDTO productDTO) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        ProductEntity productEntity = new ProductEntity();
+        
+        productEntity.setDescription(productDTO.getDescription());
+        productEntity.setGenre(productDTO.getGenre());
+        productEntity.setName(productDTO.getName());
+        productEntity.setPlatform(productDTO.getPlatform());
+        productEntity.setPrice(productDTO.getPrice());
+        productEntity.setType(productDTO.getType());
+        
+        em.persist(productEntity);
     }
 
     @Override
