@@ -9,6 +9,8 @@ package com.gamesupply.swing;
  * @author 40836665
  */
 public class MainMenu extends javax.swing.JFrame {
+    private ListaProduto listaProduto;
+    private AlteraProduto alteraProduto;
 
     /**
      * Creates new form MainMenu
@@ -130,11 +132,11 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
         );
 
         pack();
@@ -151,7 +153,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemNewSaleActionPerformed
 
     private void menuItemProductManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductManagementActionPerformed
-        // TODO add your handling code here:
+        listaProduto = new ListaProduto();
+        alteraProduto = new AlteraProduto();
+        jDesktopPane1.add(listaProduto);
+        jDesktopPane1.add(alteraProduto);
+        listaProduto.setVisible(true);
     }//GEN-LAST:event_menuItemProductManagementActionPerformed
 
     private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed

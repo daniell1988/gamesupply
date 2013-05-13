@@ -13,6 +13,20 @@ import com.gamesupply.util.GSUtils;
  * @author CUESTAS
  */
 public class ProductController {
+
+    public static void remove(ProductDTO productDTO) {
+        
+        try {
+            productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
+        } catch (Exception e) {
+            System.out.println("erro lookup");
+        }
+        
+        productFacade.remove(productDTO);
+        
+    }
+
+    
     
     private ProductDTO productDTO;
     private static ProductFacadeRemote productFacade;
@@ -27,6 +41,16 @@ public class ProductController {
         
         productFacade.create(productDTO);
         
+    }
+    
+    public static void edit(ProductDTO productDTO) {
+        try {
+            productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
+        } catch (Exception e) {
+            System.out.println("erro lookup");
+        }
+        
+        productFacade.edit(productDTO);
     }
     
 }

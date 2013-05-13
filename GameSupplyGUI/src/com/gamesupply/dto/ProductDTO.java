@@ -78,6 +78,12 @@ public class ProductDTO implements Serializable {
         this.idProduct = idProduct;
     }
     
-    
+    @Override
+    public String toString(){
+        
+        
+        
+        return null;
+    }
     
 }
