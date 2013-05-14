@@ -10,7 +10,7 @@ package com.gamesupply.swing;
  */
 public class MainMenu extends javax.swing.JFrame {
     private ListaProduto listaProduto;
-    private AlteraProduto alteraProduto;
+    private NewStock stockEntry;
 
     /**
      * Creates new form MainMenu
@@ -48,7 +48,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GameSupply");
-        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         menuSale.setText("Vendas");
@@ -154,14 +153,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void menuItemProductManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductManagementActionPerformed
         listaProduto = new ListaProduto();
-        alteraProduto = new AlteraProduto();
         jDesktopPane1.add(listaProduto);
-        jDesktopPane1.add(alteraProduto);
         listaProduto.setVisible(true);
     }//GEN-LAST:event_menuItemProductManagementActionPerformed
 
     private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
-        // TODO add your handling code here:
+        stockEntry = new NewStock();
+        jDesktopPane1.add(stockEntry);
+        stockEntry.setVisible(true);
+        
     }//GEN-LAST:event_itemNewStockEntryActionPerformed
 
     private void itemNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewProductActionPerformed

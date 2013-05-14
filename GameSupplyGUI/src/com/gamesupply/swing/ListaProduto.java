@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  * @author CUESTAS
  */
 public class ListaProduto extends javax.swing.JInternalFrame {
-    private AlteraProduto alteraProduto;
     private ProductDTO productDTO;
 
     /**
@@ -305,6 +304,11 @@ public class ListaProduto extends javax.swing.JInternalFrame {
         productDTO.setType(this.type.getSelectedItem().toString());
 //        JOptionPane.showConfirmDialog(null, productDTO.getIdProduct());
         ProductController.remove(productDTO);
+        this.initComponents();
+        this.repaint();
+        jTable1.repaint();
+        
+        
     }//GEN-LAST:event_deleteButtomActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
