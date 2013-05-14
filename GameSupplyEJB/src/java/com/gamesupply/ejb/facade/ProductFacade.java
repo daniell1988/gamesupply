@@ -49,12 +49,29 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
 
     @Override
     public void edit(ProductDTO productDTO) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setIdProduct(productDTO.getIdProduct());
+        productEntity.setDescription(productDTO.getDescription());
+        productEntity.setGenre(productDTO.getGenre());
+        productEntity.setName(productDTO.getName());
+        productEntity.setPlatform(productDTO.getPlatform());
+        productEntity.setPrice(productDTO.getPrice());
+        productEntity.setType(productDTO.getType());
+        
+        em.merge(productEntity);
+        
     }
 
     @Override
     public void remove(ProductDTO productDTO) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+         
+        
+        ProductEntity productEntity = new ProductEntity();
+        productEntity = em.find(ProductEntity.class, productDTO.getIdProduct());        
+        em.remove(productEntity);
+        
     }
 
     @Override
