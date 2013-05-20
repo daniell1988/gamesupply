@@ -7,21 +7,24 @@ package com.gamesupply.ejb.facade;
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.ejb.remote.ProductFacadeRemote;
 import com.gamesupply.entity.ProductEntity;
-import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+
+
 /**
  *
- * @author 40836665
+ * @author CUESTAS
  */
 @Stateless
 public class ProductFacade extends AbstractFacade<ProductEntity> implements ProductFacadeRemote {
+    @EJB
+    private StockFacade stockFacade;
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
-    
 
     @Override
     protected EntityManager getEntityManager() {
@@ -31,7 +34,7 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
     public ProductFacade() {
         super(ProductEntity.class);
     }
-
+    
     @Override
     public void create(ProductDTO productDTO) {
         
@@ -45,6 +48,7 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
         productEntity.setType(productDTO.getType());
         
         em.persist(productEntity);
+        stockFacade.create(productDTO);
     }
 
     @Override
@@ -73,15 +77,16 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
         em.remove(productEntity);
         
     }
+    
+    
+    @Override
+    public List<ProductDTO> findRange(Integer[] range) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 
     @Override
     public List findAll() {
-       List<ProductEntity> listaProduct = super.findAll();
-       return listaProduct;
-    }
-
-    @Override
-    public List<ProductDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -5,30 +5,30 @@
 package com.gamesupply.ejb.remote;
 
 import com.gamesupply.dto.ProductDTO;
-import com.gamesupply.entity.ProductEntity;
+import com.gamesupply.dto.StockDTO;
+import com.gamesupply.entity.StockEntity;
 import java.util.List;
 import javax.ejb.Remote;
-
 
 /**
  *
  * @author CUESTAS
  */
 @Remote
-public interface ProductFacadeRemote {
+public interface StockFacadeRemote {
 
     void create(ProductDTO productDTO);
 
-    void edit(ProductDTO productDTO);
+    void edit(StockDTO stockDTO);
 
-    void remove(ProductDTO productDTO);
+    void remove(StockDTO productDTO);
 
-    ProductDTO find(Integer id);
+    StockEntity find(Integer id);
 
-    List<ProductDTO> findRange(Integer[] range);
+    List<StockDTO> findAll();
+
+    List<StockDTO> findRange(Integer[] range);
 
     int count();
-
-    List<ProductDTO> findAll();
     
 }

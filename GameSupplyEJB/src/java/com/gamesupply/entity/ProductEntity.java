@@ -6,6 +6,7 @@ package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,6 +31,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ProductEntity.findAll", query = "SELECT p FROM ProductEntity p"),
     @NamedQuery(name = "ProductEntity.findByIdProduct", query = "SELECT p FROM ProductEntity p WHERE p.idProduct = :idProduct")})
 public class ProductEntity implements Serializable {
+    @Column(name = "price")
+    private long price;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "productEntity")
+    private StockEntity stockEntity;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -39,10 +45,6 @@ public class ProductEntity implements Serializable {
     @Size(min = 1, max = 600)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "price")
-    private long price;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -121,14 +123,6 @@ public class ProductEntity implements Serializable {
         this.description = description;
     }
 
-    public long getPrice() {
-        return price;
-    }
-
-    public void setPrice(long price) {
-        this.price = price;
-    }
-
     public String getGenre() {
         return genre;
     }
@@ -151,6 +145,22 @@ public class ProductEntity implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public StockEntity getStockEntity() {
+        return stockEntity;
+    }
+
+    public void setStockEntity(StockEntity stockEntity) {
+        this.stockEntity = stockEntity;
     }
     
 }
