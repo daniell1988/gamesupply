@@ -4,20 +4,19 @@
  */
 package com.gamesupply.dto;
 
-import com.gamesupply.entity.*;
 import java.io.Serializable;
 
 public class StockDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer idProduct;
-    private String branch;
-    private int quantity;
+    private String branch1;
+    private String branch2;
+    private String branch3;
     private String name;
     private String genre;
     private String platform;
     private String description;
     private String price;
-    private ProductEntity productEntity;
 
     public StockDTO() {
     }
@@ -30,20 +29,28 @@ public class StockDTO implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public String getBranch() {
-        return branch;
+    public String getBranch1() {
+        return branch1;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setBranch1(String branch1) {
+        this.branch1 = branch1;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getBranch2() {
+        return branch2;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setBranch2(String branch2) {
+        this.branch2 = branch2;
+    }
+
+    public String getBranch3() {
+        return branch3;
+    }
+
+    public void setBranch3(String branch3) {
+        this.branch3 = branch3;
     }
 
     public String getName() {
@@ -85,14 +92,8 @@ public class StockDTO implements Serializable {
     public void setPrice(String price) {
         this.price = price;
     }
-
-    public ProductEntity getProductEntity() {
-        return productEntity;
-    }
-
-    public void setProductEntity(ProductEntity productEntity) {
-        this.productEntity = productEntity;
-    }
+    
+    
 
     
     

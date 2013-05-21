@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CartEntity.findAll", query = "SELECT c FROM CartEntity c"),
-    @NamedQuery(name = "CartEntity.findByIdCostumer", query = "SELECT c FROM CartEntity c WHERE c.cartEntityPK.idCostumer = :idCostumer"),
-    @NamedQuery(name = "CartEntity.findByIdProductItem", query = "SELECT c FROM CartEntity c WHERE c.cartEntityPK.idProductItem = :idProductItem")})
+    @NamedQuery(name = "CartEntity.findByIdProductItem", query = "SELECT c FROM CartEntity c WHERE c.cartEntityPK.idProductItem = :idProductItem"),
+    @NamedQuery(name = "CartEntity.findByIdCostumer", query = "SELECT c FROM CartEntity c WHERE c.cartEntityPK.idCostumer = :idCostumer")})
 public class CartEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -35,8 +35,8 @@ public class CartEntity implements Serializable {
         this.cartEntityPK = cartEntityPK;
     }
 
-    public CartEntity(int idCostumer, int idProductItem) {
-        this.cartEntityPK = new CartEntityPK(idCostumer, idProductItem);
+    public CartEntity(int idProductItem, int idCostumer) {
+        this.cartEntityPK = new CartEntityPK(idProductItem, idCostumer);
     }
 
     public CartEntityPK getCartEntityPK() {

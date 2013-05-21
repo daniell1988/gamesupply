@@ -11,10 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,8 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "StockEntity.findAll", query = "SELECT s FROM StockEntity s"),
     @NamedQuery(name = "StockEntity.findByIdProduct", query = "SELECT s FROM StockEntity s WHERE s.idProduct = :idProduct"),
-    @NamedQuery(name = "StockEntity.findByBranch", query = "SELECT s FROM StockEntity s WHERE s.branch = :branch"),
-    @NamedQuery(name = "StockEntity.findByQuantity", query = "SELECT s FROM StockEntity s WHERE s.quantity = :quantity"),
+    @NamedQuery(name = "StockEntity.findByBranch1", query = "SELECT s FROM StockEntity s WHERE s.branch1 = :branch1"),
+    @NamedQuery(name = "StockEntity.findByBranch2", query = "SELECT s FROM StockEntity s WHERE s.branch2 = :branch2"),
+    @NamedQuery(name = "StockEntity.findByBranch3", query = "SELECT s FROM StockEntity s WHERE s.branch3 = :branch3"),
     @NamedQuery(name = "StockEntity.findByName", query = "SELECT s FROM StockEntity s WHERE s.name = :name"),
     @NamedQuery(name = "StockEntity.findByGenre", query = "SELECT s FROM StockEntity s WHERE s.genre = :genre"),
     @NamedQuery(name = "StockEntity.findByPlatform", query = "SELECT s FROM StockEntity s WHERE s.platform = :platform"),
@@ -47,12 +46,18 @@ public class StockEntity implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "branch")
-    private String branch;
+    @Column(name = "branch1")
+    private String branch1;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "quantity")
-    private int quantity;
+    @Size(min = 1, max = 255)
+    @Column(name = "branch2")
+    private String branch2;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "branch3")
+    private String branch3;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -78,9 +83,6 @@ public class StockEntity implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "price")
     private String price;
-    @JoinColumn(name = "id_product", referencedColumnName = "id_product", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private ProductEntity productEntity;
 
     public StockEntity() {
     }
@@ -89,10 +91,11 @@ public class StockEntity implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public StockEntity(Integer idProduct, String branch, int quantity, String name, String genre, String platform, String description, String price) {
+    public StockEntity(Integer idProduct, String branch1, String branch2, String branch3, String name, String genre, String platform, String description, String price) {
         this.idProduct = idProduct;
-        this.branch = branch;
-        this.quantity = quantity;
+        this.branch1 = branch1;
+        this.branch2 = branch2;
+        this.branch3 = branch3;
         this.name = name;
         this.genre = genre;
         this.platform = platform;
@@ -108,20 +111,28 @@ public class StockEntity implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public String getBranch() {
-        return branch;
+    public String getBranch1() {
+        return branch1;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setBranch1(String branch1) {
+        this.branch1 = branch1;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getBranch2() {
+        return branch2;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setBranch2(String branch2) {
+        this.branch2 = branch2;
+    }
+
+    public String getBranch3() {
+        return branch3;
+    }
+
+    public void setBranch3(String branch3) {
+        this.branch3 = branch3;
     }
 
     public String getName() {
@@ -162,14 +173,6 @@ public class StockEntity implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public ProductEntity getProductEntity() {
-        return productEntity;
-    }
-
-    public void setProductEntity(ProductEntity productEntity) {
-        this.productEntity = productEntity;
     }
 
     @Override

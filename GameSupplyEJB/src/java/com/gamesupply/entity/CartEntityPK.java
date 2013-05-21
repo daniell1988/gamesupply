@@ -18,26 +18,18 @@ import javax.validation.constraints.NotNull;
 public class CartEntityPK implements Serializable {
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_costumer")
-    private int idCostumer;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "id_product_item")
     private int idProductItem;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_costumer")
+    private int idCostumer;
 
     public CartEntityPK() {
     }
 
-    public CartEntityPK(int idCostumer, int idProductItem) {
-        this.idCostumer = idCostumer;
+    public CartEntityPK(int idProductItem, int idCostumer) {
         this.idProductItem = idProductItem;
-    }
-
-    public int getIdCostumer() {
-        return idCostumer;
-    }
-
-    public void setIdCostumer(int idCostumer) {
         this.idCostumer = idCostumer;
     }
 
@@ -49,11 +41,19 @@ public class CartEntityPK implements Serializable {
         this.idProductItem = idProductItem;
     }
 
+    public int getIdCostumer() {
+        return idCostumer;
+    }
+
+    public void setIdCostumer(int idCostumer) {
+        this.idCostumer = idCostumer;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idCostumer;
         hash += (int) idProductItem;
+        hash += (int) idCostumer;
         return hash;
     }
 
@@ -64,10 +64,10 @@ public class CartEntityPK implements Serializable {
             return false;
         }
         CartEntityPK other = (CartEntityPK) object;
-        if (this.idCostumer != other.idCostumer) {
+        if (this.idProductItem != other.idProductItem) {
             return false;
         }
-        if (this.idProductItem != other.idProductItem) {
+        if (this.idCostumer != other.idCostumer) {
             return false;
         }
         return true;
@@ -75,7 +75,7 @@ public class CartEntityPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gamesupply.entity.CartEntityPK[ idCostumer=" + idCostumer + ", idProductItem=" + idProductItem + " ]";
+        return "com.gamesupply.entity.CartEntityPK[ idProductItem=" + idProductItem + ", idCostumer=" + idCostumer + " ]";
     }
     
 }

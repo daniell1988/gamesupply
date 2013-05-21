@@ -15,7 +15,7 @@ public class ProductDTO implements Serializable {
     
     private String name;
     private String description;
-    private long price;
+    private String price;
     private String genre;
     private String platform;
     private String type;
@@ -38,13 +38,14 @@ public class ProductDTO implements Serializable {
         this.description = description;
     }
 
-    public long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(String price) {
         this.price = price;
     }
+    
 
     public String getGenre() {
         return genre;

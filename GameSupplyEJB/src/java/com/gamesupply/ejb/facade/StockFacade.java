@@ -41,7 +41,6 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
         stockEntity.setName(productDTO.getName());
         stockEntity.setPlatform(productDTO.getPlatform());
         stockEntity.setPrice(""+productDTO.getPrice());
-        stockEntity.setBranch("Filial A");
         
         em.persist(stockEntity);
         

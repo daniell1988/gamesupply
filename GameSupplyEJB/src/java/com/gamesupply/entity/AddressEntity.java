@@ -6,7 +6,6 @@ package com.gamesupply.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,81 +31,52 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "AddressEntity.findByIdAddress", query = "SELECT a FROM AddressEntity a WHERE a.idAddress = :idAddress"),
     @NamedQuery(name = "AddressEntity.findByAddress", query = "SELECT a FROM AddressEntity a WHERE a.address = :address"),
     @NamedQuery(name = "AddressEntity.findByAddressComplement", query = "SELECT a FROM AddressEntity a WHERE a.addressComplement = :addressComplement"),
-    @NamedQuery(name = "AddressEntity.findByCountry", query = "SELECT a FROM AddressEntity a WHERE a.country = :country"),
-    @NamedQuery(name = "AddressEntity.findByState", query = "SELECT a FROM AddressEntity a WHERE a.state = :state"),
+    @NamedQuery(name = "AddressEntity.findByAddressDescription", query = "SELECT a FROM AddressEntity a WHERE a.addressDescription = :addressDescription"),
     @NamedQuery(name = "AddressEntity.findByCity", query = "SELECT a FROM AddressEntity a WHERE a.city = :city"),
-    @NamedQuery(name = "AddressEntity.findByZip", query = "SELECT a FROM AddressEntity a WHERE a.zip = :zip"),
+    @NamedQuery(name = "AddressEntity.findByCountry", query = "SELECT a FROM AddressEntity a WHERE a.country = :country"),
     @NamedQuery(name = "AddressEntity.findByPhoneNumber", query = "SELECT a FROM AddressEntity a WHERE a.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "AddressEntity.findByAddressDescription", query = "SELECT a FROM AddressEntity a WHERE a.addressDescription = :addressDescription")})
+    @NamedQuery(name = "AddressEntity.findByState", query = "SELECT a FROM AddressEntity a WHERE a.state = :state"),
+    @NamedQuery(name = "AddressEntity.findByZip", query = "SELECT a FROM AddressEntity a WHERE a.zip = :zip")})
 public class AddressEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Basic(optional = false)
+    @Basic(optional = false)
     @Column(name = "id_address")
     private Integer idAddress;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 255)
     @Column(name = "address")
     private String address;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 120)
+    @Size(max = 255)
     @Column(name = "address_complement")
     private String addressComplement;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "country")
-    private String country;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "state")
-    private String state;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "city")
-    private String city;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "zip")
-    private String zip;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "phone_number")
-    private String phoneNumber;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 255)
     @Column(name = "address_description")
     private String addressDescription;
+    @Size(max = 255)
+    @Column(name = "city")
+    private String city;
+    @Size(max = 255)
+    @Column(name = "country")
+    private String country;
+    @Size(max = 255)
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Size(max = 255)
+    @Column(name = "state")
+    private String state;
+    @Size(max = 255)
+    @Column(name = "zip")
+    private String zip;
     @JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private CustomerEntity idCustomer;
 
     public AddressEntity() {
-        this.idCustomer = new CustomerEntity();
     }
 
     public AddressEntity(Integer idAddress) {
         this.idAddress = idAddress;
-    }
-
-    public AddressEntity(Integer idAddress, String address, String addressComplement, String country, String state, String city, String zip, String phoneNumber, String addressDescription) {
-        this.idAddress = idAddress;
-        this.address = address;
-        this.addressComplement = addressComplement;
-        this.country = country;
-        this.state = state;
-        this.city = city;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.addressDescription = addressDescription;
     }
 
     public Integer getIdAddress() {
@@ -134,20 +103,12 @@ public class AddressEntity implements Serializable {
         this.addressComplement = addressComplement;
     }
 
-    public String getCountry() {
-        return country;
+    public String getAddressDescription() {
+        return addressDescription;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public void setAddressDescription(String addressDescription) {
+        this.addressDescription = addressDescription;
     }
 
     public String getCity() {
@@ -158,12 +119,12 @@ public class AddressEntity implements Serializable {
         this.city = city;
     }
 
-    public String getZip() {
-        return zip;
+    public String getCountry() {
+        return country;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getPhoneNumber() {
@@ -174,12 +135,20 @@ public class AddressEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddressDescription() {
-        return addressDescription;
+    public String getState() {
+        return state;
     }
 
-    public void setAddressDescription(String addressDescription) {
-        this.addressDescription = addressDescription;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public CustomerEntity getIdCustomer() {
