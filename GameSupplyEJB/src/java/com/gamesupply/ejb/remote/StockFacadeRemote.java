@@ -23,7 +23,7 @@ public interface StockFacadeRemote {
 
     void remove(StockDTO productDTO);
 
-    StockEntity find(Integer id);
+    StockDTO find(Integer id);
 
     List<StockDTO> findAll();
 

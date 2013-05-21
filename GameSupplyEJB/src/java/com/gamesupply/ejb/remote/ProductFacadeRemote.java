@@ -9,7 +9,6 @@ import com.gamesupply.entity.ProductEntity;
 import java.util.List;
 import javax.ejb.Remote;
 
-
 /**
  *
  * @author CUESTAS
@@ -17,18 +16,18 @@ import javax.ejb.Remote;
 @Remote
 public interface ProductFacadeRemote {
 
-    void create(ProductDTO productDTO);
+    void create(ProductDTO productEntity);
 
-    void edit(ProductDTO productDTO);
+    void edit(ProductDTO productEntity);
 
-    void remove(ProductDTO productDTO);
+    void remove(ProductDTO productEntity);
 
     ProductDTO find(Integer id);
+
+    List<ProductDTO> findAll();
 
     List<ProductDTO> findRange(Integer[] range);
 
     int count();
-
-    List<ProductDTO> findAll();
     
 }

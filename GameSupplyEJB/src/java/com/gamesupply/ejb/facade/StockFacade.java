@@ -40,7 +40,7 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
         stockEntity.setGenre(productDTO.getGenre());
         stockEntity.setName(productDTO.getName());
         stockEntity.setPlatform(productDTO.getPlatform());
-        stockEntity.setPrice(""+productDTO.getPrice());
+        stockEntity.setPrice(productDTO.getPrice());
         
         em.persist(stockEntity);
         
@@ -58,7 +58,7 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
     }
 
     @Override
-    public StockEntity find(Integer id) {
+    public StockDTO find(Integer id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

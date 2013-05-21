@@ -13,16 +13,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
-
 /**
  *
  * @author CUESTAS
  */
 @Stateless
 public class ProductFacade extends AbstractFacade<ProductEntity> implements ProductFacadeRemote {
-    @EJB
-    private StockFacade stockFacade;
+
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -34,8 +31,8 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
     public ProductFacade() {
         super(ProductEntity.class);
     }
-    
-    @Override
+
+     @Override
     public void create(ProductDTO productDTO) {
         
         ProductEntity productEntity = new ProductEntity();
@@ -48,7 +45,6 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
         productEntity.setType(productDTO.getType());
         
         em.persist(productEntity);
-        stockFacade.create(productDTO);
     }
 
     @Override
@@ -77,13 +73,11 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
         em.remove(productEntity);
         
     }
-    
-    
+
     @Override
-    public List<ProductDTO> findRange(Integer[] range) {
+    public ProductDTO find(Integer id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 
     @Override
     public List findAll() {
@@ -91,10 +85,8 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
     }
 
     @Override
-    public ProductDTO find(Integer id) {
+    public List<ProductDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
     
 }
