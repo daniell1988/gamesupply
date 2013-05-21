@@ -271,7 +271,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
         productDTO.setGenre(this.genre.getSelectedItem().toString());
         productDTO.setName(this.name.getText());
         productDTO.setPlatform(this.platform.getSelectedItem().toString());
-        productDTO.setPrice(Integer.parseInt(this.price.getText()));
+        productDTO.setPrice(this.price.getText());
         productDTO.setType(this.type.getSelectedItem().toString());
 //        JOptionPane.showConfirmDialog(null, productDTO.getIdProduct());
         ProductController.edit(productDTO);
@@ -300,7 +300,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
         productDTO.setGenre(this.genre.getSelectedItem().toString());
         productDTO.setName(this.name.getText());
         productDTO.setPlatform(this.platform.getSelectedItem().toString());
-        productDTO.setPrice(Integer.parseInt(this.price.getText()));
+        productDTO.setPrice(this.price.getText());
         productDTO.setType(this.type.getSelectedItem().toString());
 //        JOptionPane.showConfirmDialog(null, productDTO.getIdProduct());
         ProductController.remove(productDTO);
