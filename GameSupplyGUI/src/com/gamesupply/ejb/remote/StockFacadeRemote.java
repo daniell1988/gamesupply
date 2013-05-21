@@ -6,7 +6,6 @@ package com.gamesupply.ejb.remote;
 
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.dto.StockDTO;
-import com.gamesupply.entity.StockEntity;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -23,7 +22,7 @@ public interface StockFacadeRemote {
 
     void remove(StockDTO productDTO);
 
-    StockEntity find(Integer id);
+    StockDTO find(Integer id);
 
     List<StockDTO> findAll();
 

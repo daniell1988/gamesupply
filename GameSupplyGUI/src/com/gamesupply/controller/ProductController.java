@@ -6,6 +6,7 @@ package com.gamesupply.controller;
 
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.ejb.remote.ProductFacadeRemote;
+import com.gamesupply.ejb.remote.StockFacadeRemote;
 import com.gamesupply.util.GSUtils;
 
 /**
@@ -13,6 +14,7 @@ import com.gamesupply.util.GSUtils;
  * @author CUESTAS
  */
 public class ProductController {
+    private static StockFacadeRemote stockFacade;
 
     public static void remove(ProductDTO productDTO) {
         
@@ -35,11 +37,14 @@ public class ProductController {
         
         try {
             productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
+            stockFacade = (StockFacadeRemote) GSUtils.dynamicLookup("StockFacade");
         } catch (Exception e) {
             System.out.println("erro lookup");
         }
         
         productFacade.create(productDTO);
+        stockFacade.create(productDTO);
+        
         
     }
     

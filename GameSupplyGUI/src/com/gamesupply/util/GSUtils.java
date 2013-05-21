@@ -5,7 +5,6 @@
 package com.gamesupply.util;
 
 import java.security.MessageDigest;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -20,8 +19,8 @@ import javax.naming.NamingException;
  */
 public class GSUtils {
     
-//    private static final String host = "10.49.31.1";
-    private static final String host = "localhost";
+    private static final String host = "10.49.31.1";
+//    private static final String host = "localhost";
     private static final String port = "3700";
 
     public static Object dynamicLookup(String classe) {
