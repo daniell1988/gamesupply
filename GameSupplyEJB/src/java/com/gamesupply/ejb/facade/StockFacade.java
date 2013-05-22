@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author CUESTAS
+ * @author 40836665
  */
 @Stateless
 public class StockFacade extends AbstractFacade<StockEntity> implements StockFacadeRemote {
@@ -48,12 +48,12 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
     }
 
     @Override
-    public void edit(StockDTO stockEntity) {
+    public void edit(ProductDTO stockEntity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void remove(StockDTO productDTO) {
+    public void remove(ProductDTO stockEntity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -68,7 +68,7 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
     }
 
     @Override
-    public List<StockDTO> findRange(Integer[] range) {
+    public List findRange(int[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

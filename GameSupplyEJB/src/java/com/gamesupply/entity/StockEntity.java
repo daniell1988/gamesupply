@@ -40,7 +40,7 @@ public class StockEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "id_product")
     private Integer idProduct;
     @Basic(optional = false)

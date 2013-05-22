@@ -4,22 +4,20 @@
  */
 package com.gamesupply.ejb.facade;
 
-import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.ejb.remote.ProductFacadeRemote;
+import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.entity.ProductEntity;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author CUESTAS
+ * @author 40836665
  */
 @Stateless
 public class ProductFacade extends AbstractFacade<ProductEntity> implements ProductFacadeRemote {
-
     @PersistenceContext(unitName = "GameSupplyEJBPU")
     private EntityManager em;
 
@@ -75,7 +73,7 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
     }
 
     @Override
-    public ProductDTO find(Integer id) {
+    public ProductEntity find(Integer id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

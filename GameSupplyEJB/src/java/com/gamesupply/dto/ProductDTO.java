@@ -13,13 +13,13 @@ import java.io.Serializable;
  */
 public class ProductDTO implements Serializable {
     
+    private static final long serialVersionUID = 1L;
     private String name;
     private String description;
     private String price;
     private String genre;
     private String platform;
     private String type;
-    private static final long serialVersionUID = 1L;
     private Integer idProduct;
 
     public String getName() {
