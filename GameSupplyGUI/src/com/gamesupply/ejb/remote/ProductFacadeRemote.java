@@ -5,12 +5,13 @@
 package com.gamesupply.ejb.remote;
 
 import com.gamesupply.dto.ProductDTO;
+import com.gamesupply.entity.ProductEntity;
 import java.util.List;
 import javax.ejb.Remote;
 
 /**
  *
- * @author CUESTAS
+ * @author 40836665
  */
 @Remote
 public interface ProductFacadeRemote {
@@ -21,7 +22,7 @@ public interface ProductFacadeRemote {
 
     void remove(ProductDTO productEntity);
 
-    ProductDTO find(Integer id);
+    ProductEntity find(Integer id);
 
     List<ProductDTO> findAll();
 

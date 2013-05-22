@@ -34,15 +34,15 @@ public class ProductController {
     private static ProductFacadeRemote productFacade;
     
     public static void create(ProductDTO productDTO){
-        
+        productDTO = new ProductDTO();
         try {
-            productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
+//            productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
             stockFacade = (StockFacadeRemote) GSUtils.dynamicLookup("StockFacade");
         } catch (Exception e) {
             System.out.println("erro lookup");
         }
         
-        productFacade.create(productDTO);
+//        productFacade.create(productDTO);
         stockFacade.create(productDTO);
         
         
