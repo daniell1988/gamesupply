@@ -22,6 +22,7 @@ public class StockDTO implements Serializable{
     private String name;
     private String platform;
     private String price;
+    private String type;
     
     public StockDTO(){
         
@@ -98,6 +99,16 @@ public class StockDTO implements Serializable{
     public void setPrice(String price) {
         this.price = price;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
     
     
     

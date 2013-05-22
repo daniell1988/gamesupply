@@ -34,6 +34,12 @@ public class NewStock extends javax.swing.JInternalFrame {
         productEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : productEntityQuery1.getResultList();
         productEntityQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM ProductEntity p");
         productEntityList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : productEntityQuery2.getResultList();
+        addressEntityQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT a FROM AddressEntity a");
+        addressEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : addressEntityQuery.getResultList();
+        stockEntityQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM StockEntity s");
+        stockEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockEntityQuery.getResultList();
+        stockEntityQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM StockEntity s");
+        stockEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockEntityQuery1.getResultList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -45,19 +51,7 @@ public class NewStock extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Entrada de Estoque");
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, productEntityList2, jTable2);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
-        columnBinding.setColumnName("Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${platform}"));
-        columnBinding.setColumnName("Platform");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${type}"));
-        columnBinding.setColumnName("Type");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
-        columnBinding.setColumnName("Price");
-        columnBinding.setColumnClass(Long.class);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, stockEntityList1, jTable2);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane1.setViewportView(jTable2);
@@ -66,7 +60,7 @@ public class NewStock extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Filial");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filial A", "Filial B", "Filial C", "Filial D" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filial A", "Filial B", "Filial C"}));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -112,7 +106,7 @@ public class NewStock extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -131,6 +125,8 @@ public class NewStock extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.util.List<com.gamesupply.entity.AddressEntity> addressEntityList;
+    private javax.persistence.Query addressEntityQuery;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
@@ -145,6 +141,10 @@ public class NewStock extends javax.swing.JInternalFrame {
     private javax.persistence.Query productEntityQuery;
     private javax.persistence.Query productEntityQuery1;
     private javax.persistence.Query productEntityQuery2;
+    private java.util.List<com.gamesupply.entity.StockEntity> stockEntityList;
+    private java.util.List<com.gamesupply.entity.StockEntity> stockEntityList1;
+    private javax.persistence.Query stockEntityQuery;
+    private javax.persistence.Query stockEntityQuery1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

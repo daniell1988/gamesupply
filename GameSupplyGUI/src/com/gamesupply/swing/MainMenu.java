@@ -11,6 +11,7 @@ package com.gamesupply.swing;
 public class MainMenu extends javax.swing.JFrame {
     private ListaProduto listaProduto;
     private NewStock stockEntry;
+    private MaintainStock stockManagement;
 
     /**
      * Creates new form MainMenu
@@ -73,6 +74,11 @@ public class MainMenu extends javax.swing.JFrame {
         menuStock.add(itemNewStockEntry);
 
         itemStockManagement.setText("Controle");
+        itemStockManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemStockManagementActionPerformed(evt);
+            }
+        });
         menuStock.add(itemStockManagement);
 
         mainMenuBar.add(menuStock);
@@ -157,18 +163,24 @@ public class MainMenu extends javax.swing.JFrame {
         listaProduto.setVisible(true);
     }//GEN-LAST:event_menuItemProductManagementActionPerformed
 
-    private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
-        stockEntry = new NewStock();
-        jDesktopPane1.add(stockEntry);
-        stockEntry.setVisible(true);
-        
-    }//GEN-LAST:event_itemNewStockEntryActionPerformed
-
     private void itemNewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewProductActionPerformed
         cadastroProduto = new CadastroProduto();
         jDesktopPane1.add(cadastroProduto);
         cadastroProduto.setVisible(true);
     }//GEN-LAST:event_itemNewProductActionPerformed
+
+    private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
+        stockEntry = new NewStock();
+        jDesktopPane1.add(stockEntry);
+        stockEntry.setVisible(true);
+
+    }//GEN-LAST:event_itemNewStockEntryActionPerformed
+
+    private void itemStockManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemStockManagementActionPerformed
+        stockManagement = new MaintainStock();
+        jDesktopPane1.add(stockManagement);
+        stockManagement.setVisible(true);
+    }//GEN-LAST:event_itemStockManagementActionPerformed
 
     /**
      * @param args the command line arguments
