@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StockEntity.findByPlatform", query = "SELECT s FROM StockEntity s WHERE s.platform = :platform"),
     @NamedQuery(name = "StockEntity.findByPrice", query = "SELECT s FROM StockEntity s WHERE s.price = :price")})
 public class StockEntity implements Serializable {
+    @Size(max = 255)
+    @Column(name = "type")
+    private String type;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -168,6 +171,14 @@ public class StockEntity implements Serializable {
     @Override
     public String toString() {
         return "com.gamesupply.entity.StockEntity[ idProduct=" + idProduct + " ]";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
 }
