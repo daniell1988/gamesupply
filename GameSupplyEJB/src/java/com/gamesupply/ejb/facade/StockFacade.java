@@ -4,9 +4,9 @@
  */
 package com.gamesupply.ejb.facade;
 
+import com.gamesupply.ejb.remote.StockFacadeRemote;
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.dto.StockDTO;
-import com.gamesupply.ejb.remote.StockFacadeRemote;
 import com.gamesupply.entity.StockEntity;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author 40836665
+ * @author cuestas
  */
 @Stateless
 public class StockFacade extends AbstractFacade<StockEntity> implements StockFacadeRemote {
@@ -41,19 +41,20 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
         stockEntity.setName(productDTO.getName());
         stockEntity.setPlatform(productDTO.getPlatform());
         stockEntity.setPrice(productDTO.getPrice());
+        stockEntity.setBranch1("0");
+        stockEntity.setBranch2("0");
+        stockEntity.setBranch3("0");
         
         em.persist(stockEntity);
-        
-        
     }
 
     @Override
-    public void edit(ProductDTO stockEntity) {
+    public void edit(StockDTO stockDTO) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void remove(ProductDTO stockEntity) {
+    public void remove(StockDTO stockDTO) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -68,7 +69,7 @@ public class StockFacade extends AbstractFacade<StockEntity> implements StockFac
     }
 
     @Override
-    public List findRange(int[] range) {
+    public List<StockDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

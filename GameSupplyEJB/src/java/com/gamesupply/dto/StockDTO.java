@@ -6,19 +6,25 @@ package com.gamesupply.dto;
 
 import java.io.Serializable;
 
-public class StockDTO implements Serializable {
+/**
+ *
+ * @author cuestas
+ */
+public class StockDTO implements Serializable{
+    
     private static final long serialVersionUID = 1L;
     private Integer idProduct;
     private String branch1;
     private String branch2;
     private String branch3;
-    private String name;
-    private String genre;
-    private String platform;
     private String description;
+    private String genre;
+    private String name;
+    private String platform;
     private String price;
-
-    public StockDTO() {
+    
+    public StockDTO(){
+        
     }
 
     public Integer getIdProduct() {
@@ -53,12 +59,12 @@ public class StockDTO implements Serializable {
         this.branch3 = branch3;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getGenre() {
@@ -69,20 +75,20 @@ public class StockDTO implements Serializable {
         this.genre = genre;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPlatform() {
         return platform;
     }
 
     public void setPlatform(String platform) {
         this.platform = platform;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getPrice() {
@@ -93,8 +99,6 @@ public class StockDTO implements Serializable {
         this.price = price;
     }
     
-    
-
     
     
 }
