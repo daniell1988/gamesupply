@@ -7,10 +7,12 @@ package com.gamesupply.ejb.facade;
 import com.gamesupply.ejb.remote.ProductFacadeRemote;
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.entity.ProductEntity;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -79,7 +81,26 @@ public class ProductFacade extends AbstractFacade<ProductEntity> implements Prod
 
     @Override
     public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query q = em.createQuery("select object(o) from ProductEntity as o");
+        List<ProductEntity> productListEntity = q.getResultList();
+        List<ProductDTO> productList = new ArrayList<ProductDTO>();
+        
+        for(ProductEntity productEntity : productListEntity){
+            
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.setDescription(productEntity.getDescription());
+            productDTO.setGenre(productEntity.getGenre());
+            productDTO.setIdProduct(productEntity.getIdProduct());
+            productDTO.setName(productEntity.getName());
+            productDTO.setPlatform(productEntity.getPlatform());
+            productDTO.setPrice(productEntity.getPrice());
+            productDTO.setType(productEntity.getType());
+            
+            productList.add(productDTO);
+        }
+        
+        
+        return productList;
     }
 
     @Override
