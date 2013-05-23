@@ -124,6 +124,7 @@ public class NewStock extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        this.stockDTO.setIdProduct(this.productDTO.getIdProduct());
         this.stockDTO.setDescription(this.productDTO.getDescription());
         this.stockDTO.setGenre(this.productDTO.getGenre());
         this.stockDTO.setName(this.productDTO.getName());
@@ -144,7 +145,7 @@ public class NewStock extends javax.swing.JInternalFrame {
              this.stockDTO.setBranch3(fieldNewQty.getText());
         }
         
-        StockController.create(this.stockDTO);
+        StockController.updateStock(this.stockDTO);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
