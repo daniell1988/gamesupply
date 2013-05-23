@@ -5,9 +5,11 @@
 package com.gamesupply.controller;
 
 import com.gamesupply.dto.ProductDTO;
+import com.gamesupply.dto.StockDTO;
 import com.gamesupply.ejb.remote.ProductFacadeRemote;
 import com.gamesupply.ejb.remote.StockFacadeRemote;
 import com.gamesupply.util.GSUtils;
+import java.util.List;
 
 
 
@@ -33,7 +35,17 @@ public class ProductController {
     }
 
     
-    
+        public static List<ProductDTO> findall() {
+        
+        try {
+            productFacade = (ProductFacadeRemote) GSUtils.dynamicLookup("ProductFacade");
+        } catch (Exception e) {
+            System.out.println("erro lookup");
+        }
+        
+        return productFacade.findAll();
+        
+    }
     
     
     public static void create(ProductDTO productDTO){
@@ -45,7 +57,20 @@ public class ProductController {
         }
         
         productFacade.create(productDTO);
-        stockFacade.create(productDTO);
+        
+        StockDTO stockDTO = new StockDTO();
+        
+        stockDTO.setDescription(productDTO.getDescription());
+        stockDTO.setGenre(productDTO.getGenre());
+        stockDTO.setName(productDTO.getName());
+        stockDTO.setPlatform(productDTO.getPlatform());
+        stockDTO.setPrice(productDTO.getPrice());
+        stockDTO.setType(productDTO.getType());
+        stockDTO.setBranch1("0");
+        stockDTO.setBranch2("0");
+        stockDTO.setBranch3("0");
+        
+        stockFacade.create(stockDTO);
         
         
     }

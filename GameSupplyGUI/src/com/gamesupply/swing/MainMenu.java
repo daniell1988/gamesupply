@@ -12,12 +12,16 @@ public class MainMenu extends javax.swing.JFrame {
     private ListaProduto listaProduto;
     private NewStock stockEntry;
     private MaintainStock stockManagement;
+    private BranchReport branchReport;
+    private String store;
 
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public MainMenu(String store) {
         initComponents();
+        this.store = store;
+        getMenus(store);        
     }
 
     /**
@@ -45,10 +49,10 @@ public class MainMenu extends javax.swing.JFrame {
         menuReport = new javax.swing.JMenu();
         itemMenuReportBranchStock = new javax.swing.JMenuItem();
         itemMenuDailyReport = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GameSupply");
+        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         menuSale.setText("Vendas");
@@ -116,18 +120,15 @@ public class MainMenu extends javax.swing.JFrame {
         menuReport.setText("Relatório");
 
         itemMenuReportBranchStock.setText("Estoque Filiais");
+        itemMenuReportBranchStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuReportBranchStockActionPerformed(evt);
+            }
+        });
         menuReport.add(itemMenuReportBranchStock);
 
         itemMenuDailyReport.setText("Fechamento");
         menuReport.add(itemMenuDailyReport);
-
-        jMenuItem1.setText("Teste");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        menuReport.add(jMenuItem1);
 
         mainMenuBar.add(menuReport);
 
@@ -147,12 +148,6 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        testeInternalFrame = new TesteInternalFrame();
-        jDesktopPane1.add(testeInternalFrame);
-        testeInternalFrame.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void itemNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewSaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemNewSaleActionPerformed
@@ -170,53 +165,68 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemNewProductActionPerformed
 
     private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
-        stockEntry = new NewStock();
+        stockEntry = new NewStock(store);
         jDesktopPane1.add(stockEntry);
         stockEntry.setVisible(true);
 
     }//GEN-LAST:event_itemNewStockEntryActionPerformed
 
     private void itemStockManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemStockManagementActionPerformed
-        stockManagement = new MaintainStock();
+        stockManagement = new MaintainStock(store);
         jDesktopPane1.add(stockManagement);
         stockManagement.setVisible(true);
     }//GEN-LAST:event_itemStockManagementActionPerformed
 
+    private void itemMenuReportBranchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuReportBranchStockActionPerformed
+        branchReport = new BranchReport();
+        jDesktopPane1.add(branchReport);
+        branchReport.setVisible(true);
+    }//GEN-LAST:event_itemMenuReportBranchStockActionPerformed
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new MainMenu("").setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemMenuDailyReport;
     private javax.swing.JMenuItem itemMenuReportBranchStock;
@@ -227,7 +237,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemOrderSearch;
     private javax.swing.JMenuItem itemStockManagement;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem menuItemProductManagement;
     private javax.swing.JMenu menuOrder;
@@ -236,6 +245,13 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenu menuSale;
     private javax.swing.JMenu menuStock;
     // End of variables declaration//GEN-END:variables
-    TesteInternalFrame testeInternalFrame;
     CadastroProduto cadastroProduto;
+
+    private void getMenus(String store) {
+        
+        if(!store.equals("Matriz")){
+            itemNewSale.setVisible(false);
+        }
+        
+    }
 }

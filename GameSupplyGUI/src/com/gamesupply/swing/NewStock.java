@@ -4,16 +4,31 @@
  */
 package com.gamesupply.swing;
 
+import com.gamesupply.controller.ProductController;
+import com.gamesupply.controller.StockController;
+import com.gamesupply.dto.ProductDTO;
+import com.gamesupply.dto.StockDTO;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author 40836665
+ * @author CUESTAS
  */
 public class NewStock extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form NewSale
+     * Creates new form NewStock
      */
-    public NewStock() {
+    private List<ProductDTO> productList = new ArrayList<ProductDTO>();
+    private ProductDTO productDTO = new ProductDTO();
+    private StockDTO stockDTO = new StockDTO();
+    private String store;
+    
+    public NewStock(String store) {
+        
+        productList = ProductController.findall();
+        this.store = store;
         initComponents();
     }
 
@@ -27,43 +42,37 @@ public class NewStock extends javax.swing.JInternalFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("gamesupplydb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        productEntityQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM ProductEntity p");
-        productEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : productEntityQuery.getResultList();
-        productEntityQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM ProductEntity p");
-        productEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : productEntityQuery1.getResultList();
-        productEntityQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM ProductEntity p");
-        productEntityList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : productEntityQuery2.getResultList();
-        addressEntityQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT a FROM AddressEntity a");
-        addressEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : addressEntityQuery.getResultList();
-        stockEntityQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM StockEntity s");
-        stockEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockEntityQuery.getResultList();
-        stockEntityQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM StockEntity s");
-        stockEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockEntityQuery1.getResultList();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        fieldNewQty = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setClosable(true);
-        setTitle("Entrada de Estoque");
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, stockEntityList1, jTable2);
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${productList}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idProduct}"));
+        columnBinding.setColumnName("Id Product");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
+        columnBinding.setColumnName("Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${platform}"));
+        columnBinding.setColumnName("Platform");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${type}"));
+        columnBinding.setColumnName("Type");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
-        jScrollPane1.setViewportView(jTable2);
+        jTableBinding.bind();org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${productDTO}"), jTable1, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
+        jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Quantidade");
 
-        jLabel2.setText("Filial");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filial A", "Filial B", "Filial C"}));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        fieldNewQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                fieldNewQtyActionPerformed(evt);
             }
         });
 
@@ -80,35 +89,28 @@ public class NewStock extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldNewQty, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                    .addComponent(fieldNewQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -116,35 +118,77 @@ public class NewStock extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void fieldNewQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewQtyActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNewQtyActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        this.stockDTO.setDescription(this.productDTO.getDescription());
+        this.stockDTO.setGenre(this.productDTO.getGenre());
+        this.stockDTO.setName(this.productDTO.getName());
+        this.stockDTO.setPlatform(this.productDTO.getPlatform());
+        this.stockDTO.setPrice(this.productDTO.getPrice());
+        this.stockDTO.setType(this.productDTO.getType());
+        this.stockDTO.setBranch1("0");
+        this.stockDTO.setBranch2("0");
+        this.stockDTO.setBranch3("0");
+        
+        if(this.store.toUpperCase().endsWith("A")){
+            this.stockDTO.setBranch1(fieldNewQty.getText());
+        }
+        if(this.store.toUpperCase().endsWith("B")){
+             this.stockDTO.setBranch2(fieldNewQty.getText());
+        }
+        if(this.store.toUpperCase().endsWith("C")){
+             this.stockDTO.setBranch3(fieldNewQty.getText());
+        }
+        
+        StockController.create(this.stockDTO);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.util.List<com.gamesupply.entity.AddressEntity> addressEntityList;
-    private javax.persistence.Query addressEntityQuery;
-    private javax.persistence.EntityManager entityManager;
+    private javax.swing.JTextField fieldNewQty;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private java.util.List<com.gamesupply.entity.ProductEntity> productEntityList;
-    private java.util.List<com.gamesupply.entity.ProductEntity> productEntityList1;
-    private java.util.List<com.gamesupply.entity.ProductEntity> productEntityList2;
-    private javax.persistence.Query productEntityQuery;
-    private javax.persistence.Query productEntityQuery1;
-    private javax.persistence.Query productEntityQuery2;
-    private java.util.List<com.gamesupply.entity.StockEntity> stockEntityList;
-    private java.util.List<com.gamesupply.entity.StockEntity> stockEntityList1;
-    private javax.persistence.Query stockEntityQuery;
-    private javax.persistence.Query stockEntityQuery1;
+    private javax.swing.JTable jTable1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
+
+    public List<ProductDTO> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<ProductDTO> productList) {
+        this.productList = productList;
+    }
+
+    public StockDTO getStockDTO() {
+        return stockDTO;
+    }
+
+    public void setStockDTO(StockDTO stockDTO) {
+        this.stockDTO = stockDTO;
+    }
+
+    public ProductDTO getProductDTO() {
+        return productDTO;
+    }
+
+    public void setProductDTO(ProductDTO productDTO) {
+        this.productDTO = productDTO;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    
+
 }

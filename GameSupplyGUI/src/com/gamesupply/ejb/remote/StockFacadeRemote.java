@@ -16,7 +16,7 @@ import javax.ejb.Remote;
 @Remote
 public interface StockFacadeRemote {
 
-    void create(ProductDTO productDTO);
+    void create(StockDTO productDTO);
 
     void edit(StockDTO stockDTO);
 
