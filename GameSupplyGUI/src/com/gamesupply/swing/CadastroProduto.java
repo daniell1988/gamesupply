@@ -193,7 +193,7 @@ public class CadastroProduto extends javax.swing.JInternalFrame {
         productDTO.setGenre(this.genre.getSelectedItem().toString());
         productDTO.setName(this.name.getText());
         productDTO.setPlatform(this.platform.getSelectedItem().toString());
-        productDTO.setPrice(this.price.getText());
+        productDTO.setPrice(Double.parseDouble(this.price.getText()));
         productDTO.setType(this.type.getSelectedItem().toString());
         
         ProductController.create(productDTO);

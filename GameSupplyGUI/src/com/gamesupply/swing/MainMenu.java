@@ -14,6 +14,7 @@ public class MainMenu extends javax.swing.JFrame {
     private MaintainStock stockManagement;
     private BranchReport branchReport;
     private String store;
+    private NewSale newSale;
 
     /**
      * Creates new form MainMenu
@@ -149,7 +150,9 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewSaleActionPerformed
-        // TODO add your handling code here:
+        newSale = new NewSale(store);
+        jDesktopPane1.add(newSale);
+        newSale.setVisible(true);                
     }//GEN-LAST:event_itemNewSaleActionPerformed
 
     private void menuItemProductManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductManagementActionPerformed
@@ -249,7 +252,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void getMenus(String store) {
         
-        if(!store.equals("Matriz")){
+        if(store.equals("Matriz")){
             itemNewSale.setVisible(false);
         }
         

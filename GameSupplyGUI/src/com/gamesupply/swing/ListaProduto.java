@@ -7,7 +7,7 @@ package com.gamesupply.swing;
 import com.gamesupply.controller.ProductController;
 import com.gamesupply.dto.ProductDTO;
 import com.gamesupply.util.Constants;
-import javax.swing.JOptionPane;
+import java.util.List;
 
 /**
  *
@@ -15,14 +15,35 @@ import javax.swing.JOptionPane;
  */
 public class ListaProduto extends javax.swing.JInternalFrame {
     private ProductDTO productDTO;
+    private List<ProductDTO> productList;
 
     /**
      * Creates new form ListaProduto
      */
     public ListaProduto() {
+        
+        productList = ProductController.findall();
         initComponents();
         price1.setVisible(false);
     }
+
+    public ProductDTO getProductDTO() {
+        return productDTO;
+    }
+
+    public void setProductDTO(ProductDTO productDTO) {
+        this.productDTO = productDTO;
+    }
+
+    public List<ProductDTO> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<ProductDTO> productList) {
+        this.productList = productList;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,28 +90,28 @@ public class ListaProduto extends javax.swing.JInternalFrame {
 
         jTable1.setAutoCreateRowSorter(true);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, productEntityList, jTable1, "");
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
-        columnBinding.setColumnName("Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${platform}"));
-        columnBinding.setColumnName("Platform");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${type}"));
-        columnBinding.setColumnName("Type");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
-        columnBinding.setColumnName("Price");
-        columnBinding.setColumnClass(Long.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${description}"));
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${productList}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${description}"));
         columnBinding.setColumnName("Description");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${genre}"));
         columnBinding.setColumnName("Genre");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idProduct}"));
+        columnBinding.setColumnName("Id Product");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
+        columnBinding.setColumnName("Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${platform}"));
+        columnBinding.setColumnName("Platform");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${price}"));
+        columnBinding.setColumnName("Price");
+        columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${type}"));
+        columnBinding.setColumnName("Type");
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
@@ -247,7 +268,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteButtom)
                             .addComponent(alterButtom))
@@ -271,7 +292,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
         productDTO.setGenre(this.genre.getSelectedItem().toString());
         productDTO.setName(this.name.getText());
         productDTO.setPlatform(this.platform.getSelectedItem().toString());
-        productDTO.setPrice(this.price.getText());
+        productDTO.setPrice(Double.parseDouble(this.price.getText()));
         productDTO.setType(this.type.getSelectedItem().toString());
 //        JOptionPane.showConfirmDialog(null, productDTO.getIdProduct());
         ProductController.edit(productDTO);
@@ -300,7 +321,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
         productDTO.setGenre(this.genre.getSelectedItem().toString());
         productDTO.setName(this.name.getText());
         productDTO.setPlatform(this.platform.getSelectedItem().toString());
-        productDTO.setPrice(this.price.getText());
+        productDTO.setPrice(Double.parseDouble(this.price.getText()));
         productDTO.setType(this.type.getSelectedItem().toString());
 //        JOptionPane.showConfirmDialog(null, productDTO.getIdProduct());
         ProductController.remove(productDTO);

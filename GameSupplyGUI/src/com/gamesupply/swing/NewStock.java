@@ -131,18 +131,18 @@ public class NewStock extends javax.swing.JInternalFrame {
         this.stockDTO.setPlatform(this.productDTO.getPlatform());
         this.stockDTO.setPrice(this.productDTO.getPrice());
         this.stockDTO.setType(this.productDTO.getType());
-        this.stockDTO.setBranch1("0");
-        this.stockDTO.setBranch2("0");
-        this.stockDTO.setBranch3("0");
+        this.stockDTO.setBranch1(0);
+        this.stockDTO.setBranch2(0);
+        this.stockDTO.setBranch3(0);
         
         if(this.store.toUpperCase().endsWith("A")){
-            this.stockDTO.setBranch1(fieldNewQty.getText());
+            this.stockDTO.setBranch1(Integer.parseInt(fieldNewQty.getText()));
         }
         if(this.store.toUpperCase().endsWith("B")){
-             this.stockDTO.setBranch2(fieldNewQty.getText());
+             this.stockDTO.setBranch2(Integer.parseInt(fieldNewQty.getText()));
         }
         if(this.store.toUpperCase().endsWith("C")){
-             this.stockDTO.setBranch3(fieldNewQty.getText());
+             this.stockDTO.setBranch3(Integer.parseInt(fieldNewQty.getText()));
         }
         
         StockController.updateStock(this.stockDTO);

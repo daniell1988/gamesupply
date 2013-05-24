@@ -66,9 +66,9 @@ public class ProductController {
         stockDTO.setPlatform(productDTO.getPlatform());
         stockDTO.setPrice(productDTO.getPrice());
         stockDTO.setType(productDTO.getType());
-        stockDTO.setBranch1("0");
-        stockDTO.setBranch2("0");
-        stockDTO.setBranch3("0");
+        stockDTO.setBranch1(0);
+        stockDTO.setBranch2(0);
+        stockDTO.setBranch3(0);
         
         stockFacade.create(stockDTO);
         

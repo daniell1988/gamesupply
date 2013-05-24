@@ -9,6 +9,7 @@ import com.gamesupply.controller.StockController;
 import com.gamesupply.dto.StockDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -31,13 +32,12 @@ public class MaintainStock extends javax.swing.JInternalFrame {
 //    private String actualBranchQty = "";
 
     public MaintainStock(String store) {
-        
+            
         this.store = store;
-        stockList = StockController.findall();
+        getBranchStock(store);
         initComponents();
 //        selectBranch(store);
-    }
-    
+    }   
 //    private void selectBranch(String store){
 //        
 //        
@@ -69,7 +69,7 @@ public class MaintainStock extends javax.swing.JInternalFrame {
         org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${stockList}");
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
-        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnName("Name");
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${platform}"));
         columnBinding.setColumnName("Platform");
@@ -77,15 +77,9 @@ public class MaintainStock extends javax.swing.JInternalFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${type}"));
         columnBinding.setColumnName("Type");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${branch1}"));
-        columnBinding.setColumnName("Branch1");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${branch2}"));
-        columnBinding.setColumnName("Branch2");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${branch3}"));
-        columnBinding.setColumnName("Branch3");
-        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${branchQuantity}"));
+        columnBinding.setColumnName("Branch Quantity");
+        columnBinding.setColumnClass(Integer.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${selectedStockDTO}"), jTable1, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
         bindingGroup.addBinding(binding);
@@ -93,6 +87,11 @@ public class MaintainStock extends javax.swing.JInternalFrame {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jTable1ComponentHidden(evt);
             }
         });
         jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -191,7 +190,7 @@ public class MaintainStock extends javax.swing.JInternalFrame {
                     .addComponent(fieldQtyBranch2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldQtyBranch3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selecttedProductId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -206,13 +205,13 @@ public class MaintainStock extends javax.swing.JInternalFrame {
         this.selectedStockDTO.setIdProduct(Integer.parseInt(selecttedProductId.getText()));
         
         if(this.store.toUpperCase().endsWith("A")){
-            this.selectedStockDTO.setBranch1(Integer.parseInt(this.selectedStockDTO.getBranch1()) + Integer.parseInt(selectedBranchQuantity.getText())+"");
+            this.selectedStockDTO.setBranch1(this.selectedStockDTO.getBranch1() + Integer.parseInt(selectedBranchQuantity.getText()));
         }
         if(this.store.toUpperCase().endsWith("B")){
-            this.selectedStockDTO.setBranch2(Integer.parseInt(this.selectedStockDTO.getBranch2()) + Integer.parseInt(selectedBranchQuantity.getText())+"");
+            this.selectedStockDTO.setBranch2(this.selectedStockDTO.getBranch2() + Integer.parseInt(selectedBranchQuantity.getText()));
         }
         if(this.store.toUpperCase().endsWith("C")){
-            this.selectedStockDTO.setBranch3(Integer.parseInt(this.selectedStockDTO.getBranch3()) + Integer.parseInt(selectedBranchQuantity.getText())+"");
+            this.selectedStockDTO.setBranch3(this.selectedStockDTO.getBranch3() + Integer.parseInt(selectedBranchQuantity.getText()));
         }
         
         StockController.updateStock(this.selectedStockDTO);
@@ -255,6 +254,10 @@ public class MaintainStock extends javax.swing.JInternalFrame {
     private void selecttedProductIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecttedProductIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selecttedProductIdActionPerformed
+
+    private void jTable1ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTable1ComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1ComponentHidden
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fieldQtyBranch1;
@@ -327,6 +330,40 @@ public class MaintainStock extends javax.swing.JInternalFrame {
 
     public void setSelectedStockDTO(StockDTO selectedStockDTO) {
         this.selectedStockDTO = selectedStockDTO;
+    }
+
+    private void getBranchStock(String store) {
+        List<StockDTO> tmpStock = StockController.findall();
+        
+        for(StockDTO stockTmp : tmpStock){
+            StockDTO stockDTO = new StockDTO();
+            
+            
+            stockDTO.setBranch1(stockTmp.getBranch1());
+            stockDTO.setBranch2(stockTmp.getBranch2());
+            stockDTO.setBranch3(stockTmp.getBranch3());
+            stockDTO.setDescription(stockTmp.getDescription());
+            stockDTO.setGenre(stockTmp.getGenre());
+            stockDTO.setIdProduct(stockTmp.getIdProduct());
+            stockDTO.setName(stockTmp.getName());
+            stockDTO.setPlatform(stockTmp.getPlatform());
+            stockDTO.setPrice(stockTmp.getPrice());
+            stockDTO.setType(stockTmp.getType());
+            
+            if(store.endsWith("A")){
+                stockDTO.setBranchQuantity(stockTmp.getBranch1());
+            }
+            
+            if(store.endsWith("B")){
+                stockDTO.setBranchQuantity(stockTmp.getBranch2());
+            }
+            
+            if(store.endsWith("C")){
+                stockDTO.setBranchQuantity(stockTmp.getBranch3());
+            }
+            
+            this.stockList.add(stockDTO);
+        }
     }
     
     
