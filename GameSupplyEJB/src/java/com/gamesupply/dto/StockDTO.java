@@ -14,17 +14,20 @@ public class StockDTO implements Serializable{
     
     private static final long serialVersionUID = 1L;
     private Integer idProduct;
-    private String branch1;
-    private String branch2;
-    private String branch3;
+    private Integer branch1;
+    private Integer branch2;
+    private Integer branch3;
     private String description;
     private String genre;
     private String name;
     private String platform;
-    private String price;
+    private Double price;
     private String type;
+    private Integer branchQuantity;
     
     public StockDTO(){
+        
+        this.branchQuantity = 0;
         
     }
 
@@ -36,27 +39,27 @@ public class StockDTO implements Serializable{
         this.idProduct = idProduct;
     }
 
-    public String getBranch1() {
+    public Integer getBranch1() {
         return branch1;
     }
 
-    public void setBranch1(String branch1) {
+    public void setBranch1(Integer branch1) {
         this.branch1 = branch1;
     }
 
-    public String getBranch2() {
+    public Integer getBranch2() {
         return branch2;
     }
 
-    public void setBranch2(String branch2) {
+    public void setBranch2(Integer branch2) {
         this.branch2 = branch2;
     }
 
-    public String getBranch3() {
+    public Integer getBranch3() {
         return branch3;
     }
 
-    public void setBranch3(String branch3) {
+    public void setBranch3(Integer branch3) {
         this.branch3 = branch3;
     }
 
@@ -92,11 +95,11 @@ public class StockDTO implements Serializable{
         this.platform = platform;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -107,9 +110,18 @@ public class StockDTO implements Serializable{
     public void setType(String type) {
         this.type = type;
     }
+
+    public Integer getBranchQuantity() {
+        return branchQuantity;
+    }
+
+    public void setBranchQuantity(Integer branchQuantity) {
+        this.branchQuantity = branchQuantity;
+    }
     
     
-    
+
+   
     
     
 }

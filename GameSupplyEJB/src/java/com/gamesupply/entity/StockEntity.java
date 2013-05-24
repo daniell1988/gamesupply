@@ -35,6 +35,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StockEntity.findByPlatform", query = "SELECT s FROM StockEntity s WHERE s.platform = :platform"),
     @NamedQuery(name = "StockEntity.findByPrice", query = "SELECT s FROM StockEntity s WHERE s.price = :price")})
 public class StockEntity implements Serializable {
+    @Column(name = "branch1")
+    private Integer branch1;
+    @Column(name = "branch2")
+    private Integer branch2;
+    @Column(name = "branch3")
+    private Integer branch3;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "price")
+    private Double price;
     @Size(max = 255)
     @Column(name = "type")
     private String type;
@@ -44,15 +53,6 @@ public class StockEntity implements Serializable {
 //    @Basic(optional = false)
     @Column(name = "id_product")
     private Integer idProduct;
-    @Size(max = 255)
-    @Column(name = "branch1")
-    private String branch1;
-    @Size(max = 255)
-    @Column(name = "branch2")
-    private String branch2;
-    @Size(max = 255)
-    @Column(name = "branch3")
-    private String branch3;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
@@ -65,9 +65,6 @@ public class StockEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "platform")
     private String platform;
-    @Size(max = 255)
-    @Column(name = "price")
-    private String price;
 
     public StockEntity() {
     }
@@ -82,30 +79,6 @@ public class StockEntity implements Serializable {
 
     public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
-    }
-
-    public String getBranch1() {
-        return branch1;
-    }
-
-    public void setBranch1(String branch1) {
-        this.branch1 = branch1;
-    }
-
-    public String getBranch2() {
-        return branch2;
-    }
-
-    public void setBranch2(String branch2) {
-        this.branch2 = branch2;
-    }
-
-    public String getBranch3() {
-        return branch3;
-    }
-
-    public void setBranch3(String branch3) {
-        this.branch3 = branch3;
     }
 
     public String getDescription() {
@@ -140,14 +113,6 @@ public class StockEntity implements Serializable {
         this.platform = platform;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -179,6 +144,38 @@ public class StockEntity implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getBranch1() {
+        return branch1;
+    }
+
+    public void setBranch1(Integer branch1) {
+        this.branch1 = branch1;
+    }
+
+    public Integer getBranch2() {
+        return branch2;
+    }
+
+    public void setBranch2(Integer branch2) {
+        this.branch2 = branch2;
+    }
+
+    public Integer getBranch3() {
+        return branch3;
+    }
+
+    public void setBranch3(Integer branch3) {
+        this.branch3 = branch3;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
     
 }

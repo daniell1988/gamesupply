@@ -16,7 +16,7 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String description;
-    private String price;
+    private Double price;
     private String genre;
     private String platform;
     private String type;
@@ -38,14 +38,13 @@ public class ProductDTO implements Serializable {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
-    
 
     public String getGenre() {
         return genre;
@@ -78,7 +77,8 @@ public class ProductDTO implements Serializable {
     public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
     }
-    
+
+   
     
     
 }

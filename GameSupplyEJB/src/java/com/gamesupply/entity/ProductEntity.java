@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ProductEntity.findByPrice", query = "SELECT p FROM ProductEntity p WHERE p.price = :price"),
     @NamedQuery(name = "ProductEntity.findByType", query = "SELECT p FROM ProductEntity p WHERE p.type = :type")})
 public class ProductEntity implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "price")
+    private Double price;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,9 +54,6 @@ public class ProductEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "platform")
     private String platform;
-    @Size(max = 255)
-    @Column(name = "price")
-    private String price;
     @Size(max = 255)
     @Column(name = "type")
     private String type;
@@ -105,14 +105,6 @@ public class ProductEntity implements Serializable {
         this.platform = platform;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getType() {
         return type;
     }
@@ -144,6 +136,14 @@ public class ProductEntity implements Serializable {
     @Override
     public String toString() {
         return "com.gamesupply.entity.ProductEntity[ idProduct=" + idProduct + " ]";
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
     
 }
