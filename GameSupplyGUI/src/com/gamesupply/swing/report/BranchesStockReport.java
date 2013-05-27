@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gamesupply.swing;
+package com.gamesupply.swing.report;
 
 import com.gamesupply.controller.StockController;
 import com.gamesupply.dto.StockDTO;
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author CUESTAS
  */
-public class BranchReport extends javax.swing.JInternalFrame {
+public class BranchesStockReport extends javax.swing.JInternalFrame {
     
     private List<StockDTO> stockList = new ArrayList<StockDTO>();
     private StockDTO stock = new StockDTO();
@@ -37,9 +37,9 @@ public class BranchReport extends javax.swing.JInternalFrame {
     
 
     /**
-     * Creates new form BranchReport
+     * Creates new form BranchesStockReport
      */
-    public BranchReport() {
+    public BranchesStockReport() {
         
         stockList = StockController.findall();
         
