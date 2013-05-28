@@ -4,6 +4,9 @@
  */
 package com.gamesupply.swing;
 
+import com.gamesupply.swing.report.BranchDailyReport;
+import com.gamesupply.swing.report.BranchesStockReport;
+
 /**
  *
  * @author 40836665
@@ -12,9 +15,10 @@ public class MainMenu extends javax.swing.JFrame {
     private ListaProduto listaProduto;
     private NewStock stockEntry;
     private MaintainStock stockManagement;
-    private BranchReport branchReport;
+    private BranchesStockReport branchStockReport;
     private String store;
     private NewSale newSale;
+    private BranchDailyReport branchDailyReport;
 
     /**
      * Creates new form MainMenu
@@ -129,6 +133,11 @@ public class MainMenu extends javax.swing.JFrame {
         menuReport.add(itemMenuReportBranchStock);
 
         itemMenuDailyReport.setText("Fechamento");
+        itemMenuDailyReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuDailyReportActionPerformed(evt);
+            }
+        });
         menuReport.add(itemMenuDailyReport);
 
         mainMenuBar.add(menuReport);
@@ -181,10 +190,16 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemStockManagementActionPerformed
 
     private void itemMenuReportBranchStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuReportBranchStockActionPerformed
-        branchReport = new BranchReport();
-        jDesktopPane1.add(branchReport);
-        branchReport.setVisible(true);
+        branchStockReport = new BranchesStockReport();
+        jDesktopPane1.add(branchStockReport);
+        branchStockReport.setVisible(true);
     }//GEN-LAST:event_itemMenuReportBranchStockActionPerformed
+
+    private void itemMenuDailyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuDailyReportActionPerformed
+        branchDailyReport = new BranchDailyReport();
+        jDesktopPane1.add(branchDailyReport);
+        branchDailyReport.setVisible(true);
+    }//GEN-LAST:event_itemMenuDailyReportActionPerformed
 
     public String getStore() {
         return store;

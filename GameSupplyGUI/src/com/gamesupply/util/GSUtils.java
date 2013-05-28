@@ -20,8 +20,8 @@ import javax.naming.NamingException;
 public class GSUtils {
     
 //    private static final String host = "10.49.31.1";
-    private static final String host = "0.0.0.0";
-//    private static final String host = "localhost";
+//    private static final String host = "0.0.0.0";
+    private static final String host = "localhost";
     private static final String port = "3700";
 
     public static Object dynamicLookup(String classe) {
