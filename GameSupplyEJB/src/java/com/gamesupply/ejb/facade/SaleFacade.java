@@ -31,8 +31,19 @@ public class SaleFacade extends AbstractFacade<SaleEntity> implements SaleFacade
     }
 
     @Override
-    public void create(SaleDTO saleEntity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void create(SaleDTO saleDTO) {
+        
+        SaleEntity saleEntity = new SaleEntity();
+        
+        saleEntity.setBranch(saleDTO.getBranch());
+        saleEntity.setName(saleDTO.getName());
+        saleEntity.setPlatform(saleDTO.getPlatform());
+        saleEntity.setPrice(saleDTO.getPrice());
+        saleEntity.setQuantity(saleDTO.getQuantity());
+        saleEntity.setType(saleDTO.getType());
+        
+        em.persist(saleEntity);
+        
     }
 
     @Override

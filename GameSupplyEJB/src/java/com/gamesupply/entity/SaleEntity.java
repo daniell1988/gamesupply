@@ -56,7 +56,7 @@ public class SaleEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "price")
     private String price;
-    @Column(name = "sale_date")
+    @Column(name = "sale_date", insertable=false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date saleDate;
     @Size(max = 255)
