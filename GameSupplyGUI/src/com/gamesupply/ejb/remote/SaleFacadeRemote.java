@@ -7,16 +7,16 @@ package com.gamesupply.ejb.remote;
 import com.gamesupply.dto.SaleDTO;
 import com.gamesupply.entity.SaleEntity;
 import java.util.List;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author CUESTAS
  */
-@Local
+@Remote
 public interface SaleFacadeRemote {
 
-    void create(SaleDTO saleEntity);
+    void create(SaleDTO saleDTO);
 
     void edit(SaleDTO saleEntity);
 

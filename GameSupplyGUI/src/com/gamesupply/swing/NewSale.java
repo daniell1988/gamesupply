@@ -4,7 +4,9 @@
  */
 package com.gamesupply.swing;
 
+import com.gamesupply.controller.SaleController;
 import com.gamesupply.controller.StockController;
+import com.gamesupply.dto.SaleDTO;
 import com.gamesupply.dto.StockDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,9 @@ public class NewSale extends javax.swing.JInternalFrame {
     
     private List<StockDTO> stockList = new ArrayList<StockDTO>();
     private StockDTO selectedStockDTO = new StockDTO();
+    private SaleDTO saleDTO = new SaleDTO();
     private String store;
-
+    
     /**
      * Creates new form NewSale
      */
@@ -31,8 +34,10 @@ public class NewSale extends javax.swing.JInternalFrame {
     }
     
         private void getBranchStock(String store) {
-        
-            List<StockDTO> tmpStock = StockController.findall();
+            
+            this.stockList = new ArrayList<StockDTO>();
+            List<StockDTO> tmpStock = new ArrayList<StockDTO>();
+            tmpStock = StockController.findall();
         
             for(StockDTO stockTmp : tmpStock){
                 StockDTO stockDTO = new StockDTO();
@@ -83,6 +88,9 @@ public class NewSale extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setTitle("Nova Venda");
+
         org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${stockList}");
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${name}"));
@@ -106,10 +114,26 @@ public class NewSale extends javax.swing.JInternalFrame {
 
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Finalizar Venda");
+        jButton1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jButton1StateChanged(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
             }
         });
 
@@ -123,14 +147,14 @@ public class NewSale extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(171, 171, 171))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,17 +180,45 @@ public class NewSale extends javax.swing.JInternalFrame {
         
         if(this.store.toUpperCase().endsWith("A")){
             this.selectedStockDTO.setBranch1(this.selectedStockDTO.getBranch1() - Integer.parseInt(jTextField1.getText()));
+            this.saleDTO.setBranch("Filial A");
         }
         if(this.store.toUpperCase().endsWith("B")){
             this.selectedStockDTO.setBranch2(this.selectedStockDTO.getBranch2() - Integer.parseInt(jTextField1.getText()));
+            this.saleDTO.setBranch("Filial B");
         }
         if(this.store.toUpperCase().endsWith("C")){
             this.selectedStockDTO.setBranch3(this.selectedStockDTO.getBranch3() - Integer.parseInt(jTextField1.getText()));
+            this.saleDTO.setBranch("Filial C");
         }
+
+        this.saleDTO.setQuantity(Integer.parseInt(jTextField1.getText()));
+        this.saleDTO.setName(this.selectedStockDTO.getName());
+        this.saleDTO.setPlatform(this.selectedStockDTO.getPlatform());
+        this.saleDTO.setPrice(this.selectedStockDTO.getPrice().toString());
+        this.saleDTO.setType(this.selectedStockDTO.getType());
         
         StockController.updateStock(this.selectedStockDTO);
+        SaleController.create(this.saleDTO);
+        
+        getBranchStock(store);
+        jTable1.repaint();
+        jScrollPane1.repaint();
+
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1StateChanged
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1FocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -193,6 +245,12 @@ public class NewSale extends javax.swing.JInternalFrame {
         this.selectedStockDTO = selectedStock;
     }
 
-    
+    public SaleDTO getSaleDTO() {
+        return saleDTO;
+    }
+
+    public void setSaleDTO(SaleDTO saleDTO) {
+        this.saleDTO = saleDTO;
+    }
 
 }

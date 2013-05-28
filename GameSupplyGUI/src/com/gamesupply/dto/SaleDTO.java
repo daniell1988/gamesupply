@@ -20,7 +20,7 @@ public class SaleDTO implements Serializable {
     private String platform;
     private String type;
     private String price;
-    private Date date;
+    private Date saleDate;
     private String branch;
     private Integer quantity;
 
@@ -65,11 +65,11 @@ public class SaleDTO implements Serializable {
     }
 
     public Date getDate() {
-        return date;
+        return saleDate;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.saleDate = date;
     }
 
     public String getBranch() {
