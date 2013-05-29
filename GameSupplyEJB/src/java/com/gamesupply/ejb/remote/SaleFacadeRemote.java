@@ -26,6 +26,8 @@ public interface SaleFacadeRemote {
     List<SaleDTO> findAll();
 
     List<SaleDTO> findRange(Integer[] range);
+    
+    List<SaleDTO> findByTodayAndBranch(String branch);
 
     int count();
     

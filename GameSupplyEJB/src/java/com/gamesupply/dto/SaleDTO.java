@@ -64,12 +64,12 @@ public class SaleDTO implements Serializable {
         this.price = price;
     }
 
-    public Date getDate() {
+    public Date getSaleDate() {
         return saleDate;
     }
 
-    public void setDate(Date date) {
-        this.saleDate = date;
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
 
     public String getBranch() {
