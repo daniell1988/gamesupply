@@ -196,7 +196,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuReportBranchStockActionPerformed
 
     private void itemMenuDailyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuDailyReportActionPerformed
-        branchDailyReport = new BranchDailyReport();
+        branchDailyReport = new BranchDailyReport(store);
         jDesktopPane1.add(branchDailyReport);
         branchDailyReport.setVisible(true);
     }//GEN-LAST:event_itemMenuDailyReportActionPerformed
