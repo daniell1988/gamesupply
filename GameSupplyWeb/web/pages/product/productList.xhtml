@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Lista de Produtos</title>
+    </h:head>
+    <h:body>
+        <c:if test="${!currentUser.isLogged}">
+            <h:form><h:commandLink action="/pages/login.xhtml" value="Efetuar Login"/></h:form>
+        </c:if>
+        <c:if test="${currentUser.isLogged}">
+            <h:outputText value="Olá, ${currentUser.name}"/>
+        </c:if>
+        <h:form>
+            <h:dataTable value="#{productController.stockList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+             <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                 <h:outputText value=" #{item.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Plataforma"/>
+                </f:facet>
+                <h:outputText value=" #{item.platform}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Tipo"/>
+                </f:facet>
+                <h:outputText value=" #{item.type}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Genero"/>
+                </f:facet>
+                <h:outputText value=" #{item.genre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Preço"/>
+                </f:facet>
+                <h:outputText value=" #{item.price}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Descrição"/>
+                </f:facet>
+                <h:outputText value=" #{item.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Carrinho"/>
+                </f:facet>
+                <h:commandLink action="#{customerController.edit(item)}" value="Adicionar">
+                </h:commandLink>
+            </h:column>
+            <c:if test="${currentUser.isLogged}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Lista de Desejos"/>
+                    </f:facet>
+                    <h:commandLink action="#{customerController.destroy(item)}" value="Adicionar"/>
+                </h:column>
+            </c:if>
+        </h:dataTable>
+            </h:form>
+<!--        <h:form>
+            <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Novo Usuário"/>
+        </h:form>-->
+        
+    </h:body>
+</html>
+

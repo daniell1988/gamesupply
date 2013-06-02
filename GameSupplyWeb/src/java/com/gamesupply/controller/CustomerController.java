@@ -21,8 +21,6 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CustomerController {
 
-
-    
     private CustomerDTO customer;
     private CustomerFacadeRemote customerFacade;
     private List<CustomerDTO> customerList;
@@ -49,7 +47,7 @@ public class CustomerController {
         this.customer = customerFacade.login(customer.getUserLogin(), customer.getUserPassword());
         
         if(pass.equals(this.customer.getUserPassword())){
-            return "/pages/menu/mainMenu.xhtml";
+            return "/pages/product/productList.xhtml";
         }
         
         return "/pages/login.xhtml";
