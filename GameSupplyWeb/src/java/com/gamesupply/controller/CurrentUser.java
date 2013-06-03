@@ -5,8 +5,11 @@
 package com.gamesupply.controller;
 
 import com.gamesupply.dto.CustomerDTO;
+import com.gamesupply.dto.StockDTO;
 import com.gamesupply.ejb.remote.CustomerFacadeRemote;
 import com.gamesupply.util.GSUtils;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,6 +30,8 @@ public class CurrentUser {
     private String tmpPass;
     private CustomerFacadeRemote customerFacade;
     private CustomerDTO customer;
+    private List<StockDTO> cart;
+    private List<StockDTO> wishlist;
 
     @PostConstruct
     public void init(){
@@ -35,6 +40,7 @@ public class CurrentUser {
         this.name = "";
         this.isLogged = false;
         CustomerController cc = new CustomerController();
+        cart = new ArrayList<StockDTO>();
 //        getCurrentUser(cc.login());
     }
     
@@ -45,6 +51,14 @@ public class CurrentUser {
         this.name = customer.getFirstName();
         this.isLogged = true;
         
+    }
+    
+    public void addItemToCart(StockDTO stock){
+        this.cart.add(stock);
+    }
+    
+    public void addItemToWishList(StockDTO stock){
+        this.cart.add(stock);
     }
     
     public String login(){
@@ -111,6 +125,30 @@ public class CurrentUser {
 
     public void setTmpPass(String tmpPass) {
         this.tmpPass = tmpPass;
+    }
+
+    public CustomerDTO getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerDTO customer) {
+        this.customer = customer;
+    }
+
+    public List<StockDTO> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<StockDTO> cart) {
+        this.cart = cart;
+    }
+
+    public List<StockDTO> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(List<StockDTO> wishlist) {
+        this.wishlist = wishlist;
     }
     
     

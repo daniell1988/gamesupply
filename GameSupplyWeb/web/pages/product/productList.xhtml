@@ -56,7 +56,7 @@
                 <f:facet name="header">
                     <h:outputText value="Carrinho"/>
                 </f:facet>
-                <h:commandLink action="#{customerController.edit(item)}" value="Adicionar">
+                <h:commandLink action="#{currentUser.addItemToCart(item)}" value="Adicionar">
                 </h:commandLink>
             </h:column>
             <c:if test="${currentUser.isLogged}">
@@ -64,15 +64,11 @@
                     <f:facet name="header">
                         <h:outputText value="Lista de Desejos"/>
                     </f:facet>
-                    <h:commandLink action="#{customerController.destroy(item)}" value="Adicionar"/>
+                    <h:commandLink action="#{currentUser.addItemToWishList(item)}" value="Adicionar"/>
                 </h:column>
             </c:if>
         </h:dataTable>
-            </h:form>
-<!--        <h:form>
-            <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Novo Usuário"/>
-        </h:form>-->
-        
+            </h:form>        
     </h:body>
 </html>
 
