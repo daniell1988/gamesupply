@@ -32,6 +32,7 @@ public class CurrentUser {
     private CustomerDTO customer;
     private List<StockDTO> cart;
     private List<StockDTO> wishlist;
+    private int cartQty;
 
     @PostConstruct
     public void init(){
@@ -39,7 +40,7 @@ public class CurrentUser {
         this.login = "";
         this.name = "";
         this.isLogged = false;
-        CustomerController cc = new CustomerController();
+//        CustomerController cc = new CustomerController();
         cart = new ArrayList<StockDTO>();
 //        getCurrentUser(cc.login());
     }
@@ -54,7 +55,25 @@ public class CurrentUser {
     }
     
     public void addItemToCart(StockDTO stock){
-        this.cart.add(stock);
+        if(!cart.contains(stock)){
+            stock.setBranchQuantity(1);
+            this.cart.add(stock);
+        }
+        
+        else{
+            int tmpIndex = this.cart.indexOf(stock);
+            this.cart.get(tmpIndex).setBranchQuantity(this.cart.get(tmpIndex).getBranchQuantity() + 1);
+        }
+    }
+    
+    public void removeItemFromCart(StockDTO stock){
+        this.cart.remove(stock);
+    }
+    
+    public void updateCart(StockDTO stock){
+        int tmpIndex = this.cart.indexOf(stock);
+        this.cart.get(tmpIndex).setBranchQuantity(stock.getBranchQuantity());
+        int i = 0;
     }
     
     public void addItemToWishList(StockDTO stock){
@@ -149,6 +168,14 @@ public class CurrentUser {
 
     public void setWishlist(List<StockDTO> wishlist) {
         this.wishlist = wishlist;
+    }
+
+    public int getCartQty() {
+        return cartQty;
+    }
+
+    public void setCartQty(int cartQty) {
+        this.cartQty = cartQty;
     }
     
     
