@@ -68,7 +68,17 @@
                 </h:column>
             </c:if>
         </h:dataTable>
-            </h:form>        
+            </h:form>
+        <c:if test="${currentUser.isLogged}">
+            <c:if test="${currentUser.cart.size() > 0}">
+                <h:form>
+                    <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Finalizar Compra"/>
+                </h:form>
+            </c:if>
+            <h:form>
+                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Lista de Desejo"/>
+            </h:form>
+        </c:if>
     </h:body>
 </html>
 
