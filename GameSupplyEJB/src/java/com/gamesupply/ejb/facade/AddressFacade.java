@@ -43,14 +43,14 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
        AddressEntity addressE = new AddressEntity();
        CustomerEntity customerE = new CustomerEntity();
 //        try {
-                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
+//                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
                 
                 addressE.setAddress(addressDTO.getAddress());
                 addressE.setAddressComplement(addressDTO.getAddressComplement());
                 addressE.setAddressDescription(addressDTO.getAddressDescription());
                 addressE.setCity(addressDTO.getCity());
                 addressE.setCountry(addressDTO.getCountry());
-                addressE.setIdCustomer(customerE);
+//                addressE.setIdCustomer(customerE);
                 addressE.setPhoneNumber(addressDTO.getPhoneNumber());
                 addressE.setState(addressDTO.getState());
                 addressE.setZip(addressDTO.getZip());

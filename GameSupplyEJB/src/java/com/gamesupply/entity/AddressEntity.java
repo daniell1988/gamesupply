@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "AddressEntity.findByCountry", query = "SELECT a FROM AddressEntity a WHERE a.country = :country"),
     @NamedQuery(name = "AddressEntity.findByPhoneNumber", query = "SELECT a FROM AddressEntity a WHERE a.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "AddressEntity.findByState", query = "SELECT a FROM AddressEntity a WHERE a.state = :state"),
-    @NamedQuery(name = "AddressEntity.findByZip", query = "SELECT a FROM AddressEntity a WHERE a.zip = :zip")})
+    @NamedQuery(name = "AddressEntity.findByZip", query = "SELECT a FROM AddressEntity a WHERE a.zip = :zip"),
+    @NamedQuery(name = "AddressEntity.findByIdCustomer", query = "SELECT a FROM AddressEntity a WHERE a.idCustomer = :idCustomer")})
 public class AddressEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,9 +67,8 @@ public class AddressEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "zip")
     private String zip;
-    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
-    @ManyToOne
-    private CustomerEntity idCustomer;
+    @Column(name = "id_customer")
+    private Integer idCustomer;
 
     public AddressEntity() {
     }
@@ -151,11 +149,11 @@ public class AddressEntity implements Serializable {
         this.zip = zip;
     }
 
-    public CustomerEntity getIdCustomer() {
+    public Integer getIdCustomer() {
         return idCustomer;
     }
 
-    public void setIdCustomer(CustomerEntity idCustomer) {
+    public void setIdCustomer(Integer idCustomer) {
         this.idCustomer = idCustomer;
     }
 

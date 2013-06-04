@@ -41,27 +41,27 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
         
         CustomerEntity customerE = new CustomerEntity();
         
-        Collection<AddressEntity> addressList = new ArrayList<AddressEntity>();
-        Iterator itr = customerDTO.getAddressDTOCollection().iterator();
-        while(itr.hasNext()){
-            
-            AddressDTO addressDTO = (AddressDTO) itr.next();
-            AddressEntity addressE = new AddressEntity();
-            
-            addressE.setAddress(addressDTO.getAddress());
-            addressE.setAddressComplement(addressDTO.getAddressComplement());
-            addressE.setAddressDescription(addressDTO.getAddressDescription());
-            addressE.setCity(addressDTO.getCity());
-            addressE.setCountry(addressDTO.getCountry());
-            addressE.setIdCustomer(customerE);
-            addressE.setPhoneNumber(addressDTO.getPhoneNumber());
-            addressE.setState(addressDTO.getState());
-            addressE.setZip(addressDTO.getZip());
-            
-            addressList.add(addressE);
-        }
+//        Collection<AddressEntity> addressList = new ArrayList<AddressEntity>();
+//        Iterator itr = customerDTO.getAddressDTOCollection().iterator();
+//        while(itr.hasNext()){
+//            
+//            AddressDTO addressDTO = (AddressDTO) itr.next();
+//            AddressEntity addressE = new AddressEntity();
+//            
+//            addressE.setAddress(addressDTO.getAddress());
+//            addressE.setAddressComplement(addressDTO.getAddressComplement());
+//            addressE.setAddressDescription(addressDTO.getAddressDescription());
+//            addressE.setCity(addressDTO.getCity());
+//            addressE.setCountry(addressDTO.getCountry());
+//            addressE.setIdCustomer(customerE);
+//            addressE.setPhoneNumber(addressDTO.getPhoneNumber());
+//            addressE.setState(addressDTO.getState());
+//            addressE.setZip(addressDTO.getZip());
+//            
+//            addressList.add(addressE);
+//        }
         
-        customerE.setAddressEntityCollection(addressList);
+//        customerE.setAddressEntityCollection(addressList);
         customerE.setEmail(customerDTO.getEmail());
         customerE.setFirstName(customerDTO.getFirstName());
         customerE.setLastName(customerDTO.getLastName());
@@ -78,10 +78,10 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public void edit(CustomerDTO customerDTO) {
         
         CustomerEntity customerE = new CustomerEntity();
-        Collection addressList = customerDTO.getAddressDTOCollection();
+//        Collection addressList = customerDTO.getAddressDTOCollection();
         
         customerE.setIdCustomer(customerDTO.getIdCustomer());
-        customerE.setAddressEntityCollection(addressList);
+//        customerE.setAddressEntityCollection(addressList);
         customerE.setEmail(customerDTO.getEmail());
         customerE.setFirstName(customerDTO.getFirstName());
         customerE.setLastName(customerDTO.getLastName());
@@ -130,7 +130,7 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public void remove(CustomerDTO customerDTO) {
         
         CustomerEntity customerE = new CustomerEntity();
-        Collection addressList = customerDTO.getAddressDTOCollection();
+//        Collection addressList = customerDTO.getAddressDTOCollection();
         
           //Busco o registro conforme o id informado:
 

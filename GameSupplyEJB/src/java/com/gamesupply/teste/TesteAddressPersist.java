@@ -36,7 +36,7 @@ public class TesteAddressPersist {
         address.setAddressDescription("ao lado da padaria");
         address.setCity("sao paulo");
         address.setCountry("brasil");
-        address.setIdCustomer(customer);
+//        address.setIdCustomer(customer);
         address.setPhoneNumber("999+6999");
         address.setState("SP");
         address.setZip("22501-581");

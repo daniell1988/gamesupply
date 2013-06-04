@@ -62,7 +62,7 @@ public class TesteAddress2 {
         address.setCity("aaa");
         address.setCountry("aaa");
    //   address.setIdAddress(Integer.MIN_VALUE);
-        address.setIdCustomer(customer);
+//        address.setIdCustomer(customer);
         address.setPhoneNumber("aaa");
         address.setState("aaa");
         address.setZip("aaa");
