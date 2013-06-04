@@ -26,7 +26,7 @@ public class CustomerDTO implements Serializable {
     private Collection<AddressDTO> addressDTOCollection;
 
     public CustomerDTO() {
-        this.addressDTOCollection = new ArrayList<AddressDTO>();
+        addressDTOCollection = new ArrayList<AddressDTO>();
     }
 
     public CustomerDTO(Integer idCustomer) {

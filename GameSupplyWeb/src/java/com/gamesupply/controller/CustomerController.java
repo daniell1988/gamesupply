@@ -86,7 +86,8 @@ public class CustomerController {
         this.customerList = customerFacade.findAll();
         this.customer = new CustomerDTO();
         this.shippingAddress = new AddressDTO();
-        return retornaCustomerList();
+        
+        return ("/pages/customer/customerList.xhtml");
         
         
     }
@@ -102,13 +103,7 @@ public class CustomerController {
         
         
     }
-    
-    public String retornaCustomerList(){
-        
-        return ("/pages/customer/customerList.xhtml");
-        
-    }
-    
+
     public CustomerController() {
     }
     

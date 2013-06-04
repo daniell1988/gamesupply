@@ -84,7 +84,6 @@ public class CurrentUser {
 //        String pass = this.customer.getUserPassword();
         this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
         this.customer = customerFacade.login(this.tmpLogin, this.tmpPass);
-        
         if(this.tmpPass.equals(this.customer.getUserPassword())){
             
             this.idUser = customer.getIdCustomer();
