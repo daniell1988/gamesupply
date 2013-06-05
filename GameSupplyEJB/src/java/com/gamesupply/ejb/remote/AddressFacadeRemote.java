@@ -29,4 +29,6 @@ public interface AddressFacadeRemote {
 
     int count();
     
+    List<AddressDTO> findByCustomer(Integer customer);
+    
 }

@@ -50,7 +50,7 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
                 addressE.setAddressDescription(addressDTO.getAddressDescription());
                 addressE.setCity(addressDTO.getCity());
                 addressE.setCountry(addressDTO.getCountry());
-//                addressE.setIdCustomer(customerE);
+                addressE.setIdCustomer(addressDTO.getIdCustomer());
                 addressE.setPhoneNumber(addressDTO.getPhoneNumber());
                 addressE.setState(addressDTO.getState());
                 addressE.setZip(addressDTO.getZip());
@@ -110,6 +110,11 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
 
     @Override
     public List<AddressDTO> findRange(Integer[] range) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<AddressDTO> findByCustomer(Integer customer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
