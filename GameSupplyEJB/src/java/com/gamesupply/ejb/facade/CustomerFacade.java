@@ -97,8 +97,8 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
     public CustomerDTO login(String user, String pass) {
         
 
-        CustomerEntity customerE = new CustomerEntity();
-        customerE.setUserLogin(user);
+//        CustomerEntity customerE = new CustomerEntity();
+//        customerE.setUserLogin(user);
         Query q = em.createNamedQuery("CustomerEntity.findByUserLogin");
         q.setParameter("userLogin", user);
 
@@ -107,7 +107,7 @@ public class CustomerFacade extends AbstractFacade<CustomerEntity> implements Cu
         Iterator itr = listE.iterator();
         CustomerDTO customerDTO = new CustomerDTO();
         
-         while (itr.hasNext()){
+        while (itr.hasNext()){
             
 
             CustomerEntity customerEntity = (CustomerEntity) itr.next();

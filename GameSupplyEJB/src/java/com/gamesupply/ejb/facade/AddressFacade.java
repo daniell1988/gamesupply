@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -41,19 +42,19 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     @Override
     public void create(AddressDTO addressDTO) {
        AddressEntity addressE = new AddressEntity();
-       CustomerEntity customerE = new CustomerEntity();
+//       CustomerEntity customerE = new CustomerEntity();
 //        try {
 //                customerE.setIdCustomer(addressDTO.getIdCustomer().getIdCustomer());
-                
-                addressE.setAddress(addressDTO.getAddress());
-                addressE.setAddressComplement(addressDTO.getAddressComplement());
-                addressE.setAddressDescription(addressDTO.getAddressDescription());
-                addressE.setCity(addressDTO.getCity());
-                addressE.setCountry(addressDTO.getCountry());
-                addressE.setIdCustomer(addressDTO.getIdCustomer());
-                addressE.setPhoneNumber(addressDTO.getPhoneNumber());
-                addressE.setState(addressDTO.getState());
-                addressE.setZip(addressDTO.getZip());
+
+        addressE.setAddress(addressDTO.getAddress());
+        addressE.setAddressComplement(addressDTO.getAddressComplement());
+        addressE.setAddressDescription(addressDTO.getAddressDescription());
+        addressE.setCity(addressDTO.getCity());
+        addressE.setCountry(addressDTO.getCountry());
+        addressE.setIdCustomer(addressDTO.getIdCustomer());
+        addressE.setPhoneNumber(addressDTO.getPhoneNumber());
+        addressE.setState(addressDTO.getState());
+        addressE.setZip(addressDTO.getZip());
             //System.out.println("BATEU NESSA PORRA");
             
 //            BeanUtils.copyProperties(addressE, addressDTO);
@@ -69,13 +70,37 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
     }
 
     @Override
-    public void edit(AddressDTO addressEntity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void edit(AddressDTO addressDTO) {
+        
+        AddressEntity addressE = new AddressEntity();
+
+                
+        addressE.setIdAddress(addressDTO.getIdAddress());
+        addressE.setAddress(addressDTO.getAddress());
+        addressE.setAddressComplement(addressDTO.getAddressComplement());
+        addressE.setAddressDescription(addressDTO.getAddressDescription());
+        addressE.setCity(addressDTO.getCity());
+        addressE.setCountry(addressDTO.getCountry());
+        addressE.setIdCustomer(addressDTO.getIdCustomer());
+        addressE.setPhoneNumber(addressDTO.getPhoneNumber());
+        addressE.setState(addressDTO.getState());
+        addressE.setZip(addressDTO.getZip());
+        
+        em.merge(addressE);
+        
     }
 
     @Override
-    public void remove(AddressDTO addressEntity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void remove(AddressDTO addressDTO) {
+        
+        AddressEntity addressE = new AddressEntity();
+        
+        addressE = em.find(AddressEntity.class, addressDTO.getIdAddress());
+        
+        if(addressE != null) {
+            em.remove(addressE);
+        }
+        
     }
 
     @Override
@@ -115,7 +140,34 @@ public class AddressFacade extends AbstractFacade<AddressEntity> implements Addr
 
     @Override
     public List<AddressDTO> findByCustomer(Integer customer) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        Query q = em.createNamedQuery("AddressEntity.findByIdCustomer");
+        q.setParameter("idCustomer", customer);
+        
+        List<AddressEntity> listEntity = q.getResultList();
+        List<AddressDTO> listDTO = new ArrayList<AddressDTO>();
+        
+        for(AddressEntity entity : listEntity){
+            
+            AddressDTO address = new AddressDTO();
+            
+            address.setAddress(entity.getAddress());
+            address.setAddressComplement(entity.getAddressComplement());
+            address.setAddressDescription(entity.getAddressDescription());
+            address.setCity(entity.getCity());
+            address.setCountry(entity.getCountry());
+            address.setIdAddress(entity.getIdAddress());
+            address.setIdCustomer(entity.getIdCustomer());
+            address.setPhoneNumber(entity.getPhoneNumber());
+            address.setState(entity.getState());
+            address.setZip(entity.getZip());
+            
+            listDTO.add(address);
+            
+        }
+        
+        
+        return listDTO;
     }
     
 }
