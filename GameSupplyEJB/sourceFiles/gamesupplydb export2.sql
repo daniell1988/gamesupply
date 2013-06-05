@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 29/05/2013 às 20h40min
+-- Tempo de Geração: 05/06/2013 às 20h28min
 -- Versão do Servidor: 5.5.16
 -- Versão do PHP: 5.3.8
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `address`
 --
 
-DROP TABLE IF EXISTS `address`;
 CREATE TABLE IF NOT EXISTS `address` (
   `id_address` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
@@ -38,9 +37,17 @@ CREATE TABLE IF NOT EXISTS `address` (
   `state` varchar(255) DEFAULT NULL,
   `zip` varchar(255) DEFAULT NULL,
   `id_customer` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_address`),
-  KEY `FK_address_id_customer` (`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_address`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Extraindo dados da tabela `address`
+--
+
+INSERT INTO `address` (`id_address`, `address`, `address_complement`, `address_description`, `city`, `country`, `phone_number`, `state`, `zip`, `id_customer`) VALUES
+(1, 'Rua TrololÃ³', 'APTO 31', 'Casa ', 'Sao Paulo', 'Brazzers', '28293938', 'SP', '39490384', 1),
+(2, 'Rua XXX', NULL, 'Trabalho', 'Sao Paulop', 'sjij', '0909', '08', '989', 1),
+(3, '2323', '232', '2323', '232', '2323', '2323', '2323', '232', 2);
 
 -- --------------------------------------------------------
 
@@ -48,7 +55,6 @@ CREATE TABLE IF NOT EXISTS `address` (
 -- Estrutura da tabela `cart`
 --
 
-DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `id_product_item` int(11) NOT NULL,
   `id_costumer` int(11) NOT NULL,
@@ -61,7 +67,6 @@ CREATE TABLE IF NOT EXISTS `cart` (
 -- Estrutura da tabela `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `id_customer` int(11) NOT NULL AUTO_INCREMENT,
   `access_level` varchar(255) DEFAULT NULL,
@@ -73,7 +78,14 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `user_login` varchar(255) DEFAULT NULL,
   `user_password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `customer`
+--
+
+INSERT INTO `customer` (`id_customer`, `access_level`, `email`, `first_name`, `last_name`, `mobile_number`, `phone_number`, `user_login`, `user_password`) VALUES
+(1, NULL, 'danielo', 'Daniel', 'Gimenez', '999999999', '545445', 'dddaniel', '123');
 
 -- --------------------------------------------------------
 
@@ -81,7 +93,6 @@ CREATE TABLE IF NOT EXISTS `customer` (
 -- Estrutura da tabela `platform`
 --
 
-DROP TABLE IF EXISTS `platform`;
 CREATE TABLE IF NOT EXISTS `platform` (
   `id_platform` int(11) NOT NULL AUTO_INCREMENT,
   `platform` varchar(255) DEFAULT NULL,
@@ -94,7 +105,6 @@ CREATE TABLE IF NOT EXISTS `platform` (
 -- Estrutura da tabela `product`
 --
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
   `id_product` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -130,7 +140,6 @@ INSERT INTO `product` (`id_product`, `description`, `genre`, `name`, `platform`,
 -- Estrutura da tabela `sale`
 --
 
-DROP TABLE IF EXISTS `sale`;
 CREATE TABLE IF NOT EXISTS `sale` (
   `id_sale` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -183,7 +192,6 @@ INSERT INTO `sale` (`id_sale`, `name`, `platform`, `type`, `price`, `sale_date`,
 -- Estrutura da tabela `stock`
 --
 
-DROP TABLE IF EXISTS `stock`;
 CREATE TABLE IF NOT EXISTS `stock` (
   `id_product` int(11) NOT NULL AUTO_INCREMENT,
   `branch1` int(11) DEFAULT '0',
@@ -203,11 +211,6 @@ CREATE TABLE IF NOT EXISTS `stock` (
 --
 
 INSERT INTO `stock` (`id_product`, `branch1`, `branch2`, `branch3`, `description`, `genre`, `name`, `platform`, `price`, `type`) VALUES
-(1, 87, 2, 15, '53', 'Ação', '45', '3DS', 54, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 42, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 894, 0, 0, '11111', 'Ação', '1111', '3DS', 11111, NULL),
 (6, 7996, 0, 22, '13131331', 'Ação', '3113', '3DS', 3113.0873, 'Jogo'),
 (7, 52, 0, 7, '9797', 'Ação', '7897', '3DS', 9779, 'Acessório'),
 (8, 0, 7, 0, '5544', 'Ação', '45', '3DS', 454, 'Acessório'),
@@ -226,22 +229,11 @@ INSERT INTO `stock` (`id_product`, `branch1`, `branch2`, `branch3`, `description
 -- Estrutura da tabela `wishlist`
 --
 
-DROP TABLE IF EXISTS `wishlist`;
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `id_customer` int(11) NOT NULL,
   `id_product_item` int(11) NOT NULL,
   PRIMARY KEY (`id_customer`,`id_product_item`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Restrições para as tabelas dumpadas
---
-
---
--- Restrições para a tabela `address`
---
-ALTER TABLE `address`
-  ADD CONSTRAINT `FK_address_id_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
