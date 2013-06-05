@@ -15,11 +15,11 @@ import javax.ejb.Remote;
 @Remote
 public interface AddressFacadeRemote {
 
-    void create(AddressDTO addressEntity);
+    void create(AddressDTO addressDTO);
 
-    void edit(AddressDTO addressEntity);
+    void edit(AddressDTO addressDTO);
 
-    void remove(AddressDTO addressEntity);
+    void remove(AddressDTO addressDTO);
 
     AddressDTO find(Integer id);
 

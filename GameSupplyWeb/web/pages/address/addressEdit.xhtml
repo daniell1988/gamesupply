@@ -24,7 +24,7 @@
                     <h:inputText id="state" value="#{addressController.address.state}" title="state" />
                     <h:outputText value="zip"/>
                     <h:inputText id="zip" value="#{addressController.address.zip}" title="zip" />
-                    <h:commandLink action="#{addressController.create(currentUser.customer)}" value="Create"/>
+                    <h:commandLink action="#{addressController.edit()}" value="Salvar"/>
                 </h:panelGrid>
         </h:form>
     </h:body>
