@@ -12,7 +12,11 @@
             <h:form><h:commandLink action="/pages/login.xhtml" value="Efetuar Login"/></h:form>
         </c:if>
         <c:if test="${currentUser.isLogged}">
-            <h:outputText value="Olá, ${currentUser.name}"/>
+                <h:form>
+                <h:outputText value="Olá, ${currentUser.name}  ("/>
+                <h:commandLink action="/pages/customer/customerEdit.xhtml" value="Editar Conta"/>
+                <h:outputText value=")"/>
+            </h:form>
         </c:if>
         <h:form>
             <h:dataTable value="#{productController.stockList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">

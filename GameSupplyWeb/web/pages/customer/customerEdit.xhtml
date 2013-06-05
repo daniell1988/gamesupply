@@ -9,21 +9,24 @@
          <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="firstName"/>
-                    <h:inputText id="firstName" value="#{customerController.customer.firstName}" title="firstName" required="true" requiredMessage="The zip field is required." />
+                    <h:inputText id="firstName" value="#{currentUser.customer.firstName}" title="firstName" required="true" requiredMessage="The zip field is required." />
                     <h:outputText value="lastName"/>
-                    <h:inputText id="lastName" value="#{customerController.customer.lastName}" title="lastName" />
+                    <h:inputText id="lastName" value="#{currentUser.customer.lastName}" title="lastName" />
                     <h:outputText value="userLogin"/>
-                    <h:inputText id="userLogin" value="#{customerController.customer.userLogin}" title="userLogin" />
+                    <h:inputText id="userLogin" value="#{currentUser.customer.userLogin}" title="userLogin" />
                     <h:outputText value="userPassword"/>
-                    <h:inputText id="userPassword" value="#{customerController.customer.userPassword}" title="userPassword" />
+                    <h:inputText id="userPassword" value="#{currentUser.customer.userPassword}" title="userPassword" />
                     <h:outputText value="email"/>
-                    <h:inputText id="email" value="#{customerController.customer.email}" title="email" />
+                    <h:inputText id="email" value="#{currentUser.customer.email}" title="email" />
                     <h:outputText value="phoneNumber"/>
-                    <h:inputText id="phoneNumber" value="#{customerController.customer.phoneNumber}" title="phoneNumber" />
+                    <h:inputText id="phoneNumber" value="#{currentUser.customer.phoneNumber}" title="phoneNumber" />
                     <h:outputText value="mobileNumber"/>
-                    <h:inputText id="mobileNumber" value="#{customerController.customer.mobileNumber}" title="mobileNumber" />
-                    <h:commandLink action="#{customerController.editPersist()}" value="Salvar"/>
+                    <h:inputText id="mobileNumber" value="#{currentUser.customer.mobileNumber}" title="mobileNumber" />
+                    <h:commandLink action="#{customerController.editPersist(currentUser.customer)}" value="Salvar"/>
                 </h:panelGrid>
+        </h:form>
+        <h:form>
+            <h:outputText value="firstName"/>
         </h:form>
     </h:body>
 </html>

@@ -80,26 +80,27 @@ public class CustomerController {
     public String create(){
         
         this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
-        this.customer.getAddressDTOCollection().add(shippingAddress);
+//        this.customer.getAddressDTOCollection().add(shippingAddress);
         this.customerFacade.create(customer);
 //        this.customer = new CustomerDTO();
         this.customerList = customerFacade.findAll();
         this.customer = new CustomerDTO();
         this.shippingAddress = new AddressDTO();
         
-        return ("/pages/customer/customerList.xhtml");
+        return ("/pages/product/productList.xhtml");
         
         
     }
     
-    public String editPersist(){
+    public String editPersist(CustomerDTO customerTmp){
         
         this.customerFacade = (CustomerFacadeRemote) GSUtils.dynamicLookup("CustomerFacade");
+        this.customer = customerTmp;
         this.customerFacade.edit(customer);
         this.customerList = customerFacade.findAll();
         this.customer = new CustomerDTO();
         
-        return ("/pages/customer/customerList.xhtml");
+        return ("/pages/customer/customerEdit.xhtml");
         
         
     }
