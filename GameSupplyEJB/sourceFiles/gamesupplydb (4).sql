@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 05/06/2013 às 20h28min
+-- Tempo de Geração: 06/06/2013 às 18h34min
 -- Versão do Servidor: 5.5.16
 -- Versão do PHP: 5.3.8
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `zip` varchar(255) DEFAULT NULL,
   `id_customer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_address`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Extraindo dados da tabela `address`
@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `address` (
 INSERT INTO `address` (`id_address`, `address`, `address_complement`, `address_description`, `city`, `country`, `phone_number`, `state`, `zip`, `id_customer`) VALUES
 (1, 'Rua TrololÃ³', 'APTO 31', 'Casa ', 'Sao Paulo', 'Brazzers', '28293938', 'SP', '39490384', 1),
 (2, 'Rua XXX', NULL, 'Trabalho', 'Sao Paulop', 'sjij', '0909', '08', '989', 1),
-(3, '2323', '232', '2323', '232', '2323', '2323', '2323', '232', 2);
+(3, '2323', '232', '2323', '232', '2323', '2323', '2323', '232', 2),
+(18, 'Rua Merda', 'ap12', 'Casa do joÃ?Â£o', '9', '90', '90', '90', '09', 1);
 
 -- --------------------------------------------------------
 
@@ -86,6 +87,26 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 INSERT INTO `customer` (`id_customer`, `access_level`, `email`, `first_name`, `last_name`, `mobile_number`, `phone_number`, `user_login`, `user_password`) VALUES
 (1, NULL, 'danielo', 'Daniel', 'Gimenez', '999999999', '545445', 'dddaniel', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `order`
+--
+
+CREATE TABLE IF NOT EXISTS `order` (
+  `id_order` int(11) NOT NULL AUTO_INCREMENT,
+  `product` varchar(255) DEFAULT NULL,
+  `product_description` varchar(255) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `id_customer` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `delivery` varchar(255) DEFAULT NULL,
+  `payment` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
