@@ -33,6 +33,7 @@ public class CurrentUser {
     private List<StockDTO> cart;
     private List<StockDTO> wishlist;
     private int cartQty;
+    private Integer idOrderAddress;
 
     @PostConstruct
     public void init(){
@@ -175,6 +176,14 @@ public class CurrentUser {
 
     public void setCartQty(int cartQty) {
         this.cartQty = cartQty;
+    }
+
+    public Integer getIdOrderAddress() {
+        return idOrderAddress;
+    }
+
+    public void setIdOrderAddress(Integer idOrderAddress) {
+        this.idOrderAddress = idOrderAddress;
     }
     
     

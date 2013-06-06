@@ -14,9 +14,8 @@
         <c:if test="${currentUser.isLogged}">
             <h:outputText value="Olá, ${currentUser.name}. Finalizar Pedido:"/>
         </c:if>
-        <label>XX: #{addressController.address.idAddress}</label>
-        /<h:outputText value="#{addressController.address.address}"/>
-        /<h:outputText value="#{addressController.address.city}"/>
+        <label></label>
+
         <h:form>
 <!--            <h:dataTable value="#{currentUser.cart}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                 <h:column>
@@ -66,7 +65,6 @@
 <!--            <h:selectOneMenu value="#{addressController.address}">
                 <f:selectItems value="#{addressController.getAddressesSelect(currentUser.customer)}" />
             </h:selectOneMenu>-->
-            <h:outputText value="#{addressController.ola.toString()}"/>
         </h:form>
         
         

@@ -59,13 +59,17 @@
                     <h:outputText value="#{item.branchQuantity}"/>
                 </h:column>
             </h:dataTable>
-            
-            <h:selectOneMenu value="#{addressController.address.idAddress}" >
+            <br/>
+            <h:outputText value="Endereço: "/>
+            <h:selectOneMenu value="#{currentUser.idOrderAddress}" >
                 <f:selectItems value="#{addressController.getAddressesSelect(currentUser.customer)}" />
             </h:selectOneMenu>
-           
-
-        
+           <br/>
+           <h:outputText value="Cartão de Crédito: "/>
+           <h:inputText id="cc" title="firstName" required="true" requiredMessage="The zip field is required." />
+           <h:outputText value="Código de verificação: "/>
+           <h:inputText id="cc1" title="firstName" required="true" requiredMessage="The zip field is required." size="2"/>
+           <br/>
         
         
         
@@ -73,8 +77,8 @@
         <c:if test="${currentUser.isLogged}">
             <c:if test="${currentUser.cart.size() > 0}">
                 <!--<h:form>-->
-                <h:commandButton value="Confirmar" action="/pages/order/orderList.xhtml" />
-                <h:commandLink action="/pages/order/orderList.xhtml" value="Confirmar"/>
+                <!--<h:commandButton value="Confirmar" action="/pages/order/orderList.xhtml" />-->
+                <h:commandLink action="${orderController.createOrder(currentUser)}" value="Confirmar"/>
                 <!--</h:form>-->
             </c:if>
             <!--<h:form>-->
