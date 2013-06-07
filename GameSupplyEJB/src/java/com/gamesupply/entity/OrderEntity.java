@@ -19,30 +19,47 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author CUESTAS
+ * @author Daniel
  */
 @Entity
-@Table(name = "order")
+@Table(name = "ordercustomer")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderEntity.findAll", query = "SELECT o FROM OrderEntity o"),
     @NamedQuery(name = "OrderEntity.findByIdOrder", query = "SELECT o FROM OrderEntity o WHERE o.idOrder = :idOrder"),
+    @NamedQuery(name = "OrderEntity.findByAddress", query = "SELECT o FROM OrderEntity o WHERE o.address = :address"),
+    @NamedQuery(name = "OrderEntity.findByDelivery", query = "SELECT o FROM OrderEntity o WHERE o.delivery = :delivery"),
+    @NamedQuery(name = "OrderEntity.findByIdCustomer", query = "SELECT o FROM OrderEntity o WHERE o.idCustomer = :idCustomer"),
+    @NamedQuery(name = "OrderEntity.findByPayment", query = "SELECT o FROM OrderEntity o WHERE o.payment = :payment"),
+    @NamedQuery(name = "OrderEntity.findByPrice", query = "SELECT o FROM OrderEntity o WHERE o.price = :price"),
     @NamedQuery(name = "OrderEntity.findByProduct", query = "SELECT o FROM OrderEntity o WHERE o.product = :product"),
     @NamedQuery(name = "OrderEntity.findByProductDescription", query = "SELECT o FROM OrderEntity o WHERE o.productDescription = :productDescription"),
     @NamedQuery(name = "OrderEntity.findByQuantity", query = "SELECT o FROM OrderEntity o WHERE o.quantity = :quantity"),
-    @NamedQuery(name = "OrderEntity.findByPrice", query = "SELECT o FROM OrderEntity o WHERE o.price = :price"),
-    @NamedQuery(name = "OrderEntity.findByIdCustomer", query = "SELECT o FROM OrderEntity o WHERE o.idCustomer = :idCustomer"),
-    @NamedQuery(name = "OrderEntity.findByAddress", query = "SELECT o FROM OrderEntity o WHERE o.address = :address"),
-    @NamedQuery(name = "OrderEntity.findByStatus", query = "SELECT o FROM OrderEntity o WHERE o.status = :status"),
-    @NamedQuery(name = "OrderEntity.findByDelivery", query = "SELECT o FROM OrderEntity o WHERE o.delivery = :delivery"),
-    @NamedQuery(name = "OrderEntity.findByPayment", query = "SELECT o FROM OrderEntity o WHERE o.payment = :payment")})
+    @NamedQuery(name = "OrderEntity.findByStatus", query = "SELECT o FROM OrderEntity o WHERE o.status = :status")})
 public class OrderEntity implements Serializable {
+    @Size(max = 255)
+    @Column(name = "branch")
+    private String branch;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Basic(optional = false)
+    @Basic(optional = false)
     @Column(name = "id_order")
     private Integer idOrder;
+    @Size(max = 255)
+    @Column(name = "address")
+    private String address;
+    @Size(max = 255)
+    @Column(name = "delivery")
+    private String delivery;
+    @Column(name = "id_customer")
+    private Integer idCustomer;
+    @Size(max = 255)
+    @Column(name = "payment")
+    private String payment;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "price")
+    private Double price;
     @Size(max = 255)
     @Column(name = "product")
     private String product;
@@ -51,23 +68,9 @@ public class OrderEntity implements Serializable {
     private String productDescription;
     @Column(name = "quantity")
     private Integer quantity;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "price")
-    private Double price;
-    @Column(name = "id_customer")
-    private Integer idCustomer;
-    @Size(max = 255)
-    @Column(name = "address")
-    private String address;
     @Size(max = 255)
     @Column(name = "status")
     private String status;
-    @Size(max = 255)
-    @Column(name = "delivery")
-    private String delivery;
-    @Size(max = 255)
-    @Column(name = "payment")
-    private String payment;
 
     public OrderEntity() {
     }
@@ -82,6 +85,46 @@ public class OrderEntity implements Serializable {
 
     public void setIdOrder(Integer idOrder) {
         this.idOrder = idOrder;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public Integer getIdCustomer() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getProduct() {
@@ -108,52 +151,12 @@ public class OrderEntity implements Serializable {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getIdCustomer() {
-        return idCustomer;
-    }
-
-    public void setIdCustomer(Integer idCustomer) {
-        this.idCustomer = idCustomer;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getDelivery() {
-        return delivery;
-    }
-
-    public void setDelivery(String delivery) {
-        this.delivery = delivery;
-    }
-
-    public String getPayment() {
-        return payment;
-    }
-
-    public void setPayment(String payment) {
-        this.payment = payment;
     }
 
     @Override
@@ -179,6 +182,14 @@ public class OrderEntity implements Serializable {
     @Override
     public String toString() {
         return "com.gamesupply.entity.OrderEntity[ idOrder=" + idOrder + " ]";
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
     
 }

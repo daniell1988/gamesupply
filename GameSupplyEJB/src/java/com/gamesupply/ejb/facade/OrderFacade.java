@@ -32,7 +32,25 @@ public class OrderFacade extends AbstractFacade<OrderEntity> implements OrderFac
 
     @Override
     public void create(OrderDTO orderDTO) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        OrderEntity orderEntity = new OrderEntity();
+        
+        orderEntity.setAddress(orderDTO.getAddress());
+        orderEntity.setBranch(orderDTO.getBranch());
+        orderEntity.setDelivery(orderDTO.getDelivery());
+        orderEntity.setIdCustomer(orderDTO.getIdCustomer());
+        orderEntity.setPayment(orderDTO.getPayment());
+        orderEntity.setPrice(orderDTO.getPrice());
+        orderEntity.setProduct(orderDTO.getProduct());
+        orderEntity.setProductDescription(orderDTO.getProductDescription());
+        orderEntity.setQuantity(orderDTO.getQuantity());
+        orderEntity.setStatus(orderDTO.getStatus());
+        
+        em.persist(orderEntity);   
+        
+        
+        
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
