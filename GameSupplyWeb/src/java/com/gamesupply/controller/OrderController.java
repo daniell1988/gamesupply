@@ -73,45 +73,129 @@ public class OrderController {
             orderDTO.setPrice(cartItem.getPrice());
             orderDTO.setProduct(cartItem.getName());
             orderDTO.setProductDescription(cartItem.getType() + " " + cartItem.getPlatform());
-            orderDTO.setQuantity(cartItem.getBranchQuantity());
+            //orderDTO.setQuantity(cartItem.getBranchQuantity());
             orderDTO.setStatus("Separacao de Estoque");
-            
-            if(cartItem.getBranchQuantity() <= cartItem.getBranch1()){
-                 orderDTO.setBranch("Filial A");
-                 cartItem.setBranch1(cartItem.getBranch1() - cartItem.getBranchQuantity());
-                 cartItem.setBranchQuantity(0);
-                 
-                 stockFacade.edit(cartItem);          
-            }
-            
-            else if(cartItem.getBranchQuantity() <= cartItem.getBranch2()){
-                 orderDTO.setBranch("Filial B");
-                 
-                 cartItem.setBranch2(cartItem.getBranch2() - cartItem.getBranchQuantity());
-                 cartItem.setBranchQuantity(0);
-                 
-                 stockFacade.edit(cartItem); 
-            }
-            
-            else if(cartItem.getBranchQuantity() <= cartItem.getBranch3()){
-                 orderDTO.setBranch("Filial C");
-                 
-                 cartItem.setBranch3(cartItem.getBranch3() - cartItem.getBranchQuantity());
-                 cartItem.setBranchQuantity(0);
-                 
-                 stockFacade.edit(cartItem); 
-            }
+//            orderDTO.setBranch(orderBranchStock(cartItem));
             
             
+            createOrderByBranch(orderDTO, cartItem);
+                      
+//            
+//            
+//            if(cartItem.getBranchQuantity() <= cartItem.getBranch1()){
+//                 orderDTO.setBranch("Filial A");
+//                 cartItem.setBranch1(cartItem.getBranch1() - cartItem.getBranchQuantity());
+//                 cartItem.setBranchQuantity(0);
+//                 
+//                 stockFacade.edit(cartItem);          
+//            }
+//            
+//            else if(cartItem.getBranchQuantity() <= cartItem.getBranch2()){
+//                 orderDTO.setBranch("Filial B");
+//                 
+//                 cartItem.setBranch2(cartItem.getBranch2() - cartItem.getBranchQuantity());
+//                 cartItem.setBranchQuantity(0);
+//                 
+//                 stockFacade.edit(cartItem); 
+//            }
+//            
+//            else if(cartItem.getBranchQuantity() <= cartItem.getBranch3()){
+//                 orderDTO.setBranch("Filial C");
+//                 
+//                 cartItem.setBranch3(cartItem.getBranch3() - cartItem.getBranchQuantity());
+//                 cartItem.setBranchQuantity(0);
+//                 
+//                 stockFacade.edit(cartItem); 
+//            }
+//
+//            orderFacade.create(orderDTO);
 
-            orderFacade.create(orderDTO);
-            
-            //atualizar estoque
-            
         }
         
         return "/pages/order/orderList.xhtml";
     }
+    
+    private void createOrderByBranch(OrderDTO orderDTO, StockDTO cartItem) {
+        
+        Integer totalCompra = cartItem.getBranchQuantity();
+        Integer saldoCompra = totalCompra;
+
+        if(cartItem.getBranch1() > 0){
+            //saldo > venda
+            if (cartItem.getBranch1() > saldoCompra ) {
+                cartItem.setBranch1(cartItem.getBranch1() - saldoCompra);
+                orderDTO.setBranch("Filial A");
+                orderDTO.setQuantity(saldoCompra);
+                saldoCompra = 0;
+            } else { // venda maior que saldo
+                orderDTO.setQuantity(cartItem.getBranch1());
+                saldoCompra -= cartItem.getBranch1();
+                cartItem.setBranch1(0);
+                orderDTO.setBranch("Filial A");
+            }    
+            stockFacade.edit(cartItem);
+            orderFacade.create(orderDTO);
+        }
+
+         if(cartItem.getBranch2() > 0 && saldoCompra > 0){
+            if (cartItem.getBranch2() > saldoCompra ) {
+                cartItem.setBranch2(cartItem.getBranch2() - saldoCompra);
+                orderDTO.setBranch("Filial B");
+                orderDTO.setQuantity(saldoCompra);
+                saldoCompra = 0;
+            } else {
+                orderDTO.setQuantity(cartItem.getBranch2());
+                saldoCompra -= cartItem.getBranch2();
+                cartItem.setBranch2(0);
+                orderDTO.setBranch("Filial B");
+            }    
+            stockFacade.edit(cartItem);
+            orderFacade.create(orderDTO);
+         }
+
+         if(cartItem.getBranch3() > 0 && saldoCompra > 0){
+            if (cartItem.getBranch3() > saldoCompra ) {
+                cartItem.setBranch3(cartItem.getBranch3() - saldoCompra);
+                orderDTO.setBranch("Filial C");
+                orderDTO.setQuantity(saldoCompra);
+                saldoCompra = 0;
+            } else {
+                orderDTO.setQuantity(cartItem.getBranch3());
+                saldoCompra -= cartItem.getBranch3();
+                cartItem.setBranch3(0);
+                orderDTO.setBranch("Filial C");
+            }    
+            stockFacade.edit(cartItem);
+            orderFacade.create(orderDTO);
+
+         }
+    }
+
+//    
+//    public Integer recursiveStock(StockDTO cartItem){
+//        Integer tmp = cartItem.
+//        
+//        if(cartItem.getBranchQuantity() > cartItem.getBranch1()){
+//            return cartItem.setBranch1(cartItem.getBranch1() - cartItem.getBranchQuantity());
+//            stockFacade.edit(cartItem);
+//            return "Filial A";
+//        } 
+//        else{
+//            return "Filial A" 
+//        }
+//        
+//        
+//        
+//        Integer quantityA = cartItem.getBranch1();
+//        Integer quantityB = cartItem.getBranch2();
+//        Integer quantityC = cartItem.getBranch3();
+//        
+//        cartItem.getBranchQuantity() - quantityA;
+//        
+//        stockFacade.edit(cartItem);
+//        recursiveStock(cartItem);
+//        
+//    }
     
     public AddressDTO getOrderAddress(){
         
@@ -184,6 +268,8 @@ public class OrderController {
     public void setStockFacade(StockFacadeRemote stockFacade) {
         this.stockFacade = stockFacade;
     }
+
+
     
     
     

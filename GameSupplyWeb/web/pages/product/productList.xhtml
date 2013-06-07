@@ -12,7 +12,7 @@
             <h:form><h:commandLink action="/pages/login.xhtml" value="Efetuar Login"/></h:form>
         </c:if>
         <c:if test="${currentUser.isLogged}">
-                <h:form>
+            <h:form>
                 <h:outputText value="Olá, ${currentUser.name}  ("/>
                 <h:commandLink action="/pages/customer/customerEdit.xhtml" value="Editar Conta"/>
                 <h:outputText value=")"/>
@@ -73,6 +73,7 @@
             </c:if>
         </h:dataTable>
             </h:form>
+        <h:messages showDetail="true" warnStyle="color:red;"/>
         <c:if test="${currentUser.isLogged}">
             <c:if test="${currentUser.cart.size() > 0}">
                 <h:form>

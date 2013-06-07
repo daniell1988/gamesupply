@@ -11,8 +11,10 @@ import com.gamesupply.util.GSUtils;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -56,6 +58,7 @@ public class CurrentUser {
     }
     
     public void addItemToCart(StockDTO stock){
+        
         if(!cart.contains(stock)){
             stock.setBranchQuantity(1);
             this.cart.add(stock);
@@ -63,7 +66,21 @@ public class CurrentUser {
         
         else{
             int tmpIndex = this.cart.indexOf(stock);
-            this.cart.get(tmpIndex).setBranchQuantity(this.cart.get(tmpIndex).getBranchQuantity() + 1);
+            Integer totalQuantity = this.cart.get(tmpIndex).getBranch1() + this.cart.get(tmpIndex).getBranch2()
+                    + this.cart.get(tmpIndex).getBranch3();
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage();
+            message.setSeverity(FacesMessage.SEVERITY_WARN);
+            if(this.cart.get(tmpIndex).getBranchQuantity() + 1 <= totalQuantity){
+                this.cart.get(tmpIndex).setBranchQuantity(this.cart.get(tmpIndex).getBranchQuantity() + 1);
+            }
+            else{
+                
+                message.setDetail("Quantidade selecionada ultrapassa quantidade diponível em estoque para o produto "
+                       + stock.getName() + ". Quantidade máxima é " + totalQuantity + ".");
+                context.addMessage(null, message);
+            }
+            
         }
     }
     
@@ -73,8 +90,24 @@ public class CurrentUser {
     
     public void updateCart(StockDTO stock){
         int tmpIndex = this.cart.indexOf(stock);
-        this.cart.get(tmpIndex).setBranchQuantity(stock.getBranchQuantity());
-        int i = 0;
+        
+        Integer totalQuantity = this.cart.get(tmpIndex).getBranch1() + this.cart.get(tmpIndex).getBranch2()
+                + this.cart.get(tmpIndex).getBranch3();
+
+        
+        if(this.cart.get(tmpIndex).getBranchQuantity() > totalQuantity){
+            FacesContext context = FacesContext.getCurrentInstance();
+            FacesMessage message = new FacesMessage();
+            message.setSeverity(FacesMessage.SEVERITY_WARN);
+            message.setDetail("Quantidade selecionada ultrapassa quantidade diponível em estoque para o produto "
+                       + stock.getName() + ". Quantidade máxima é " + totalQuantity + ".");
+            context.addMessage(null, message);
+            this.cart.get(tmpIndex).setBranchQuantity(totalQuantity);
+        }
+        else{
+            this.cart.get(tmpIndex).setBranchQuantity(stock.getBranchQuantity());
+        }
+
     }
     
     public void addItemToWishList(StockDTO stock){

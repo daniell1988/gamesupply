@@ -69,6 +69,7 @@
                 </h:column>
             </c:if>
         </h:dataTable>
+        <h:messages showDetail="true" warnStyle="color:red;"/>
             <!--</h:form>-->
         <c:if test="${currentUser.isLogged}">
             <c:if test="${currentUser.cart.size() > 0}">
