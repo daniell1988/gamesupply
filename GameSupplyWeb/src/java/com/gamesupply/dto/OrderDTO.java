@@ -23,6 +23,7 @@ public class OrderDTO implements Serializable{
     private String status;
     private String delivery;
     private String payment;
+    private String branch;
     
     public OrderDTO(){
         
@@ -107,6 +108,15 @@ public class OrderDTO implements Serializable{
     public void setPayment(String payment) {
         this.payment = payment;
     }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+    
     
     
 }
