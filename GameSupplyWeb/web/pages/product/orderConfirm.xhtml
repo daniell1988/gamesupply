@@ -42,12 +42,6 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Preço"/>
-                    </f:facet>
-                    <h:outputText value=" #{item.price}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
                         <h:outputText value="Descrição"/>
                     </f:facet>
                     <h:outputText value=" #{item.description}"/>
@@ -57,6 +51,12 @@
                         <h:outputText value="Quantidade"/>
                     </f:facet>
                     <h:outputText value="#{item.branchQuantity}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Valor"/>
+                    </f:facet>
+                    <h:outputText value=" #{currentUser.getTotalPrice(item)}"/>
                 </h:column>
             </h:dataTable>
             <br/>

@@ -44,7 +44,7 @@
                 <f:facet name="header">
                     <h:outputText value="Preço"/>
                 </f:facet>
-                <h:outputText value=" #{item.price}"/>
+                <h:outputText value=" #{currentUser.getTotalPrice(item)}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">

@@ -73,6 +73,7 @@ public class CurrentUser {
             message.setSeverity(FacesMessage.SEVERITY_WARN);
             if(this.cart.get(tmpIndex).getBranchQuantity() + 1 <= totalQuantity){
                 this.cart.get(tmpIndex).setBranchQuantity(this.cart.get(tmpIndex).getBranchQuantity() + 1);
+//                this.cart.get(tmpIndex).setPrice(this.cart.get(tmpIndex).getBranchQuantity() * this.cart.get(tmpIndex).getPrice());
             }
             else{
                 
@@ -82,6 +83,13 @@ public class CurrentUser {
             }
             
         }
+    }
+    
+    public Double getTotalPrice(StockDTO stock){
+        
+        int tmpIndex = this.cart.indexOf(stock);
+        return this.cart.get(tmpIndex).getBranchQuantity() * this.cart.get(tmpIndex).getPrice();
+        
     }
     
     public void removeItemFromCart(StockDTO stock){
@@ -103,9 +111,11 @@ public class CurrentUser {
                        + stock.getName() + ". Quantidade máxima é " + totalQuantity + ".");
             context.addMessage(null, message);
             this.cart.get(tmpIndex).setBranchQuantity(totalQuantity);
+//            this.cart.get(tmpIndex).setPrice(this.cart.get(tmpIndex).getBranchQuantity() * this.cart.get(tmpIndex).getPrice());
         }
         else{
             this.cart.get(tmpIndex).setBranchQuantity(stock.getBranchQuantity());
+//            this.cart.get(tmpIndex).setPrice(this.cart.get(tmpIndex).getBranchQuantity() * this.cart.get(tmpIndex).getPrice());
         }
 
     }

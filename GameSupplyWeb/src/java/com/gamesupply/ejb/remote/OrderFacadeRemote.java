@@ -29,4 +29,6 @@ public interface OrderFacadeRemote {
 
     int count();
     
+    List<OrderDTO> findByCustomer(Integer customer);  
+    
 }

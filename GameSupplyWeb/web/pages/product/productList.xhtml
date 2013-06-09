@@ -15,7 +15,8 @@
             <h:form>
                 <h:outputText value="Olá, ${currentUser.name}  ("/>
                 <h:commandLink action="/pages/customer/customerEdit.xhtml" value="Editar Conta"/>
-                <h:outputText value=")"/>
+                <h:outputText value=")"/> &nbsp;
+                <h:commandLink action="#{orderController.listOrder(currentUser.idUser)}" value="Pedidos"/>
             </h:form>
         </c:if>
         <h:form>
