@@ -7,10 +7,12 @@ package com.gamesupply.ejb.facade;
 import com.gamesupply.dto.OrderDTO;
 import com.gamesupply.ejb.remote.OrderFacadeRemote;
 import com.gamesupply.entity.OrderEntity;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -76,6 +78,39 @@ public class OrderFacade extends AbstractFacade<OrderEntity> implements OrderFac
     @Override
     public List<OrderDTO> findRange(Integer[] range) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<OrderDTO> findByCustomer(Integer customer) {
+        
+        Query q = em.createNamedQuery("OrderEntity.findByIdCustomer");
+        q.setParameter("idCustomer", customer);
+        
+        List<OrderEntity> listEntity = q.getResultList();
+        List<OrderDTO> listDTO = new ArrayList<OrderDTO>();
+        
+        for(OrderEntity entity : listEntity){
+            
+            OrderDTO order = new OrderDTO();
+            
+            order.setAddress(entity.getAddress());
+            order.setBranch(entity.getBranch());
+            order.setDelivery(entity.getDelivery());
+            order.setIdCustomer(entity.getIdCustomer());
+            order.setIdOrder(entity.getIdOrder());
+            order.setPayment(entity.getPayment());
+            order.setPrice(entity.getPrice());
+            order.setProduct(entity.getProduct());
+            order.setProductDescription(entity.getProductDescription());
+            order.setQuantity(entity.getQuantity());
+            order.setStatus(entity.getStatus());
+            
+            listDTO.add(order);
+            
+        }
+        
+        return listDTO;
+        
     }
 
 
