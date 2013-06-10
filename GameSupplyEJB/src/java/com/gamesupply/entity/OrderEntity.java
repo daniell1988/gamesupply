@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderEntity.findAll", query = "SELECT o FROM OrderEntity o"),
+    @NamedQuery(name = "OrderEntity.findByBranch", query = "SELECT o FROM OrderEntity o WHERE o.branch = :branch"),
     @NamedQuery(name = "OrderEntity.findByIdOrder", query = "SELECT o FROM OrderEntity o WHERE o.idOrder = :idOrder"),
     @NamedQuery(name = "OrderEntity.findByAddress", query = "SELECT o FROM OrderEntity o WHERE o.address = :address"),
     @NamedQuery(name = "OrderEntity.findByDelivery", query = "SELECT o FROM OrderEntity o WHERE o.delivery = :delivery"),
@@ -43,7 +44,7 @@ public class OrderEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "id_order")
     private Integer idOrder;
     @Size(max = 255)

@@ -57,7 +57,23 @@ public class OrderFacade extends AbstractFacade<OrderEntity> implements OrderFac
 
     @Override
     public void edit(OrderDTO orderDTO) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        OrderEntity orderEntity = new OrderEntity();
+        
+        orderEntity.setAddress(orderDTO.getAddress());
+        orderEntity.setBranch(orderDTO.getBranch());
+        orderEntity.setDelivery(orderDTO.getDelivery());
+        orderEntity.setIdCustomer(orderDTO.getIdCustomer());
+        orderEntity.setPayment(orderDTO.getPayment());
+        orderEntity.setPrice(orderDTO.getPrice());
+        orderEntity.setProduct(orderDTO.getProduct());
+        orderEntity.setProductDescription(orderDTO.getProductDescription());
+        orderEntity.setQuantity(orderDTO.getQuantity());
+        orderEntity.setStatus(orderDTO.getStatus());
+        orderEntity.setIdOrder(orderDTO.getIdOrder());
+        
+        em.merge(orderEntity);
+        
     }
 
     @Override
@@ -90,6 +106,39 @@ public class OrderFacade extends AbstractFacade<OrderEntity> implements OrderFac
         List<OrderDTO> listDTO = new ArrayList<OrderDTO>();
         
         for(OrderEntity entity : listEntity){
+            
+            OrderDTO order = new OrderDTO();
+            
+            order.setAddress(entity.getAddress());
+            order.setBranch(entity.getBranch());
+            order.setDelivery(entity.getDelivery());
+            order.setIdCustomer(entity.getIdCustomer());
+            order.setIdOrder(entity.getIdOrder());
+            order.setPayment(entity.getPayment());
+            order.setPrice(entity.getPrice());
+            order.setProduct(entity.getProduct());
+            order.setProductDescription(entity.getProductDescription());
+            order.setQuantity(entity.getQuantity());
+            order.setStatus(entity.getStatus());
+            
+            listDTO.add(order);
+            
+        }
+        
+        return listDTO;
+        
+    }
+
+    @Override
+    public List<OrderDTO> findByBranch(String branch) {
+        
+        Query q = em.createNamedQuery("OrderEntity.findByBranch");
+        q.setParameter("branch", branch);
+        
+        List<OrderEntity> listEntity = q.getResultList();
+        List<OrderDTO> listDTO = new ArrayList<OrderDTO>();
+        
+         for(OrderEntity entity : listEntity){
             
             OrderDTO order = new OrderDTO();
             

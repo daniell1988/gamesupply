@@ -31,4 +31,6 @@ public interface OrderFacadeRemote {
     
     List<OrderDTO> findByCustomer(Integer customer);  
     
+    List<OrderDTO> findByBranch(String branch);  
+    
 }
