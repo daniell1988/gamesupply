@@ -19,6 +19,7 @@ public class MainMenu extends javax.swing.JFrame {
     private String store;
     private NewSale newSale;
     private BranchDailyReport branchDailyReport;
+    private OrderList orderList;
 
     /**
      * Creates new form MainMenu
@@ -43,11 +44,9 @@ public class MainMenu extends javax.swing.JFrame {
         menuSale = new javax.swing.JMenu();
         itemNewSale = new javax.swing.JMenuItem();
         menuStock = new javax.swing.JMenu();
-        itemNewStockEntry = new javax.swing.JMenuItem();
         itemStockManagement = new javax.swing.JMenuItem();
         menuOrder = new javax.swing.JMenu();
         itemOrderSearch = new javax.swing.JMenuItem();
-        itemOrderBranchForward = new javax.swing.JMenuItem();
         menuProduct = new javax.swing.JMenu();
         itemNewProduct = new javax.swing.JMenuItem();
         menuItemProductManagement = new javax.swing.JMenuItem();
@@ -74,14 +73,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         menuStock.setText("Estoque");
 
-        itemNewStockEntry.setText("Nova Entrada");
-        itemNewStockEntry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemNewStockEntryActionPerformed(evt);
-            }
-        });
-        menuStock.add(itemNewStockEntry);
-
         itemStockManagement.setText("Controle");
         itemStockManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,10 +86,12 @@ public class MainMenu extends javax.swing.JFrame {
         menuOrder.setText("Pedidos");
 
         itemOrderSearch.setText("Consulta");
+        itemOrderSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemOrderSearchActionPerformed(evt);
+            }
+        });
         menuOrder.add(itemOrderSearch);
-
-        itemOrderBranchForward.setText("Encaminhar p/ Filial");
-        menuOrder.add(itemOrderBranchForward);
 
         mainMenuBar.add(menuOrder);
 
@@ -176,13 +169,6 @@ public class MainMenu extends javax.swing.JFrame {
         cadastroProduto.setVisible(true);
     }//GEN-LAST:event_itemNewProductActionPerformed
 
-    private void itemNewStockEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNewStockEntryActionPerformed
-        stockEntry = new NewStock(store);
-        jDesktopPane1.add(stockEntry);
-        stockEntry.setVisible(true);
-
-    }//GEN-LAST:event_itemNewStockEntryActionPerformed
-
     private void itemStockManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemStockManagementActionPerformed
         stockManagement = new MaintainStock(store);
         jDesktopPane1.add(stockManagement);
@@ -200,6 +186,12 @@ public class MainMenu extends javax.swing.JFrame {
         jDesktopPane1.add(branchDailyReport);
         branchDailyReport.setVisible(true);
     }//GEN-LAST:event_itemMenuDailyReportActionPerformed
+
+    private void itemOrderSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemOrderSearchActionPerformed
+        orderList = new OrderList(store);
+        jDesktopPane1.add(orderList);
+        orderList.setVisible(true);
+    }//GEN-LAST:event_itemOrderSearchActionPerformed
 
     public String getStore() {
         return store;
@@ -250,8 +242,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemMenuReportBranchStock;
     private javax.swing.JMenuItem itemNewProduct;
     private javax.swing.JMenuItem itemNewSale;
-    private javax.swing.JMenuItem itemNewStockEntry;
-    private javax.swing.JMenuItem itemOrderBranchForward;
     private javax.swing.JMenuItem itemOrderSearch;
     private javax.swing.JMenuItem itemStockManagement;
     private javax.swing.JDesktopPane jDesktopPane1;

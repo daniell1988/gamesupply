@@ -7,7 +7,6 @@ package com.gamesupply.controller;
 import com.gamesupply.dto.SaleDTO;
 import com.gamesupply.ejb.remote.SaleFacadeRemote;
 import com.gamesupply.util.GSUtils;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
