@@ -69,9 +69,13 @@
            <br/>
             <h:form>
                <h:outputText value="Cartão de Crédito: "/>
-               <h:inputText id="cc" title="firstName" required="true" requiredMessage="Insira Cartão de Crédito" />
+               <h:inputText id="cc" title="firstName" required="true" requiredMessage="Insira Cartão de Crédito" >
+                   <f:validateRegex pattern="[0-9]+"/>
+               </h:inputText>
                <h:outputText value="Código de verificação: "/>
-               <h:inputText id="cc1" title="firstName2" required="true" requiredMessage="Insira código de verificação do Cartão de Crédito" size="2"/>
+               <h:inputText id="cc1" title="firstName2" required="true" requiredMessage="Insira código de verificação do Cartão de Crédito" size="2">
+                   <f:validateRegex pattern="[0-9]+"/>
+               </h:inputText>
                <br/>
                <h:message for="cc" style="color:red" />
                <br/>

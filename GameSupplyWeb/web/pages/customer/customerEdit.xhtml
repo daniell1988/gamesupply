@@ -20,9 +20,13 @@
                     <h:outputText value="e-mail"/>
                     <h:inputText id="email" value="#{currentUser.customer.email}" title="email" required="true" requiredMessage="Insira o e-mail"/>
                     <h:outputText value="Telefone"/>
-                    <h:inputText id="phoneNumber" value="#{currentUser.customer.phoneNumber}" title="phoneNumber" required="true" requiredMessage="Insira o Telefone Fixo"/>
+                    <h:inputText id="phoneNumber" value="#{currentUser.customer.phoneNumber}" title="phoneNumber" required="true" requiredMessage="Insira o Telefone Fixo">
+                        <f:validateRegex pattern="[0-9]+"/>
+                    </h:inputText>
                     <h:outputText value="Celular"/>
-                    <h:inputText id="mobileNumber" value="#{currentUser.customer.mobileNumber}" title="mobileNumber" required="true" requiredMessage="Insira o Celular"/>
+                    <h:inputText id="mobileNumber" value="#{currentUser.customer.mobileNumber}" title="mobileNumber" required="true" requiredMessage="Insira o Celular">
+                        <f:validateRegex pattern="[0-9]+"/>
+                    </h:inputText>
                     <h:commandLink action="#{customerController.editPersist(currentUser.customer)}" value="Salvar"/>
                 </h:panelGrid>
         </h:form>
