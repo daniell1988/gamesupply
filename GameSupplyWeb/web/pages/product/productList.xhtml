@@ -13,10 +13,16 @@
         </c:if>
         <c:if test="${currentUser.isLogged}">
             <h:form>
-                <h:outputText value="Olá, ${currentUser.name}  ("/>
+                <h:outputText value="Olá, ${currentUser.name} ("/>
                 <h:commandLink action="/pages/customer/customerEdit.xhtml" value="Editar Conta"/>
                 <h:outputText value=")"/> &nbsp;
-                <h:commandLink action="#{orderController.listOrder(currentUser.idUser)}" value="Pedidos"/>
+                <h:commandLink action="#{orderController.listOrder(currentUser.idUser)}" value="Pedidos"/>&nbsp;
+                <c:if test="${currentUser.isLogged}">
+                    <h:commandLink action="#{wishlistController.findByCustomer(currentUser.idUser)}" value="Lista de Desejo"/>&nbsp;
+                   <c:if test="${currentUser.cart.size() > 0}">
+                       <h:commandLink action="/pages/product/cartList.xhtml" value="Carrinho"/>
+                   </c:if>
+                </c:if>
             </h:form>
         </c:if>
         <h:form>
@@ -69,13 +75,13 @@
                     <f:facet name="header">
                         <h:outputText value="Lista de Desejos"/>
                     </f:facet>
-                    <h:commandLink action="#{currentUser.addItemToWishList(item)}" value="Adicionar"/>
+                    <h:commandLink action="#{wishlistController.addWishlistItem(item, currentUser.idUser)}" value="Adicionar"/>
                 </h:column>
             </c:if>
         </h:dataTable>
             </h:form>
         <h:messages showDetail="true" warnStyle="color:red;"/>
-        <c:if test="${currentUser.isLogged}">
+<!--        <c:if test="${currentUser.isLogged}">
             <c:if test="${currentUser.cart.size() > 0}">
                 <h:form>
                     <h:commandLink action="/pages/product/cartList.xhtml" value="Carrinho"/>
@@ -84,7 +90,7 @@
             <h:form>
                 <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Lista de Desejo"/>
             </h:form>
-        </c:if>
+        </c:if>-->
     </h:body>
 </html>
 

@@ -60,31 +60,46 @@
                 </h:column>
             </h:dataTable>
             <br/>
-            <h:outputText value="Endereço: "/>
-            <h:selectOneMenu value="#{currentUser.idOrderAddress}" >
-                <f:selectItems value="#{addressController.getAddressesSelect(currentUser.customer)}" />
-            </h:selectOneMenu>
+            <c:if test="#{!addressController.findByCustomer(currentUser.customer).isEmpty()}">
+                <h:outputText value="Endereço: "/>
+                <h:selectOneMenu value="#{currentUser.idOrderAddress}" >
+                    <f:selectItems value="#{addressController.getAddressesSelect(currentUser.customer)}" />
+                </h:selectOneMenu>
+           </c:if>
            <br/>
-           <h:outputText value="Cartão de Crédito: "/>
-           <h:inputText id="cc" title="firstName" required="true" requiredMessage="The zip field is required." />
-           <h:outputText value="Código de verificação: "/>
-           <h:inputText id="cc1" title="firstName" required="true" requiredMessage="The zip field is required." size="2"/>
-           <br/>
+            <h:form>
+               <h:outputText value="Cartão de Crédito: "/>
+               <h:inputText id="cc" title="firstName" required="true" requiredMessage="Insira Cartão de Crédito" />
+               <h:outputText value="Código de verificação: "/>
+               <h:inputText id="cc1" title="firstName2" required="true" requiredMessage="Insira código de verificação do Cartão de Crédito" size="2"/>
+               <br/>
+               <h:message for="cc" style="color:red" />
+               <br/>
+               <h:message for="cc1" style="color:red" />
+            </h:form>
         
         
         
 
         <c:if test="${currentUser.isLogged}">
             <c:if test="${currentUser.cart.size() > 0}">
+                <c:if test="#{!addressController.findByCustomer(currentUser.customer).isEmpty()}">
                 <!--<h:form>-->
                 <!--<h:commandButton value="Confirmar" action="/pages/order/orderList.xhtml" />-->
-                <h:commandLink action="${orderController.createOrder(currentUser)}" value="Confirmar"/>
+                    <h:commandLink action="${orderController.createOrder(currentUser)}" value="Confirmar"/>
+                </c:if>
                 <!--</h:form>-->
             </c:if>
             <!--<h:form>-->
-                <h:commandLink action="/pages/customer/customerCreate.xhtml" value="Lista de Desejo"/>
+                <!--<h:commandLink action="/pages/customer/customerCreate.xhtml" value="Lista de Desejo"/>-->
             <!--</h:form>-->
         </c:if>
+        </h:form>
+        <h:form>
+            <c:if test="#{addressController.findByCustomer(currentUser.customer).isEmpty()}">
+                   <h:outputText value="Endereço: "/>
+                   <h:commandLink action="/pages/address/addressCreate.xhtml" value="Criar"/>
+            </c:if>
         </h:form>
         <h:form> 
             <h:commandLink action="/pages/product/cartList.xhtml" value="Voltar"/>

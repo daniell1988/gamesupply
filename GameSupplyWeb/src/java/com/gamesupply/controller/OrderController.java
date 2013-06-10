@@ -63,9 +63,7 @@ public class OrderController {
                  stockFacade = (StockFacadeRemote) GSUtils.dynamicLookup("StockFacade");
             } catch (Exception e) {
                 System.out.println("erro lookup web");
-        }
-        
-        
+            }
         
         for(StockDTO cartItem : currentUser.getCart()){
             
@@ -73,7 +71,7 @@ public class OrderController {
             orderDTO.setDelivery("Estimado em 4 dias úteis");
             orderDTO.setIdCustomer(currentUser.getIdUser());
             orderDTO.setPayment("Cartão de Crédito");
-            orderDTO.setPrice(cartItem.getPrice());
+            orderDTO.setPrice(cartItem.getPrice() * cartItem.getBranchQuantity());
             orderDTO.setProduct(cartItem.getName());
             orderDTO.setProductDescription(cartItem.getType() + " " + cartItem.getPlatform());
             orderDTO.setStatus("Separacao de Estoque");

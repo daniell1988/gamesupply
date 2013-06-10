@@ -73,8 +73,7 @@ public class AddressController {
         return "/pages/customer/customerEdit.xhtml";
     }
     
-    public void create(CustomerDTO customer){
-        
+    public String create(CustomerDTO customer){
         try {
              addressFacade = (AddressFacadeRemote) GSUtils.dynamicLookup("AddressFacade");
         } catch (Exception e) {
@@ -95,6 +94,8 @@ public class AddressController {
 //        address.setZip("22501-581");
 //        address.setIdCustomer(customer);
         addressFacade.create(address);
+        
+        return "/pages/customer/customerEdit.xhtml";
         
     }    
     
@@ -172,6 +173,11 @@ public class AddressController {
 
     public void setSelectedAddress(String selectedAddress) {
         this.selectedAddress = selectedAddress;
+    }
+
+    String createFirstAddress(CustomerDTO customer) {
+        this.customer = customer;
+        return "/pages/address/addressCreate.xhtml";
     }
     
     

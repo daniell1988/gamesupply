@@ -9,20 +9,20 @@
     <h:body>
          <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="firstName"/>
+                    <h:outputText value="Nome"/>
                     <h:inputText id="firstName" value="#{currentUser.customer.firstName}" title="firstName" required="true" requiredMessage="The zip field is required." />
-                    <h:outputText value="lastName"/>
-                    <h:inputText id="lastName" value="#{currentUser.customer.lastName}" title="lastName" />
-                    <h:outputText value="userLogin"/>
-                    <h:inputText id="userLogin" value="#{currentUser.customer.userLogin}" title="userLogin" />
-                    <h:outputText value="userPassword"/>
-                    <h:inputText id="userPassword" value="#{currentUser.customer.userPassword}" title="userPassword" />
-                    <h:outputText value="email"/>
-                    <h:inputText id="email" value="#{currentUser.customer.email}" title="email" />
-                    <h:outputText value="phoneNumber"/>
-                    <h:inputText id="phoneNumber" value="#{currentUser.customer.phoneNumber}" title="phoneNumber" />
-                    <h:outputText value="mobileNumber"/>
-                    <h:inputText id="mobileNumber" value="#{currentUser.customer.mobileNumber}" title="mobileNumber" />
+                    <h:outputText value="Sobrenome"/>
+                    <h:inputText id="lastName" value="#{currentUser.customer.lastName}" title="lastName" required="true" requiredMessage="Insira o Sobrenome"/>
+                    <h:outputText value="Login"/>
+                    <h:inputText id="userLogin" value="#{currentUser.customer.userLogin}" title="userLogin" required="true" requiredMessage="Insira o Login"/>
+                    <h:outputText value="Senha"/>
+                    <h:inputText id="userPassword" value="#{currentUser.customer.userPassword}" title="userPassword" required="true" requiredMessage="Insira a Senha"/>
+                    <h:outputText value="e-mail"/>
+                    <h:inputText id="email" value="#{currentUser.customer.email}" title="email" required="true" requiredMessage="Insira o e-mail"/>
+                    <h:outputText value="Telefone"/>
+                    <h:inputText id="phoneNumber" value="#{currentUser.customer.phoneNumber}" title="phoneNumber" required="true" requiredMessage="Insira o Telefone Fixo"/>
+                    <h:outputText value="Celular"/>
+                    <h:inputText id="mobileNumber" value="#{currentUser.customer.mobileNumber}" title="mobileNumber" required="true" requiredMessage="Insira o Celular"/>
                     <h:commandLink action="#{customerController.editPersist(currentUser.customer)}" value="Salvar"/>
                 </h:panelGrid>
         </h:form>
@@ -60,5 +60,18 @@
         <h:form>
             <h:commandLink action="/pages/product/productList.xhtml" value="Voltar"/>
         </h:form>
+        <h:message for="firstName" style="color:red" />
+        <br/>
+        <h:message for="lastName" style="color:red" />
+        <br/>
+        <h:message for="userLogin" style="color:red" />
+        <br/>
+        <h:message for="userPassword" style="color:red" />
+        <br/>
+        <h:message for="email" style="color:red" />
+        <br/>
+        <h:message for="phoneNumber" style="color:red" />
+        <br/>
+        <h:message for="mobileNumber" style="color:red" />
     </h:body>
 </html>

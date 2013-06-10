@@ -8,25 +8,40 @@
     <h:body>
          <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="address"/>
-                    <h:inputText id="address" value="#{addressController.address.address}" title="address" required="true" requiredMessage="The zip field is required." />
-                    <h:outputText value="addressComplement"/>
-                    <h:inputText id="addressComplement" value="#{addressController.address.addressComplement}" title="addressComplement" />
-                    <h:outputText value="addressDescription"/>
-                    <h:inputText id="addressDescription" value="#{addressController.address.addressDescription}" title="addressDescription" />
-                    <h:outputText value="city"/>
-                    <h:inputText id="city" value="#{addressController.address.city}" title="city" />
-                    <h:outputText value="country"/>
-                    <h:inputText id="country" value="#{addressController.address.country}" title="country" />
-                    <h:outputText value="phoneNumber"/>
-                    <h:inputText id="phoneNumber" value="#{addressController.address.phoneNumber}" title="phoneNumber" />
-                    <h:outputText value="state"/>
-                    <h:inputText id="state" value="#{addressController.address.state}" title="state" />
-                    <h:outputText value="zip"/>
-                    <h:inputText id="zip" value="#{addressController.address.zip}" title="zip" />
+                    <h:outputText value="Endereço"/>
+                    <h:inputText id="address" value="#{addressController.address.address}" title="address" required="true" requiredMessage="Insira o Endereço" />
+                    <h:outputText value="Complemento"/>
+                    <h:inputText id="addressComplement" value="#{addressController.address.addressComplement}" title="addressComplement" required="true" requiredMessage="Insira o Complemento" />
+                    <h:outputText value="Local (Ex: Casa)"/>
+                    <h:inputText id="addressDescription" value="#{addressController.address.addressDescription}" title="addressDescription" required="true" requiredMessage="Insira o Local" />
+                    <h:outputText value="Cidade"/>
+                    <h:inputText id="city" value="#{addressController.address.city}" title="city" required="true" requiredMessage="Insira a Cidade" />
+                    <h:outputText value="País"/>
+                    <h:inputText id="country" value="#{addressController.address.country}" title="country" required="true" requiredMessage="Insira o País" />
+                    <h:outputText value="Telefone do Local"/>
+                    <h:inputText id="phoneNumber" value="#{addressController.address.phoneNumber}" title="phoneNumber" required="true" requiredMessage="Insira o Telefode do Local" />
+                    <h:outputText value="Estado"/>
+                    <h:inputText id="state" value="#{addressController.address.state}" title="state" required="true" requiredMessage="Insira o Estado" />
+                    <h:outputText value="CEP"/>
+                    <h:inputText id="zip" value="#{addressController.address.zip}" title="zip" required="true" requiredMessage="Insira o CEP" />
                     <h:commandLink action="#{addressController.edit()}" value="Salvar"/>
                 </h:panelGrid>
         </h:form>
+        <h:message for="address" style="color:red" />
+        <br/>
+        <h:message for="addressComplement" style="color:red" />
+        <br/>
+        <h:message for="addressDescription" style="color:red" />
+        <br/>
+        <h:message for="city" style="color:red" />
+        <br/>
+        <h:message for="country" style="color:red" />
+        <br/>
+        <h:message for="phoneNumber" style="color:red" />
+        <br/>
+        <h:message for="state" style="color:red" />
+        <br/>
+        <h:message for="zip" style="color:red" />
     </h:body>
 </html>
 

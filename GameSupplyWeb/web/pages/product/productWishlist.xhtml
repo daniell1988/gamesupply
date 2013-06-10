@@ -12,10 +12,12 @@
             <h:form><h:commandLink action="/pages/login.xhtml" value="Efetuar Login"/></h:form>
         </c:if>
         <c:if test="${currentUser.isLogged}">
-            <h:outputText value="Olá, ${currentUser.name}. Carrinho de compras:"/>
+            <h:form>
+                <h:outputText value="Lista de desejos: "/>
+            </h:form>
         </c:if>
         <h:form>
-            <h:dataTable value="#{currentUser.cart}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+            <h:dataTable value="#{wishlistController.wishlistList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
              <h:column>
                 <f:facet name="header">
                     <h:outputText value="Nome"/>
@@ -44,7 +46,7 @@
                 <f:facet name="header">
                     <h:outputText value="Preço"/>
                 </f:facet>
-                <h:outputText value=" #{currentUser.getTotalPrice(item)}"/>
+                <h:outputText value=" #{item.price}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
@@ -54,37 +56,17 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Quantidade"/>
+                    <h:outputText value="Remover"/>
                 </f:facet>
-                <h:inputText id="qty" value="#{item.branchQuantity}" size="3" required="true" requiredMessage="Insira uma quantidade" />
-                <h:commandLink action="#{currentUser.updateCart(item)}" value="Alterar">
+                <h:commandLink action="#{wishlistController.remove(item)}" value="X">
                 </h:commandLink>
             </h:column>
-            <c:if test="${currentUser.isLogged}">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Excluir"/>
-                    </f:facet>
-                    <h:commandLink action="#{currentUser.removeItemFromCart(item)}" value="X"/>
-                </h:column>
-            </c:if>
+            
         </h:dataTable>
+             <h:commandLink action="/pages/product/productList.xhtml" value="Voltar"/>
+            </h:form>
         <h:messages showDetail="true" warnStyle="color:red;"/>
-            <!--</h:form>-->
-        <c:if test="${currentUser.isLogged}">
-            <c:if test="${currentUser.cart.size() > 0}">
-                <!--<h:form>-->
-                    <h:commandLink action="/pages/product/orderConfirm.xhtml" value="Finalizar Compra"/>
-                <!--</h:form>-->
-            </c:if>
-            <!--<h:form>-->
-                <!--<h:commandLink action="/pages/customer/customerCreate.xhtml" value="Lista de Desejo"/>-->
-            <!--</h:form>-->
-        </c:if>
-        </h:form>
-        <h:form>
-            <h:commandLink action="/pages/product/productList.xhtml" value="Voltar"/>
-        </h:form>
+
     </h:body>
 </html>
 
