@@ -105,19 +105,19 @@
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
               <Subbinding sourcePath="${platform}">
-                <BindingParameter name="NAME" value="Platform"/>
+                <BindingParameter name="NAME" value="Plataforma"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
               <Subbinding sourcePath="${type}">
-                <BindingParameter name="NAME" value="Type"/>
+                <BindingParameter name="NAME" value="Tipo"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
               <Subbinding sourcePath="${price}">
-                <BindingParameter name="NAME" value="Price"/>
+                <BindingParameter name="NAME" value="Pre&#xe7;o"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Double.class"/>
               </Subbinding>
               <Subbinding sourcePath="${branchQuantity}">
-                <BindingParameter name="NAME" value="Branch Quantity"/>
+                <BindingParameter name="NAME" value="Estoque Dispon&#xed;vel"/>
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
               </Subbinding>
             </BindingProperty>

@@ -257,8 +257,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void getMenus(String store) {
         
-        if(store.equals("Matriz")){
-            itemNewSale.setVisible(false);
+        if(store.equals("MATRIZ")){
+            menuSale.setVisible(false);
+            itemMenuDailyReport.setVisible(false);
+            menuStock.setVisible(false);
+            menuOrder.setVisible(false);
+        }
+        else{
+            menuProduct.setVisible(false);
+            itemMenuReportBranchStock.setVisible(false);
         }
         
     }

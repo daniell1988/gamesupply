@@ -124,10 +124,38 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_fieldPasswordActionPerformed
 
     private void buttomLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttomLoginActionPerformed
-        MainMenu mainMenu = new MainMenu(fieldUser.getText().toUpperCase());
-        mainMenu.setVisible(true);
-//        JOptionPane.showMessageDialog(null, fieldUser.getText());
-        this.dispose();
+        String user = fieldUser.getText().toUpperCase();
+        String pass = fieldPassword.getText();
+        
+        if(user.equals("FILIAL A") && pass.equals("123")){
+            MainMenu mainMenu = new MainMenu(user);
+            mainMenu.setLocationRelativeTo(null);
+            mainMenu.setVisible(true);
+            this.dispose();
+        }
+        else if(user.equals("FILIAL B") && pass.equals("123")){
+            MainMenu mainMenu = new MainMenu(user);
+            mainMenu.setLocationRelativeTo(null);
+            mainMenu.setVisible(true);
+            this.dispose();
+        }
+        else if(user.equals("FILIAL C") && pass.equals("123")){
+            MainMenu mainMenu = new MainMenu(user);
+            mainMenu.setLocationRelativeTo(null);
+            mainMenu.setVisible(true);
+            this.dispose();
+        }
+        else if(user.equals("MATRIZ") && pass.equals("123")){
+            MainMenu mainMenu = new MainMenu(user);
+            mainMenu.setLocationRelativeTo(null);
+            mainMenu.setVisible(true);
+            this.dispose();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorreto.");
+        }
+        
+        
     }//GEN-LAST:event_buttomLoginActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -171,6 +199,7 @@ public class Login extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
+                dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);
             }
         });
