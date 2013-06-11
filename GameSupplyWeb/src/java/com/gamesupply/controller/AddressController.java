@@ -127,13 +127,6 @@ public class AddressController {
         }
         return currentCustomerAddressList = addressFacade.findByCustomer(customer.getIdCustomer());
     }
-    
-//        public static void main(String[] args){
-//        
-//        //new TesteAddressPersist().teste();
-//        new AddressController().create();
-//        
-//    }
 
     public AddressDTO getAddress() {
         return address;
