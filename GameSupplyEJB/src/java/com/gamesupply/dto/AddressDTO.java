@@ -103,7 +103,5 @@ public class AddressDTO implements Serializable {
     public void setIdCustomer(Integer idCustomer) {
         this.idCustomer = idCustomer;
     }
-    
-    
-    
+
 }
